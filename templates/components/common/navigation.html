@@ -1,10 +1,10 @@
-<nav class="navUser" aria-label="User navigation">
+<nav class="navUser">
     <ul>
         <li id="trigger-mobile" class="visible-xs"></li>
         {{#if settings.phone_number}}
         <li class="phone_number hidden-xs"><a href="tel:{{settings.phone_number}}">Customer Service <span>{{settings.phone_number}}</span></a></li>
         {{/if}}
-        <li class="hidden-xs"><a href="{{urls.contact_us}}" title="Need Help?" aria-label="Need Help? Contact us">Need Help?</a></li>
+        <li class="hidden-xs"><a href="#" title="Need Help?">Need Help?</a></li>
         {{#if settings.account_creation_enabled}}
         {{#if customer}}
         <li class="hidden-xs">{{lang 'Welcome back,'}} <strong>{{customer.name}}</strong></li>
