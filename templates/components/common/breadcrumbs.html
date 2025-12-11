@@ -1,3 +1,21 @@
+{{#if breadcrumbs}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{#each breadcrumbs}}
+    {
+      "@type": "ListItem",
+      "position": {{add @index 1}},
+      "name": "{{name}}"{{#if url}},
+      "item": "{{url}}"{{/if}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+</script>
+{{/if}}
 <div id="breadcrumbs-wrapper">
    <ul class="breadcrumbs">
        {{#each breadcrumbs}}
