@@ -3,7 +3,7 @@
   "description": "The BigCommerce reference theme for the Stencil platform",
   "version": "1.6.2",
   "private": true,
-  "author": "BigCommerce",
+  "author": "electrowell.com",
   "license": "MIT",
   "devDependencies": {
     "@bigcommerce/citadel": "^2.15.1",
