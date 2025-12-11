@@ -1,0 +1,39 @@
+<!-- Begin Halo Newsletter Popup -->
+<div id="halo-newsletter-popup" class="hide">
+    <div class="popup-overlay"></div>
+    <div class="newsletter-popup-container">
+        <div class="newsletter-popup-inner">
+            <button title="Close" type="button" data-close-newsletter-popup>×</button>
+            <div class="newsletter-left">
+                <h2 class="newsletter-heading">Signup for our emails</h2>
+                <p class="newsletter-sub-heading">Receive our latest updates about our products and promotions.</p>
+                <div id="popupSubcribeForm">
+                    <form class="form" action="{{urls.subscribe.action}}" method="post">
+                        <fieldset class="form-fieldset">
+                            <input type="hidden" name="action" value="subscribe">
+                            <input type="hidden" name="nl_first_name" value="bc">
+                            <input type="hidden" name="check" value="1">
+                            <div class="form-field">
+                                <div class="form-wrap">
+                                    <input class="form-input" id="nl_email" name="nl_email" type="email" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                                    <input class="btn btn-primary btn-subcribe" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <p class="newsletter-message">We promise to only send you good things.</p>
+                <div class="black-icons">
+                    {{> components/common/social-links}}
+                </div><div class="HL_check">
+                    <input class="CheckBox" id="HL_checked" name="check" value="" onclick="" type="checkbox" />
+                    <label>Don’t show again!</label>
+                </div>
+            </div>
+            <div class="newsletter-right">
+                <img src="../product_images/uploaded_images/img-email.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Halo Newsletter Popup -->

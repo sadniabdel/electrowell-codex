@@ -1,0 +1,67 @@
+// =============================================================================
+// FORMS (CSS)
+// =============================================================================
+.form-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #969696;
+}
+
+.form-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #969696;
+}
+
+.form-input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #969696;
+}
+
+.form-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #969696;
+}
+
+// Select boxes
+// -----------------------------------------------------------------------------
+
+.form-select {
+    appearance: none;
+    background-image: url('../img/select-arr.png');
+    border-radius: $select-borderRadius;
+    padding: $select-padding;
+    border-color: #cbcbcb;
+    &:hover {
+        border-color: $select-hover-borderColor;
+    }
+    &:focus {
+        background-image: url('../img/select-arr-focus.png');
+    }
+}
+
+
+// Form labels
+// -----------------------------------------------------------------------------
+
+.form-label {
+
+    small {
+        float: $opposite-direction;
+        margin-top: $form-label-small-marginTop;
+    }
+}
+
+
+// Form labels (inline small text)
+// -----------------------------------------------------------------------------
+
+.form-label--inlineSmall {
+
+    small {
+        color: red;
+        float: none;
+        font-size: inherit;
+        font-weight: fontWeight("normal");
+        margin-left: spacing("quarter");
+        text-transform: none;
+    }
+}

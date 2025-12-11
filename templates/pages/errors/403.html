@@ -1,0 +1,17 @@
+{{#partial "page"}}
+<div class="container">
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{lang 'forbidden.page_heading'}}</h1>
+
+<main class="page">
+    <section class="page-content page-content--centered">
+        <p class="u-textAlignCenter">
+            {{lang 'forbidden.message'}}
+        </p>
+
+        {{> components/common/search-box}}
+    </section>
+</main>
+</div>
+{{/partial}}
+{{> layout/base}}

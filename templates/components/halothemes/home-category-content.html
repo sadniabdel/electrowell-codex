@@ -1,0 +1,11 @@
+<main class="page-content col-sm-9" id="product-listing-container">                        
+    {{#if category.products}}
+        <div class="wrap-category">                        
+            <form action="{{urls.compare}}" method='POST' data-product-compare>                           
+                    {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings columns=theme_settings.categorypage_products_column_count}}                            
+            </form>                        
+        </div>
+    {{else}}
+        <div class="alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>
+    {{/if}}
+</main>

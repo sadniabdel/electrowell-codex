@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{{snippet 'htmlhead'}}}
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-589d7698f6fa5c40"></script>
+    </head>
+    <body class="page-type-{{page_type}}">
+        <div id="st-container" class="st-container">
+            <!-- content push wrapper -->
+            <div class="st-pusher">
+                <nav class="st-menu st-effect st-effect-1" id="mobile-categories">
+                    <ul>
+                        {{#if customer}}
+                        {{#if settings.account_creation_enabled}}
+                        <li class="no-line"><span class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></span></li>
+                        {{/if}}
+                        <li class="my-account no-line"><a href="{{urls.account.index}}">{{lang 'common.account'}}</a></li>
+                        <li class="account no-line"><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                        {{#if settings.returns_enabled}}
+                        <li class="account no-line"><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                        {{/if}}
+                        <li class="account no-line"><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                        <li class="account no-line"><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                        {{#if settings.show_wishlist}}
+                        <li class="account no-line"><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li>
+                        {{/if}}
+                        <li class="account no-line"><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                        <li class="account no-line"><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                        {{else}}
+                        <li class="account no-line"><a href="{{urls.account.index}}">{{lang 'common.account'}}</a></li>
+                        {{/if}}
+                        {{#if settings.account_creation_enabled}}
+                        <li class="login-register no-line">
+                            {{#if customer}}
+                            {{else}}
+                            <a href="{{urls.auth.login}}">{{lang 'common.login'}}</a><a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                            {{/if}}
+                        </li>
+                        {{/if}}
+
+                        {{#if customer.store_credit.value '>' 0}}
+                        <li class="hasSub no-line">
+                            <a class="navUser-action--storeCredit">
+                                {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                            </a>
+                            <span class="toggle-expand"></span>
+                            <div id="storeCredit-dropdown">
+                                <div class="alert alert-info">
+                                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+                        {{#if settings.gift_certificates_enabled}}
+                        <li class="gift-certificates no-line">
+                            <a href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                        </li>
+                        {{/if}}
+                        {{#if customer}}
+                        <li class="logout no-line"><a href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                        {{/if}}
+                    </ul>
+                </nav>
+                {{{snippet 'header'}}}
+                <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+
+                {{#if settings.privacy_cookie}}
+                    {{> components/common/cookie}}
+                {{/if}}
+
+                {{> components/common/header }}
+                {{> components/common/body }}
+                {{> components/common/footer }}
+
+                <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+                <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+                <script>
+                    // Exported in app.js
+                    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+                </script>
+
+                <script>
+
+                {{#if theme_settings.halothemes_sticky_navigation}}
+                    //Sticky Navigation
+                    window.stickyNavigation();
+                {{/if}}
+
+                </script>
+                {{#if page_type '==' 'product'}}
+                    {{#if theme_settings.halothemes_size_chart}}
+                        <script>
+                        window.haloSizeChart();
+                        </script>
+                    {{/if}}
+                {{/if}}
+
+                <script src="{{cdn '/assets/js/theme/halothemes/jquery.min.js'}}"></script>
+                <script src="{{cdn '/assets/modernizr-custom.js'}}"></script>
+
+                {{#if theme_settings.halothemes_megamenu}}
+                <!-- Begin HaloThemes MegaMenu -->
+                {{> components/halothemes/halo-megamenu }}
+                <!-- End HaloThemes MegaMenu -->
+                {{/if}}
+                <script>
+                    jQuery(document).ready(function($) {
+                        $('#mobile-categories > ul').prepend($('#menu.navPages-container > nav.navPages > ul.navPages-list').html());
+                        $('#mobile-categories > ul').css('max-height', screen.height);
+                        $('#mobile-categories > ul li').has('ul li').addClass('hasSub').prepend('<span class="toggle-expand"></span>');
+
+                        $('#mobile-categories > ul li.hasSub > span').click(function() {
+                           if ($(this).hasClass('toggle-expand')) {
+                               $(this).siblings('.subMegaMenu').addClass('sub-expand');
+                               $(this).parent().addClass('expanded');
+                               $(this).attr('class', 'toggle-close');
+                           } else if ($(this).hasClass('toggle-close')) {
+                               $(this).siblings('.subMegaMenu').removeClass('sub-expand');
+                               $(this).parent().removeClass('expanded');
+                               $(this).attr('class', 'toggle-expand');
+                           }
+                        });
+                    });
+                </script>
+                {{#if settings.show_newsletter_box}}
+                <!-- BEGIN Footer SubscribeForm Validate -->
+                <script>
+                jQuery(document).ready(function($){
+                    $('#footerSubcribeForm').submit(function(event){
+                        if ($('#footerSubcribeForm').find('#nl_email').val()  == "") {
+                            alert("Please enter a valid email address, such as john@example.com.");
+                            $('#footerSubcribeForm').find('#nl_email').focus();
+                            return false;
+                        }
+
+                    });
+                });
+                </script>
+                <!-- END Footer SubscribeForm Validate -->
+                {{/if}}
+
+
+                {{{footer.scripts}}}
+                {{{snippet 'footer'}}}
+            </div>
+        </div>
+    </body>
+</html>

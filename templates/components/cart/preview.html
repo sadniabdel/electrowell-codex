@@ -1,0 +1,145 @@
+<div class="modal-header">
+    <h2 class="modal-header-title">
+        {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}}
+    </h2>
+</div>
+
+<div class="modal-body">
+    <div class="previewCart">
+        <section class="previewCartCheckout">
+            {{#if cart.show_primary_checkout_button}}
+                <div class="CheckoutButton">
+                    <a href="{{urls.checkout.single_address}}" class="btn btn-primary btn-lg">
+                        {{lang 'cart.added_to_cart.proceed_to_checkout'}}<i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            {{/if}}
+
+            <div class="previewCartCheckout-additionalCheckoutButtons">
+                {{#each cart.additional_checkout_buttons}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+
+            {{#if cart.show_multiple_address_shipping}}
+                <div class="previewCartAction-checkoutMultiple">
+                    <a href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                </div>
+            {{/if}}
+
+            <div class="previewCartCheckout-subtotal">
+                {{lang 'cart.added_to_cart.order_subtotal'}}
+
+                <strong class="previewCartCheckout-price">
+                    {{cart.sub_total.formatted}}
+                </strong>
+            </div>
+
+            <p data-cart-quantity="{{cart.quantity}}">
+                {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}
+            </p>
+
+            <a href="#" class="btn btn-alt" role="button" data-reveal-close>
+                {{lang 'cart.added_to_cart.continue_shopping'}}<i class="fa fa-chevron-right"></i>
+            </a>
+
+            <a href="{{urls.cart}}" class="btn btn-alt">
+                {{lang 'cart.added_to_cart.view_or_edit_cart'}}<i class="fa fa-chevron-right"></i>
+            </a>
+        </section>
+        <section class="productView">
+            {{#with cart.added_item}}
+                <figure class="productView-image">
+                    <img class="productView-image--cart"
+                         src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                         alt="{{image.alt}}"
+                         title="{{image.alt}}" />
+                </figure>
+
+                <div class="productView-details">
+                    <div class="productView-brand">
+                        {{brand.name}}
+                    </div>
+                    <h4 class="productView-title">
+                        {{name}}
+                    </h4>
+                    <div class="productView-quantity">
+                        <label>Quantity added: </label>
+                        {{quantity}}
+                    </div>
+                    <div class="productView-price">
+                        {{price.formatted}}
+                    </div>
+
+                    {{#each configurable_fields}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            {{#if is_file}}
+                                <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                            {{else}}
+                                {{{value}}}
+                            {{/if}}
+                        </dl>
+                    {{/each}}
+
+                    {{#each options}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            <dd class="productView-info-value">
+                                {{value}}
+                            </dd>
+                        </dl>
+                    {{/each}}
+                </div>
+            {{/with}}
+        </section>
+    </div>
+    {{#if cart.suggested_products}}
+        <section class="suggestiveCart">
+            <h4>
+                {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
+            </h4>
+
+            <div class="productCarousel productGrid owl-carousel"
+                data-owl='{
+                    "nav": true,
+                    "dots": false,
+                    "items": 4,
+                    "margin": 0,
+                    "slideBy": 4,
+                    "responsive": {
+                     "0": {
+                        "items": 2,
+                        "slideBy": 2,
+                        "margin": 0
+                     },
+                     "768": {
+                        "items": 2,
+                        "slideBy": 2
+                     },
+                     "992": {
+                        "items": 3,
+                        "slideBy": 3
+                     },
+                     "1199": {
+                        "items": 4,
+                        "slideBy": 4
+                     }
+                  },
+                  "responsiveRefreshRate": 0
+                }'>
+                {{#each cart.suggested_products}}
+                   <div class="prod-item">
+                        {{> components/products/card hide_product_quick_view=true theme_settings=../theme_settings}}
+                    </div>
+                {{/each}}
+            </div>
+        </section>
+    {{/if}}
+</div>

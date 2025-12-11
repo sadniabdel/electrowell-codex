@@ -1,0 +1,1039 @@
+// =============================================================================
+// Stencil Checkout  - Customize the checkout experience
+// =============================================================================
+//
+// This file is for checkout customizations for Default one-page checkout.
+//
+// -----------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i,700,700i,800,800i,900|Roboto:300i,400,400i,500,500i,700,700i,900&amp;subset=latin-ext,vietnamese|Montserrat:400,600,700|Roboto:400,400i,500,500i,700,700i|Roboto+Condensed:400,400i,700,700i|Open+Sans:400,400i,600,700,700i|Oswald:400,700|Source+Sans+Pro:400,400i|Arimo:400,400i,700,700i&amp;subset=vietnamese');
+#Header .header-logo{
+    img{
+        width: auto;
+        max-width: 100%;
+    }
+}
+.TopMenu > .inner, .PageMenu > .inner, .main > .inner, .footer-main > .inner, .newsletter-subscription > .inner{
+    @media (max-width: 767px){
+        width: 95% !important;
+    }
+}
+.header{
+    background: stencilColor('header-backgroundColor');
+}
+.header-logo{
+    padding:21px 0 18px;
+}
+h1.TitleHeading {
+   font-family: stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+   font-size: 22px;
+   margin: 30px 0 25px;
+   text-transform: capitalize;
+   font-weight:800;
+}
+
+.Content .Block.ExpressCheckout {
+   padding-top: 40px;
+}
+.Content h2, .Content h3 {
+   font-family: stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+.ExpressCheckoutBlock {
+   padding: 0;
+   margin-bottom: 15px;
+   overflow: hidden;
+   font-size: 12px;
+   color:stencilColor('color-textBase');
+   font-family: stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+   border: 1px solid stencilColor('color-border-page');
+   border-radius: 4px;
+   &:nth-of-type(1){
+      border-top: 1px solid stencilColor('color-border-page');
+   }
+   h2 {
+     font-family: stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+   }
+   dt {
+      font-size: 12px;
+      font-weight: 700;
+		font-family: stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+		color:stencilColor('form-label-font-color');
+		@media(max-width:991px){
+			width:100%;
+			padding-bottom:0;
+			text-align:left;
+		}
+   }
+   dd > label {
+      font-weight: 700;
+	  color:stencilColor('form-label-font-color');
+   }
+   a {
+      font-size: 12px;
+      color: #323232;
+   }
+   p {
+      font-size: 12px;
+      &#LoginIntro{
+         margin-bottom: 16px;
+      }
+
+   }
+   & > .ExpressCheckoutContent {
+      padding: 30px 45px;
+      & h4 {
+         font-size: 16px;
+		 font-family: stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+         padding-bottom: 10px;
+         text-transform: none;
+         font-weight: 400;
+         color: stencilColor('color-textLink--hover');
+      }
+   }
+   .SelectMultipleAddresses{
+     margin-left: 0 !important;
+   }
+   input[type="button"], .btn,
+   input[type="submit"], {
+      font-size: 12px;
+      font-family: stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+      height: auto;
+      letter-spacing:normal;
+      padding: 11px 40px 10px;
+      color: stencilColor('button--checkout-color');
+	  background: stencilColor('button--checkout-bgColor'); 
+      -moz-transition: all 0.3s ease 0s;
+      -webkit-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      border-radius: 3px;
+	  text-transform:uppercase;
+	  min-width:150px;
+      &:hover {        
+		color: stencilColor('button--primary-colorHover'); 
+		background: stencilColor('button--primary-backgroundColorHover');
+      }
+   }
+   input#bottom_payment_button {
+      height: 52px;
+	  font-size:18px;
+	  min-width:50%;
+	  text-transform:capitalize;
+   }
+   input[type="text"],
+   input[type="password"],
+   input[type="email"], select {
+      height: 36px !important;
+      border-color: stencilColor('input-border-color') !important;
+      font-size: 12px !important;
+      padding-top: 0;
+      padding-bottom: 0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+	line-height:1.25;
+	color:#454545;
+      &:focus {
+         border-color: stencilColor('color-other-textLink--hover') !important;
+      }
+   }
+   .selector {
+      font-size: 12px !important;
+      height: 36px;
+      min-height: 36px !important;
+      border-color: #c8c8c8;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		color:#454545;
+	margin-bottom:0;
+      > span {
+         font-size: 12px !important;
+         line-height: 34px;
+         font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif !important;
+		color:#454545;
+      }
+   }
+   select.FormField {
+      font-size: 12px !important;
+       font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif !important;
+   }
+}
+.FormFieldLabel{
+  font-weight: 600;
+}
+.HorizontalFormContainer p.Submit {
+    padding-top: 2px;
+}
+#CheckoutStepBillingAddress{
+  & > .ExpressCheckoutContent {
+      padding-bottom: 1px;
+    }
+}
+#AddressEditForm {
+    font-size: 12px;
+    color: #323232;
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+    dt {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    dd > label {
+        font-weight: 500;
+    }
+    .billButton.btn,
+    input[type="button"],
+    input[type="submit"] {
+        font-size: 14px;
+        font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        line-height: 39px;
+        height: 42px;
+        padding: 0 43px;
+        color: white;
+        border: 1px solid #8200ff;
+        background: #8200ff;
+        -moz-transition: all 0.3s ease 0s;
+        -webkit-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        border-radius: 3px;
+		text-transform:capitalize;
+        &:hover {
+           background:transparent;
+           color: #8200ff;
+		   border-color:#8200ff;
+        }
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        height: 36px !important;
+        border-radius: 0;
+        font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+        border-color: #c8c8c8;
+        font-size: 12px !important;
+        padding-top: 0;
+        padding-bottom: 0;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		color:#454545;
+        &:focus {
+            border-color: #989898;
+        }
+    }
+    textarea {
+        border-color: #c8c8c8;		
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		color:#454545;
+        &:focus {
+            border-color: #989898;
+        }
+    }
+    .selector {
+        font-size: 12px !important;
+        height: 36px;
+        min-height: 36px !important;
+        border-radius: 0;
+        border-color: #c8c8c8;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		color:#454545;
+        &.focus {
+            border-color: #989898;
+        }
+        > span {
+            font-size: 12px !important;
+            line-height: 34px;
+            font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+		color:#454545;
+        }
+    }
+    select.FormField {
+        font-size: 12px !important;
+    }
+    .HorizontalFormContainer {
+        max-width: 100%;
+        @media (min-width: 992px) {
+            dt, dd {
+                padding: 0 !important;
+                width: 48%;
+                text-align: left;
+                float: none;
+                line-height: 36px;
+                input[type="text"],
+                input[type="password"],
+                input.Textbox,
+                .selector {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+.ExpressCheckoutBlock .ExpressCheckoutTitle {
+   background: #f6f7f9;
+   & > span.ExpressCheckoutCompletedContent {
+      display: inline-block;
+   }
+}
+.ExpressCheckoutBlockCompleted a.ChangeLink {
+    font-size: 12px;
+    top: 10px !important;
+    right: 11px !important;
+    position: absolute !important;
+    padding: 5px 10px;
+    line-height: 1.25;
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    text-transform: capitalize;
+    background: #fff;
+    color: stencilColor('color-textLink--hover');
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    &:hover{
+      color:stencilColor('color-textBase');
+    }
+}
+
+.ExpressCheckoutBlock .ExpressCheckoutTitle h3 {
+   font-size: 16px;
+   font-family:  stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+   color:stencilColor('color-textHeading');
+   font-weight: 700;
+   margin-bottom: 0;
+   text-transform: capitalize;
+   line-height: 47px;
+   display: inline-block;
+   padding-left: 0px;
+   padding-right: 20px;
+   min-width: 210px;
+   & .step {
+      position: static;
+      display: inline-block;
+      float: left;
+      min-width: 47px;
+      min-height: 47px;
+      line-height: 50px;
+      background: #fff;
+      color:stencilColor('color-textHeading');
+      font-size: 16px;
+      vertical-align: middle;
+      border-radius: 0;
+      margin-right: 20px;
+      transform: none !important;
+   }
+}
+
+.ExpressCheckoutBlockCollapsed .ExpressCheckoutTitle {
+   border-bottom: 0;
+}
+.ExpressCheckoutContent .AccountLogin dt:nth-last-child(-n+4) {
+    display: none;
+}
+
+
+
+.ShippingAddressList {
+   h4 {
+      text-transform: none;
+      padding-top: 15px;
+   }
+}
+
+@media (max-width: 991px) {
+   .ExpressCheckout {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+   }
+   .ExpressCheckoutContent .AccountLogin {
+      padding-left: 0;
+	  margin-bottom:0;
+      input[type="text"],
+      input.Textbox {
+         margin-bottom: 0;
+      }
+	  & + .clear{
+		margin-bottom:0;
+	  }
+   }
+}
+
+@media (max-width: 480px) {
+   .ExpressCheckoutContent #uniform-sel_billing_address {
+      width: 100%;
+   }
+   .ExpressCheckoutBlock input[type="button"],
+   .ExpressCheckoutBlock input[type="submit"] {
+      padding-left: 10px;
+      padding-right: 10px;
+   }
+}
+@media(max-width:767px){
+	.CartContents tfoot .CheckoutRedeemCoupon td label{
+		padding-bottom:7px;
+	}
+	.CartContents tfoot .CheckoutRedeemCoupon td .Textbox{
+		margin-bottom:10px;
+	}
+	.CartContents tfoot .CheckoutRedeemCoupon td .btn{
+		margin-left:0;
+	}
+	#LoginButton{
+		margin-bottom:5px!important;
+	}
+}
+
+dl.mbm {
+   margin-bottom: 27px !important;
+   & dd {
+      margin-bottom: 5px;
+      display: inline-block;
+      padding-right: 30px;
+   }
+}
+.ExpressCheckoutContent .CreateAccount {
+    padding-right: 1% !important;
+}
+
+ul.ShippingProviderList {
+   & label {
+      font-weight: 700;
+      font-size: 12px;
+   }
+}
+
+table.CartContents thead tr th,
+table.CartContents tbody tr td,
+.CartContents tfoot .CheckoutRedeemCoupon,
+.CartContents tfoot .SubTotal td {
+    font-size: 12px;
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+}
+#provider_list label {
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.ExpressCheckoutBlock{
+	.CartContents tfoot .CheckoutRedeemCoupon, 
+	.CartContents tfoot .SubTotal td,  
+	table.CartContents thead tr th > strong {
+		font-size: 14px;
+		font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+		font-weight:400;
+	}
+	.CartContents tfoot .CheckoutRedeemCoupon{
+		padding:0;
+		text-align:left;
+	}
+	.CartContents tfoot .CheckoutRedeemCoupon td{
+		padding:10px;
+	}
+	.CartContents tfoot .SubTotal td{
+		padding:10px;
+		border-color:#eaeaea;
+	}
+	.CartContents tfoot .SubTotal td:last-child div,
+	.CartContents tfoot .SubTotal td div,
+	#CheckoutStepConfirmation .SubTotal td strong, #CheckoutStepConfirmation .SubTotal td em{
+		padding:0;
+	}
+	table.CartContents thead tr th, 
+	table.CartContents tbody tr td, 
+	.CartContents tfoot .CheckoutRedeemCoupon, 
+	.CartContents tfoot .SubTotal td{
+		line-height:18px;
+	}
+	select, textarea, input.Textbox, input[type="text"]{
+		border-color:#c8c8c8;
+		color:#454545;
+		font-size:12px;
+		font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+		margin-bottom:0;
+	}
+	table tbody tr td, table.General tbody tr td, table.CartContents tbody tr td, .CompareFieldName{
+		border-color:#eaeaea;
+	}
+}
+.CheckoutOrderComments{
+	textarea{
+		min-width:50%;
+	}
+}
+
+// check out
+
+.ExpressCheckoutContent {
+    padding: 30px 20px;
+    & h4 {
+        font-size: 14px;
+        font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        text-transform: capitalize;
+        color: #323232;
+    }
+    div.FloatLeft {
+        width: 100%;
+    }
+    .AddShippingAddress,
+    .AddBillingAddress {
+        .HorizontalFormContainer {
+            max-width: 100%;
+            @media (min-width: 992px) {
+                dd {
+                    &:nth-of-type(2n+1) {
+                        clear: both;
+                    }
+                    &:nth-of-type(2n) {
+                        margin-top: 0px;
+                    }
+                    margin-bottom: 10px;
+                    &:nth-last-child(-n+2) {
+                      margin-bottom: -4px;
+                      line-height: 28px;
+                      height: auto;
+                    }
+                }
+                dt {
+                    &:nth-of-type(2n) {
+                        margin-top: -36px;
+                    }
+                }
+                dt,
+                dd {
+                    padding: 0 !important;
+                    width: 48%;
+                    text-align: left;
+                    float: left;
+                    &:nth-of-type(2n+1) {
+                       float: left;
+                       margin-right: 23px;
+                    }
+                    &:nth-of-type(2n) {
+                       float: left;
+                    }
+                }
+            }
+        }
+    }
+	.HorizontalFormContainer dd{
+		margin-bottom:15px;
+		@media(max-width:991px){
+			width: 100%;
+			clear: both;
+			float: left;
+			padding: 0!important;
+			margin-bottom:10px;
+		}
+	}
+	h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+		text-transform:capitalize;
+		font-weight:700;
+        font-family:  stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+		color:#323232;
+	}
+	label{
+		& > .selector, 
+		& > .checker, 
+		& > .button, 
+		& > .radio, 
+		& > .uploader{
+			vertical-align:-4px;
+		}
+	}
+}
+@media screen and (max-width: 1100px) {
+    .HorizontalFormContainer dt {
+        clear: none;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .AddBillingAddress dd,
+    .AddShippingAddress dd {
+        margin-left: 0;
+        float: none;
+    }
+}
+
+
+.Moveable {
+  .multiStep {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 15px;
+      margin-top: 25px;
+      border: 0;
+      &:after {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          z-index: 2;
+          height: 3px;
+          left: 0;
+          content: '';
+          background: #8200ff;
+          @media (max-width: 1200px) {
+              position: static;
+          }
+      }
+      & li {
+          position: relative;
+          z-index: 1;
+          display: table;
+          float: left;
+          height: 53px;
+          margin-left: -1px;
+          margin-right: 0;
+          border: 1px solid #d0d0d0;
+          @media (max-width: 1200px) {
+              width: 100%;
+              margin-left: 0;
+              margin-bottom: -1px;
+          }
+          &:first-child {
+              margin-left: 0;
+              border-top-left-radius: 4px;
+          }
+          &:last-child {
+              border-top-right-radius: 4px;
+          }
+          & h4{
+              font-size: 14px;
+              font-weight: 700;
+              display: block;
+              display: table-cell;
+              padding: 15px 25px 12px;
+              line-height: 1.25;
+              -webkit-transition: background .3s ease 0s;
+              -moz-transition: background .3s ease 0s;
+              -ms-transition: background .3s ease 0s;
+              -o-transition: background .3s ease 0s;
+              transition: background .3s ease 0s;
+              vertical-align: middle;
+              text-transform: uppercase;
+              color: #323232;
+              font-family:  stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+              text-decoration: none !important;
+			  border:none!important;
+              @media (max-width: 480px) {
+                  font-size: 12px;
+                  padding: 0 15px;
+                  letter-spacing: 0;
+              }
+              &:focus {
+                  outline: none;
+              }
+          }
+          &.ActivePage {
+              border: 1px solid #8200ff;
+              background: #fff;
+              position: relative;
+              z-index: 2;
+              @media (max-width: 1200px) {
+                   border: 1px solid #000;
+              }
+          }
+          &.ActivePage h4 {
+			background: #8200ff;
+			color: #fff;
+          }
+          &:hover{
+              border: 1px solid #8200ff;
+              border-bottom: 0;
+              background: #fff;
+              position: relative;
+              z-index: 2;
+              h4 {
+                  background: #8200ff;
+                  color: #fff;
+              }
+          }
+      }
+  }
+  &.ExpressCheckoutBlock {
+        border: 0 !important;
+        box-shadow: none;
+    }
+  .ShippingProviderList{
+    margin-top: 30px;
+  }
+}
+#ChooseShippingAddress, #ChooseBillingAddress{
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#323232;
+	.TabNav{
+		padding:0;
+		li{
+			a{
+				margin:0;
+				border:1px solid stencilColor('color-border-page')!important
+			}
+		}
+	}
+	p.Submit{
+		.btn{
+			font-size: 14px;
+			font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+			font-weight: 700;
+			line-height: 39px;
+			height: 42px;
+			padding: 0 40px;
+			color: white;
+			border: 1px solid #8200ff;
+			background: #8200ff;
+			-moz-transition: all 0.3s ease 0s;
+			-webkit-transition: all 0.3s ease 0s;
+			-ms-transition: all 0.3s ease 0s;
+			-o-transition: all 0.3s ease 0s;
+			transition: all 0.3s ease 0s;
+			border-radius: 3px;
+			text-transform:capitalize;
+			letter-spacing: normal;
+			&:hover {
+			   background:transparent;
+			   color: #8200ff;
+			   border-color:#8200ff;
+			}
+		}
+	}
+	table tbody tr td, table.General tbody tr td, table.CartContents tbody tr td, .CompareFieldName{
+		border-bottom-color:#eaeaea;
+	}
+}
+div.selector select{
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#454545;
+	border-color:#eaeaea;
+}
+div.selector, div.selector span{
+	height:36px;
+	line-height:36px;
+	min-height:36px!important;
+    font-family:  stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#454545;
+}
+
+#CheckoutStepPaymentDetails{
+   .SuccessMessage, .ErrorMessage, .InfoMessage {
+      padding: 11px;
+      padding-left: 55px;
+   }
+}
+
+.SuccessMessage,
+.ErrorMessage,
+.InfoMessage {
+    padding: 10px;
+    padding-left: 55px;
+}
+.Content {
+    h1,h2,h3{
+        text-transform: capitalize;
+        font-size: 20px;
+        padding: 0 0 6px;
+        color: #323232;
+        font-family:  stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+        font-weight: 700;
+    }
+}
+.checkout-banner{
+    border: 0;
+    a{
+        text-transform: capitalize;
+        font-size: 18px;
+        padding: 0 0 6px;
+        font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+        font-weight: 800;
+        color: #8200ff;
+        &:hover {
+			color:#323232;
+            text-decoration: none;
+        }
+		@media(max-width:767px){
+			font-size:16px;
+			font-weight:600;
+		}
+    }
+}
+.Content.ExpressCheckoutBlock#LayoutColumn2{
+	padding: 0;
+	border:none;
+	h4{
+		text-transform: uppercase;
+		font-size: 18px;
+		padding: 0 0 6px;
+		color: #323232;
+		font-family:  stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+		font-weight: 700;
+	}
+	.chooseAnotherToShare a{
+		  color: #8200ff;
+		  text-transform: capitalize;
+		  font-weight: bold;
+		  &:hover{
+			color: #323232;
+		  }
+	}
+	
+	#shareText{
+		font-size: 14px;
+		font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+		font-weight: 700;
+		margin-bottom: 8px;
+		margin-top: 15px;
+		display: block;
+	}
+	.ProductDetails {
+		min-height: auto !important;
+	}
+	.ProductImage a, .ProductThumbImage a {
+		display: table-cell;
+		width: 100%;
+		vertical-align: middle;
+		line-height: 0;
+		height: auto !important;
+	}
+	.ProductList {
+		a:hover{
+			text-decoration: none;
+			border-bottom: 0;
+		}
+		.pname{
+			overflow: hidden;
+			color: #323232;
+			text-align: left;
+			font-family: Muli;
+			font-size: 14px;
+			font-weight: 700;
+			letter-spacing: 0;
+			line-height:20px;
+			&:hover {
+				color: #8200ff;
+				text-decoration: none;
+			}
+		}
+		.Rating{
+			text-align: left;
+		}
+		.ProductPriceRating {
+			margin-bottom: 15px;
+			text-align: left;
+			padding-bottom:0;
+		}
+		.p-price{
+			color: #323232;
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 18px;
+			text-align: left;
+			margin-bottom: 15px;
+			margin-top: 0;
+			font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+			padding:0;
+			.RetailPriceValue {
+				color: #969696;
+				margin-right: 5px;
+				text-decoration: line-through;
+			}
+			.SalePrice {
+				color: #e95144;
+			}
+
+		}
+	}
+	#tabcontent {
+		border:none;
+		padding: 15px;
+		margin-top: -15px;
+		-webkit-border-radius: 5px;
+		-webkit-border-top-left-radius: 0;
+		-moz-border-radius: 5px;
+		-moz-border-radius-topleft: 0;
+		border-radius: 5px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		margin-bottom: 20px;
+		min-height: 120px;
+		@media (max-width: 500px) {
+			margin-top:0;
+		}
+	}
+	.btn {
+		font-size: 14px;
+		font-family: 'Muli', sans-serif;
+		font-weight: 700;
+		line-height: 1.25;
+		height: auto;
+		padding: 9px 15px 8px;
+		border-radius: 3px;
+		color: #8200ff;
+		border: 1px solid #8200ff;
+		background: transparent;
+		-moz-transition: all 0.3s ease 0s;
+		-webkit-transition: all 0.3s ease 0s;
+		-ms-transition: all 0.3s ease 0s;
+		-o-transition: all 0.3s ease 0s;
+		transition: all 0.3s ease 0s;
+		letter-spacing: normal;
+		&:hover {
+			color: #fff;
+			background: #8200ff;
+			border-color:transparent;
+		}
+	}
+	.icon-Add{
+		display:block;
+	}
+	ul.tabs {
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 5px;
+		margin-top: 25px;
+		border: 0;
+		&:after {
+			position: absolute;
+			bottom:0;
+			left: 0;
+			width: 100%;
+			z-index: 1;
+			height: 3px;
+			content: '';
+			background: #8200ff;
+			@media (max-width: 500px) {
+				position: static;
+			}
+		}
+		& li {
+			height: 54px;
+			line-height: 54px;
+			border: 1px solid #d0d0d0;
+			background: #fafafa;
+			font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+			font-size: 14px;
+			font-weight: 700;
+			padding: 0 19px;
+			margin: 0 !important;
+			margin-right: -1px !important;
+			transition: background .3s ease 0s;
+			vertical-align: middle;
+			text-transform: capitalize;
+			color: #323232;
+			text-decoration: none !important;
+			border-radius: 0;
+			display: inline-block;
+			img {
+				position: relative;
+				display: inline;
+				left: 0px;
+				top: 1px;
+				margin-right: 10px;
+				width: 16px;
+				height: 16px;
+			}
+			@media (max-width: 480px) {
+				font-size: 12px;
+				padding: 0 15px;
+				letter-spacing: 0;
+			}
+			&:focus {
+				outline: none;
+			}
+			&:first-child {
+				margin-left: 0;
+				border-radius: 4px 0 0 0;
+				-moz-border-radius: 4px 0 0 0;
+			}
+			&:last-child{
+				border-radius:0 4px 0 0;
+				-moz-border-radius: 0 4px 0 0;
+			}
+			@media (max-width: 500px) {
+				width:auto;
+				display:block;
+				margin:0 0 -1px!important;
+				&:last-child{
+					margin-bottom:0!important;
+					border-radius:0 0 4px 4px;
+					-moz-border-radius:0 0 4px 4px;
+				}				
+				&:first-child {
+					border-radius:4px 4px 0 0;
+					-moz-border-radius:4px 4px 0 0;
+				}
+			}
+			&.active{
+				background: #fff;
+				border: 1px solid #8200ff;
+				position: relative;
+				border-bottom-color: #fff;
+				position: relative;
+				z-index: 2;
+				@media (max-width: 500px) {
+				  background: #8200ff;
+				  border: 0;
+				  border-bottom-color: #8200ff;
+				  color: #fff;
+				}
+			}
+		}
+	}	
+	#SimilarMultiProductsByCustomerViews{
+		border: 1px solid stencilColor('color-border-page');
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		overflow: hidden;
+		margin: 30px 0;
+		position: relative;
+		h4{
+			position: relative;
+			font-size: 18px;
+			text-transform: capitalize;
+			font-weight: 700;
+			color: #323232;
+			margin: 0 0 10px;
+			padding: 12px 25px;
+			display: block;
+			background: #f6f7f9;
+		}
+		.ProductList{
+			margin:0;
+			padding-bottom:15px;
+			li{
+				padding:0 20px 20px;
+				.ProductImage {
+					min-height:190px;
+					max-height:190px;
+					margin-bottom:20px;
+				}
+				.ProductDetails{
+					color: #323232;
+					font-family:  stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+					font-size:14px;
+					font-weight:600;
+					padding:0 0 10px;
+				}
+				.pname{
+					text-align:left;
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 600px){
+	.CartContents tfoot .SubTotal {
+		border-top-color:#eaeaea;
+	}
+}

@@ -1,0 +1,33 @@
+{{#partial "page"}}
+<div class="container">
+<div id="breadcrumbs-wrapper">
+   <ul class="breadcrumbs">
+       <li class="breadcrumb ">
+           <a href="/" class="breadcrumb-label">Home</a>
+       </li>
+       <li class="breadcrumb is-active">
+           <span class="breadcrumb-label">Subscribe</span>
+       </li>
+   </ul>
+</div>
+        <h1 class="page-heading">
+            {{#if subscription.error}}
+                {{lang 'newsletter.subscribed_heading_error'}}
+            {{else}}
+                {{lang 'newsletter.subscribed_heading'}}
+            {{/if}}
+        </h1>
+<section class="page">
+    <div class="page-content page-content--centered">
+
+        {{#if subscription.error}}
+            {{> components/common/alert-error subscription.error}}
+        {{else}}
+            {{> components/common/alert-success (lang 'newsletter.subscribed_message')}}
+        {{/if}}
+
+    </div>
+</section>
+</div>
+{{/partial}}
+{{> layout/base}}

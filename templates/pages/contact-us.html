@@ -1,0 +1,42 @@
+{{#partial "page"}}
+
+{{#if theme_settings.halothemes_contact_us_map}}
+    {{> components/halothemes/contact-us-map}}
+{{/if}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{page.title}}</h1>
+
+    <main class="page">
+
+            {{#if page.sub_pages}}
+                <nav class="navBar">
+                    <ul class="navBar-section">
+                        {{#each page.sub_pages}}
+                            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                        {{/each}}
+                    </ul>
+                </nav>
+            {{/if}}
+
+            <div class="page-content page-content--centered">
+                <div class="row">
+                    <div class="col-sm-4 store-location">
+                        {{> components/halothemes/contact-store-location}}
+                    </div>
+                    <div class="col-sm-8">
+                        {{#if forms.contact.success}}
+                            {{{lang 'forms.contact_us.successful' shopPath=urls.home}}}
+                        {{else}}
+                            {{> components/page/contact-us-form}}
+                        {{/if}}
+                    </div>
+                </div>
+
+
+            </div>
+    </main>
+</div>
+{{/partial}}
+
+{{> layout/base}}

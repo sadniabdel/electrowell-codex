@@ -1,0 +1,3 @@
+{
+  "components/halothemes/custom-product-advice": "<div class=\"custom-product-advice\">\r\n    <h4 class=\"title\">4 Great reasons to buy from us:</h4>\r\n    <div class=\"custom-button\">\r\n        <p><img src=\"/product_images/uploaded_images/reasons-1.png\" alt=\"\" /></p>\r\n        <p><img src=\"/product_images/uploaded_images/reasons-2.png\" alt=\"\" /></p>\r\n        <p><img src=\"/product_images/uploaded_images/reasons-3.png\" alt=\"\" /></p>\r\n        <p><img src=\"/product_images/uploaded_images/reasons-4.png\" alt=\"\" /></p>\r\n    </div>\r\n</div>\n"
+}

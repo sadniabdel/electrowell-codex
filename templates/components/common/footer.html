@@ -1,0 +1,154 @@
+<!-- BEGIN Home Brand Slider -->
+{{> components/halothemes/home-brand-slider}}
+<!-- END Home Brand Slider -->
+<footer id="footer-wrapper">
+    <div class="footerInfo">
+        <div class="container">
+            <p>Need help? We're available at <span>1800-000-6890</span> - Email us at <a href="mailto:service@domain.com" title="service@domain.com">service@domain.com</a> or <a href="#" title="Live Help" class="link">Live Help</a></p>
+        </div>
+    </div>
+    <div class="middle-footer">
+        <!-- <div class="container themevale_service">
+            <div class="col-sm-3">
+                <p class="fa-icon"><i class="fa fa-truck" aria-hidden="true"></i></p>
+                <h5>Worldwide Delivery</h5>
+                <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo. </p>
+            </div>
+            <div class="col-sm-3">
+                <p class="fa-icon"><i class="fa fa-credit-card" aria-hidden="true"></i></p>
+                <h5>Secure Shopping</h5>
+                <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo. </p>
+            </div>
+            <div class="col-sm-3">
+                <p class="fa-icon"><i class="fa fa-shield" aria-hidden="true"></i></p>
+                <h5>Shop with Confidence</h5>
+                <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo. </p>
+            </div>
+            <div class="col-sm-3">
+                <p class="fa-icon"><i class="fa fa-phone" aria-hidden="true"></i></p>
+                <h5>24/7 Help Center</h5>
+                <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo. </p>
+            </div>
+        </div> -->
+        <div class="container">
+            <div class="themevale_service">
+                <div class="service-item">
+                    <div class="service-wrapper">
+                        <i class="icon"><svg><use xlink:href="#icon-truck"></use></svg></i>
+                        <h3 class="title">Worldwide Delivery</h3>
+                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-wrapper">
+                        <i class="icon"><svg><use xlink:href="#icon-credit-card"></use></svg></i>
+                        <h3 class="title">Secure Shopping</h3>
+                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-wrapper">
+                        <i class="icon"><svg><use xlink:href="#icon-shield"></use></svg></i>
+                        <h3 class="title">Shop with Confidence</h3>
+                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-wrapper">
+                        <i class="icon"><svg><use xlink:href="#icon-support"></use></svg></i>
+                        <h3 class="title">24/7 Help Center</h3>
+                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-1 col-sm-2">
+                    <h5>Further Info.</h5>
+                    <ul>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/about-us/">About Us</a></li>
+                        <li><a href="/rss-syndication/">RSS Syndication</a></li>
+                        <li><a href="/shipping-returns/">Shipping & Returns</a></li>
+                        <li><a href="/theme-styles/">Theme Styles</a></li>
+                        <li><a href="/sitemap/">Sitemap</a></li>
+                        <li><a href="/contact-us/">Contact Us</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="col-2 col-sm-2">
+                    <h5>Customer Service</h5>
+                    <ul>
+                        <li><a href="#">Help & FAQs</a></li>
+                        <li><a href="#">Terms of Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Online Returns Policy</a></li>
+                        <li><a href="#">Rewards Program</a></li>
+                        <li><a href="#">Rebate Center</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="col-3 col-sm-2">                   
+                    <h5>Shop</h5>
+                    <ul>
+                        {{#each categories}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-4 col-sm-2"> 
+                    <h5>Brands</h5>
+                    {{#if shop_by_brand}}
+                        {{> components/category/side-shop-by-brand}}
+                    {{/if}}
+                </div>
+                <div class="col-5 col-sm-4">
+                    {{#if settings.show_newsletter_box}} {{> components/common/subscription-form}} {{/if}}
+                    {{> components/common/social-links}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-copyright-{{theme_settings.copyright_alignment}} col-sm-6">
+                    {{#if theme_settings.show_copyright_footer}}
+                        <div class="footer-copyright">
+                            <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}}. </p>
+                        </div>
+                    {{/if}}
+
+                    {{#if theme_settings.show_powered_by}}
+                        <div class="powered-by">
+                            <p>eCommerce Software by <a href="http://bigcommerce.com">BigCommerce</a></p>
+                        </div>
+                    {{/if}}
+
+                    {{#if theme_settings.show_template_by}}
+                        <div class="template-by">
+                            <p>Bigcommerce Themes & Templates by <a href="http://themevale.com.com" target="_blank" rel="nofollow">ThemeVale.com</a></p>
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="footer-payment col-sm-6">
+                    <p>
+                        <a title="Skrill" href="#"><img src="/product_images/uploaded_images/skrill.png" alt="Skrill"></a>
+                        <a title="Paypal" href="#"><img src="/product_images/uploaded_images/paypal.png" alt="Paypal"></a>
+                        <a title="Visa" href="#"><img src="/product_images/uploaded_images/visa.png" alt="Visa"></a>
+                        <a title="Express" href="#"><img src="/product_images/uploaded_images/american.png" alt="Express"></a>
+                        <a title="Master Card" href="#"><img src="/product_images/uploaded_images/mastercard.png" alt="Master Card"></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<a href="javascript:void(0);" id="back-to-top">Top</a>

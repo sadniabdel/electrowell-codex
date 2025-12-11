@@ -1,0 +1,33 @@
+// =============================================================================
+// WRITE A REVIEW (CSS)
+// =============================================================================
+.writeReview-productDetails {
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+    img {
+        margin-bottom: 30px;
+    }
+    .product-brand {
+        color:stencilColor('color-textBase') + #494949;
+        margin: 0 0 6px;
+		font-weight:400;
+    }
+    .product-title {
+        margin-top: 0;
+        text-transform: none;
+        font-size: 12px;
+        color: stencilColor('card-title-color');
+        letter-spacing: 0;
+		font-weight:700;
+    }
+}
+
+.writeReview-form {
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+}
+.form-capcha{
+	margin-bottom:25px!important;
+}

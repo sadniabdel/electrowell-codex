@@ -1,0 +1,93 @@
+// =============================================================================
+// Banners Component
+// =============================================================================
+
+
+// Banners
+// -----------------------------------------------------------------------------
+//
+// Purpose: Control the look and feel of the top and bottom site banners
+//
+// -----------------------------------------------------------------------------
+
+.banners {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+.banners-top{
+	position:relative;
+	z-index:10;
+	margin-bottom:40px;
+	overflow:hidden;
+	.static-block-2{
+		[class*='col-sm']{
+			@include hover-banner;
+		}
+	}
+	@media(max-width:767px){	
+		margin-bottom:0;
+		.static-block-2{
+			[class*='col-sm']{
+				margin-bottom:30px;
+				text-align:center;
+			}
+		}
+	}
+}
+
+.banner {
+    @include grid-row;
+
+    + .banner {
+        margin-top: spacing("single");
+    }
+}
+
+/*Home Top Banners*/
+
+#home-top-banners .banner-item {
+    @media (max-width: 640px) {
+        width: 100%;
+    }
+}
+#home-top-banners a {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#home-top-banners a h4 {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+#home-top-banners a h4 span {
+    font-family: $fontFamily-headings;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#home-top-banners a h4.text-black span {
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+#home-top-banners a:hover h4 span {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+#home-top-banners a:hover > img {
+    opacity: .2;
+    filter: alpha(opacity=20);
+}

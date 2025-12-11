@@ -1,0 +1,98 @@
+<header class="header" role="banner">
+
+    <!-- Begin Top Bar Promotion -->
+    <div class="header-top hide" id="top-bar-promotion">
+        <a href="#" title=""><img src="/product_images/uploaded_images/top-bar-promotion.png" title="top-bar-promotion"></a>
+        <a href="javascript:void(0)" class="close"><svg><use xlink:href="#icon-close"></use></svg></a>
+    </div>
+    <!-- End Top Bar Promotion -->
+
+    <div class="header-top">
+        <div class="row">
+            <div class="col-left col-sm-4">
+                <p> <a href="#" title="Detail">Free International Shipping. No Minimum Purchase Required*<span>Detail</span></a></p>
+            </div>
+            <div class="col-right col-sm-8 hidden-xs">
+                {{> components/common/navigation}}
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="header-panel">
+            <div class="header-first">
+                {{#if template_file '===' 'pages/home'}}
+                <h1 class="header-logo">
+                {{> components/common/store-logo}}
+                </h1> {{else}}
+                <div class="header-logo">
+                    {{> components/common/store-logo}}
+                </div>
+                {{/if}}
+            </div>
+            <ul class="right-header-bottom text-right">
+                {{#if settings.show_wishlist}}
+                <li class="wishlist-link hidden-xs hidden-sm">
+                    <a href="{{urls.account.wishlists.all}}">
+                    <i class="fa fa-heart-o"></i><span>{{lang 'account.nav.my_wish_lists'}}</span></a>
+                </li>
+                {{/if}}
+                {{#if customer}}
+                <li id="accountDropdown" class="hidden-xs hidden-sm">
+                    <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false"><span>{{lang 'common.account'}}</span><i class="fa fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu" id="accountSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+                        <div class="triangle-with-shadow"></div>
+                        <li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                        {{#if settings.returns_enabled}}
+                        <li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                        {{/if}}
+                        <li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                        <li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                        <li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                        <li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                    </ul>
+                </li>
+                {{else}}
+                <li class="my-account hidden-xs hidden-sm"><a href="{{urls.account.index}}"><svg><use xlink:href="#icon-user"></use></svg><span>{{lang 'common.account'}}</span></a></li>
+                {{/if}}
+                <li id="top-cart" class="top-cart">
+                    <div class="hl-top-cart">
+                        <a data-cart-preview href="javascript:void(0);" class="cart-item hidden-mobile">
+                            <i class="icon-cart"></i>
+                            <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+                        </a>
+                        <a href="/cart.php" class="cart-item hidden-pc">
+                            <i class="icon-cart"></i>
+                            <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+                        </a>
+                        <div id="cart-preview-dropdown">
+                            <div class="triangle-with-shadow"></div>
+                            <div class="cart-preview-inner">
+                                {{> components/common/cart-preview}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="navPages-container col-sm-2" id="menu" data-menu>
+                        <h4><a href="#" data-dropdown="dropNavigation" aria-controls="dropNavigation" aria-expanded="false">Categories <svg><use xlink:href="#icon-trigger-bars" /></use></svg><svg><use xlink:href="#icon-close"></use></svg></a></h4>
+                        {{> components/common/navigation-menu}}
+                    </div>
+                    <div id="trigger-desktop">
+                        <div id="st-trigger-effects">
+                            <a data-effect="st-effect-1" href="javascript:void(0);"><svg><use xlink:href="#icon-trigger-bars" /></use></svg><svg><use xlink:href="#icon-close"></use></svg></a>
+                        </div>
+                    </div>
+                    <div id="quickSearch" class="col-sm-10">
+                        {{> components/common/quick-search}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{{{region name="header_bottom"}}}
+<!-- BEGIN Home Custom HTML Block -->
+{{> components/halothemes/home-full-width-block}}
+<!-- END Home Custom HTML Block -->

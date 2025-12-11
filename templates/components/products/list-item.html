@@ -1,0 +1,88 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}">
+    <figure class="card-figure">
+        <div class="prod-image">
+            <a href="{{url}}">
+                <img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+            </a>
+            <div class="actions">
+                <a href="/wishlist.php?action=add&product_id={{id}}" class="btnWL hidden-xs hidden-sm hidden-md">{{lang 'account.wishlists.add_item'}}</a>
+                {{#if show_cart_action}}
+                    {{#if has_options}}
+                        <a href="{{url}}" class="btn btn-alt btnATC hidden-xs hidden-md" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{url}}" class="btn btn-alt btnATC hidden-xs hidden-md">{{lang 'products.pre_order'}}</a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+                        <a href="{{add_to_cart_url}}" class="btn btn-alt btnATC hidden-xs hidden-md">{{lang 'products.add_to_cart'}}</a>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" class="btn btn-alt btnATC hidden-xs hidden-md" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                    {{/if}}
+                {{/if}}
+                <div class="star-rating hidden-xs hidden-sm hidden-md" data-test-info-type="productRating">
+                    <div class="rating--small">
+                        {{> components/products/ratings rating=rating}}
+                    </div>
+                </div>
+
+                {{#unless hide_product_quick_view}}
+                    {{#if theme_settings.show_product_quick_view}}
+                        <a href="#" class="btnQV hidden-xs hidden-sm hidden-md quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                    {{/if}}
+                {{/unless}}
+            </div>
+            {{#if price.saved}}
+            <div class="sale-badge">{{lang 'products.sale_badge'}}</div>
+            {{/if}}
+        </div>
+        <figcaption class="prod-desc">
+
+            {{#if theme_settings.show_product_brand}}
+                {{#if brand.name}}
+                    <p class="prod-brand" data-test-info-type="brandName">{{brand.name}}</p>
+                {{/if}}
+            {{/if}}
+
+            <h4 class="prod-name">
+                <a href="{{url}}">{{name}}</a>
+            </h4>
+
+            <div class="star-rating hidden-lg" data-test-info-type="productRating">
+                <div class="rating--small">
+                    {{> components/products/ratings rating=rating}}
+                </div>
+            </div>
+
+            {{#if summary}}
+            <div class="prod-summary">
+                <p>{{summary}}</p>
+            </div>
+            {{/if}}
+
+            <div class="prod-price" data-test-info-type="price">
+                {{> components/products/price price=price}}
+            </div>
+            {{#if show_cart_action}}
+                {{#if has_options}}
+                    <a href="{{url}}" class="btn btn-alt btnATC hidden-lg" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                {{/if}}
+                {{#if pre_order}}
+                    <a href="{{url}}" class="btn btn-alt btnATC hidden-lg">{{lang 'products.pre_order'}}</a>
+                {{/if}}
+                {{#if add_to_cart_url }}
+                    <a href="{{add_to_cart_url}}" class="btn btn-alt btnATC hidden-lg">{{lang 'products.add_to_cart'}}</a>
+                {{/if}}
+                {{#if out_of_stock_message }}
+                    <a href="{{url}}" class="btn btn-alt btnATC hidden-lg" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                {{/if}}
+            {{/if}}
+            {{#if show_compare}}
+                <label class="btn-compare" for="compare-{{id}}">
+                    <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+                    {{lang 'products.compare'}}
+                </label>
+            {{/if}}
+        </figcaption>
+    </figure>
+</article>

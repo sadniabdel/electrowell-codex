@@ -1,0 +1,47 @@
+<section class="productCarousel owl-carousel"
+    data-owl='{
+        "nav": true,
+        "dots": false,
+        "items": {{columns}},
+        "margin": 30,
+        "slideBy": {{columns}},
+        "responsive": {
+         "0": {
+            "items": 2,
+            "slideBy": 2,
+            "margin": 10
+         },
+         "480": {
+            "items": 2,
+            "slideBy": 2,
+            "margin": 15
+         },
+         "641": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "768": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "900": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "992": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "1200": {
+            "items": {{columns}},
+            "slideBy": {{columns}}
+         }
+      },
+      "responsiveRefreshRate": 0
+    }'>
+    {{#each products}}
+    <div class="prod-item">
+        {{> components/products/card theme_settings=../theme_settings}}
+    </div>
+    {{/each}}
+</section>

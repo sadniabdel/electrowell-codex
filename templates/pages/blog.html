@@ -1,0 +1,41 @@
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 500
+---
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{ blog.name }}</h1>
+    <div class="page">
+        <div class="row">
+            <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+                {{> components/halothemes/sidebar-toggle-mobile}}
+                <nav>
+                    <div id="sideRecentPosts" class="sidebarBlock">
+                        <h5 class="side-module-heading">Recent Posts</h5>
+                        <ul class="navList">
+                            {{#each blog.posts}}
+                                <li><a href="{{this.url}}">{{this.title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    <!-- BEGIN Side Custom CMS Block -->
+                    {{> components/halothemes/side-custom-block}}
+                    <!-- END Side Custom CMS Block -->
+                </nav>
+            </aside>
+            <main class="page-content col-sm-9 page-blog">
+                {{#each blog.posts}}
+                    {{> components/blog/post post=this settings=../settings}}
+                {{/each}}
+                {{> components/common/paginator pagination.blog}}
+            </main>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

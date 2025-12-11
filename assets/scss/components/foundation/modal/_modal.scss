@@ -1,0 +1,82 @@
+// =============================================================================
+// MODAL (CSS)
+// =============================================================================
+.modal-content{
+	padding:40px;
+	.modal-header {
+		padding:15px 0;
+		background:#f6f7f9;
+		margin:-40px -40px 30px;
+		text-align:center;
+		border:none;
+		border-radius:4px  4px 0 0;
+		-moz-border-radius:4px  4px 0 0;
+		.modal-header-title{
+			font-size:14px;
+			font-weight:700;
+			color: stencilColor('color-textHeading');
+		}
+	}
+	@media(max-width:767px){
+		padding:20px;
+		.modal-header {
+			margin:-20px -20px 20px;
+		}
+	}
+}
+
+.modal {
+    // scss-lint:disable ImportantRule
+    left: 50%;
+    margin: 0 auto;
+    max-height: 90%;
+    max-width: 95%;
+    min-height: 240px;
+    outline: none;
+    padding: 0;
+    right: 0;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+	border-radius:4px;
+	-moz-border-radius:4px;
+	border:none;
+	overflow:visible;
+	/*@media(max-width:550px){
+		transform: scale(1) translateY(-50%);		
+	}*/
+}
+
+.modal--large {
+    @include breakpoint("large") {
+        width: $modal-width--large;
+    }
+}
+.modal-close {
+    color: stencilColor("button--modal-close-color");
+	background:stencilColor('button--modal-close-bgcolor');
+    font-size: 30px;
+	width:34px;
+	height:34px;
+    line-height: 34px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+    padding: 0;
+    position: absolute;
+    top: -17px;
+    right: -17px;
+    text-align: center;
+    text-decoration: none !important;
+    z-index: zIndex("high");
+    &:hover {
+        color: stencilColor("button--modal-close-colorHover");
+         text-decoration: none;
+         background: stencilColor("button--modal-close-bgColorHover");
+    }
+}
+
+.modal-body {
+    overflow: hidden;
+	overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+    padding:0;
+}

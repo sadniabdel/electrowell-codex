@@ -1,0 +1,13 @@
+// =============================================================================
+// QUICK VIEW (CSS)
+// =============================================================================
+
+.quickView {
+    @include clearfix();
+    article.productView-description {
+      display: none;
+    }
+    .productView-images {
+      margin-bottom: 0;
+    }
+}

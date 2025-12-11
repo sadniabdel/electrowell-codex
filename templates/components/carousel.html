@@ -1,0 +1,32 @@
+<section class="home-slideshow">
+	<div class="heroCarousel owl-carousel {{#if theme_settings.home_slide_show_style '===' 'box'}}hero-box{{else}}hero-wide{{/if}}"
+		data-owl='{
+			"nav": true,
+			"dots": true,
+			"items": 1,
+			"autoplay": true,
+			"autoplayTimeout": {{carousel.swap_frequency}},
+			"autoplayHoverPause": true,
+			"loop": true,
+			"responsiveRefreshRate": 0
+		}'>
+		{{#each carousel.slides}}
+		<div class="heroCarousel-slide">
+			<a href="{{url}}" target="_blank">
+				<img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"/>
+				{{#if heading}}
+					{{> components/carousel-content show_background=true}}
+				{{else}}
+					{{#if text}}
+						{{> components/carousel-content show_background=true}}
+					{{else}}
+						{{#if button_text}}
+							{{> components/carousel-content show_background=false}}
+						{{/if}}
+					{{/if}}
+				{{/if}}
+			</a>
+		</div>
+		{{/each}}
+	</div>
+</section>

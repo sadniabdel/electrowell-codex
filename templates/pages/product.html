@@ -1,0 +1,73 @@
+---
+products:
+    top_sellers:
+         limit: {{theme_settings.side_top_products_count}}
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+    <div class="page page-product">
+        <div class="row">
+            <aside class="page-sidebar col-sm-3">
+                {{> components/halothemes/sidebar-toggle-mobile}}
+                <nav>
+                    <!-- BEGIN Side All Categories -->
+                    {{> components/halothemes/side-all-categories}}
+                    <!-- END Side All Categories -->
+
+                    <!-- BEGIN Side Shop By Brands -->
+                    {{#if shop_by_brand}}
+                        {{> components/category/side-shop-by-brand}}
+                    {{/if}}
+                    <!-- END Side Shop By Brands -->
+
+                    <!-- BEGIN Side Top Seller -->
+                    {{#if products.top_sellers}}
+                        {{> components/products/top products=products.top_sellers columns=theme_settings.sidebar_sellers_products_count}}
+                    {{/if}}
+                    <!-- END Side Top Seller -->
+
+                    <!-- BEGIN Side Custom CMS Block -->
+                    {{> components/halothemes/side-custom-block}}
+                    <!-- END Side Custom CMS Block -->
+
+                </nav>
+            </aside>
+
+            <main itemscope itemtype="http://schema.org/Product" class="page-content col-sm-9">
+                {{> components/products/product-view schema=true}}
+
+                {{{region name="product_below_content"}}}
+
+                {{#if product.similar_by_views}}
+                <div id="similarByViews">
+                    <h3 class="module-heading"><span>{{lang 'products.similar_by_views'}}</span></h3>
+                    {{> components/products/similar-by-views-carousel products=product.similar_by_views columns=4}}
+                </div>
+                {{/if}}
+                {{#if product.related_products}}
+                <div id="relatedProducts">
+                    <h3 class="module-heading"><span>{{lang 'products.related_products'}}</span></h3>
+                    {{> components/products/related-carousel products=product.related_products columns=4}}
+                </div>
+                {{/if}}
+
+            </main>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,102 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+.pagination {
+    position: relative;
+}
+
+.page-type-category .pagination,
+.page-type-search .pagination,
+.page-type-brands .pagination,
+.page-type-brand .pagination,
+.page-type-account_recentitems .pagination {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.only-compare {
+        justify-content: end;
+    }
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+    }
+}
+
+.pagination-list {
+    @include clearfix;
+    display: inline-block;
+    font-size: 0; // 1
+    margin-bottom: 0;
+    text-align: center;
+    .pagination-item {
+        // 2
+        display: inline-block;
+        margin: 0;
+        & a {
+            text-transform: uppercase;
+            font-size: fontSize("base");
+            color: #000;
+            min-width: 26px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        &.pagination-item--previous a,
+        &.pagination-item--next a {
+            font-weight: 600;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        &.pagination-item--current a {
+            font-weight: 600;
+            color: #e06868;
+        }
+    }
+}
+
+.page-type-category .pagination-list,
+.page-type-search .pagination-list,
+.page-type-brands .pagination-list,
+.page-type-brand .pagination-list,
+.page-type-account_recentitems .pagination-list {
+    @media (max-width: 600px) {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+.compare-link {
+    & a {
+        display: block;
+        & .countPill {
+            display: none;
+        }
+		i.fa{
+			color:#ffdd02;
+		}
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &.link-show {
+        & .countPill {
+            display: inline-block;
+        }
+    }
+}
+
+.page-type-category .compare-link,
+.page-type-search .compare-link,
+.page-type-brand .compare-link,
+.page-type-account_recentitems .compare-link {
+    opacity: 1;
+    visibility: visible;
+}

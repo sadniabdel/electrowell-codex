@@ -1,0 +1,34 @@
+<!-- @HaloMegaMenu Library -->
+<script src="{{cdn '/assets/js/theme/halothemes/haloMegaMenu.js'}}" defer></script>
+<script>
+jQuery(document).ready(function($) {
+    /* Megamenu Settings */
+    // information at bottom categories with variable : bottomCates
+    //bottomCates: '<div class="own-text"><p>free shipping in the u.s. & internationally</p></div>'
+
+    menuItem(2).HaloMegaMenu({
+        dropAlign: 'left',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: '700px',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'noImage',   // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '',    // width of images area
+        cateAreaWidth: '100%',     // width of categories area
+        cateColumns: 3,           // columns of categories area - max 5 columns
+        addclass_special: 'position_image_right'
+    });
+    menuItem(3).HaloMegaMenu({
+        dropAlign: 'left',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: '900px',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'imageTop',     // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '',     // width of images area
+        cateAreaWidth: '100%',    // width of categories area
+        cateColumns: 4,           // columns of categories area - max 5 columns
+        // contents for images column (HTML supported)
+        imagesTop: ['<a href="#placeholder_link"><img src="/product_images/uploaded_images/image-menu-1.png"/></a>',
+            '<a href="#placeholder_link"><img src="/product_images/uploaded_images/image-menu-2.png"/></a>',
+            '<a href="#placeholder_link"><img src="/product_images/uploaded_images/image-menu-3.png"/></a>',
+            '<a href="#placeholder_link"><img src="/product_images/uploaded_images/image-menu-4.png"/></a>'
+        ],
+        bottomCates: '<div class="image_brand"><div class="title"><label>Popular Brands</label><a href="/brands/">View All Brands</a></div><div class="Brand-Image"><ul><li class=""><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-1.png"></a></li><li><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-2.png"></a></li><li><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-3.png"></a></li><li><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-4.png"></a></li><li><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-5.png"></a></li><li><a href="/area-rugs/"><img src="/product_images/uploaded_images/image-menu-brand-6.png"></a></li></ul></div></div>'
+    });
+});
+</script>

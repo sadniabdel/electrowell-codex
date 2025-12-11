@@ -1,0 +1,143 @@
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+
+// Global Type Vars
+// -----------------------------------------------------------------------------
+//
+// IMPORTANT: These variables are NOT to be consumed in components/apps.
+//            Instead use the maps and functions outlined below.
+//
+// 1. Set up the REM units for the rest of the framework (pixel value).
+// The stencilNumber() function outputs a pixel value by default.
+// 2. Your base font size should always start at 1rem;
+// 3. Your <body> line-height. This value is used for spacing calculations,
+//    where spacing is = $fontSize-root * $lineHeight-base.
+//
+// -----------------------------------------------------------------------------
+
+
+// Font families
+// -----------------------------------------------------------------------------
+
+$fontFamily-sans:               stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$fontFamily-page:               stencilFontFamily("page-font"), Arial, Helvetica, sans-serif;
+$fontFamily-serif:              null;
+$fontFamily-mono:               null;
+$fontFamily-headings:           stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+
+$fontFamily-hero:               stencilFontFamily("logo-font"), Arial, Helvetica, sans-serif;
+
+
+// Font sizes
+// -----------------------------------------------------------------------------
+
+$fontSize-root:                 stencilNumber("fontSize-root"); // 1
+$fontSize-base:                 stencilNumber("fontSize-body"); // 2
+$fontSize-page:                 stencilNumber("fontSize-page"); // 3
+$fontSize-hero:                 50px;
+$fontSize-largest:              stencilNumber("fontSize-h1");
+$fontSize-larger:               stencilNumber("fontSize-h2");
+$fontSize-large:                stencilNumber("fontSize-h3");
+$fontSize-small:                stencilNumber("fontSize-h4");
+$fontSize-smaller:              stencilNumber("fontSize-h5");
+$fontSize-smallest:             stencilNumber("fontSize-h6");
+$fontSize-tiny:                 11px;
+
+
+// Line heights
+// -----------------------------------------------------------------------------
+
+$lineHeight-base:               1.5; // 3
+$lineHeight-hero:               50px;
+$lineHeight-largest:            37px;
+$lineHeight-larger:             32px;
+$lineHeight-large:              29px;
+$lineHeight-small:              24px;
+$lineHeight-smaller:            19px;
+$lineHeight-smallest:           15px;
+$lineHeight-tiny:               18px;
+
+
+// Font weights
+// -----------------------------------------------------------------------------
+
+$fontWeight-thin:               300;
+$fontWeight-normal:             400;
+$fontWeight-medium:             500;
+$fontWeight-semibold:           600;
+$fontWeight-bold:               700;
+$fontWeight-black:              900;
+
+
+// Letter spacing
+// -----------------------------------------------------------------------------
+
+$letterSpacing-base:            0;
+$letterSpacing-largest:         0.25px;
+$letterSpacing-larger:          0.25px;
+$letterSpacing-large:           0.25px;
+$letterSpacing-small:           0.25px;
+$letterSpacing-smaller:         0.25px;
+$letterSpacing-smallest:        0.25px;
+
+
+
+/* Button*/
+$color-buttons:									 stencilColor('button--primary-backgroundColor');
+$color-button-background:						(stencilColor('button--primary-backgroundColor') - #191919);
+
+$custom-button-background:					          stencilColor('color-other-textLink--hover');
+$custom-button-bggradient:						 (stencilColor('color-other-textLink--hover') - #0a231d);
+
+@mixin home-block{
+	border:1px solid stencilColor('color-border-page');
+	border-radius:4px;
+	-moz-border-radius:4px;
+	overflow:hidden;
+	margin-bottom:30px;	
+	.module-heading{
+		margin:0 0 10px;
+		padding:12px 20px;
+		display:block;
+		background: stencilColor('color-background-body') - #090806;
+	}
+	.owl-nav{
+		position:absolute;
+		top:9px;
+		right:10px;
+		box-shadow: 1px 0 3px rgba(0, 0, 0, 0.08);
+		-moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.08);
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+	}
+}
+
+@mixin hover-banner{
+	& > a{
+		display:block;
+		position:relative;
+		overflow:hidden;
+		&:before{
+			content: "";
+			background-color: rgba(255,255,255,.1);
+			display: block;
+			position: absolute;
+			left: -100%;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			transition: all .3s ease 0s;
+			z-index: 1;
+		}
+		&:hover{
+			&:before{
+				left:0;
+			}
+		}
+	}	
+}
+
+
+

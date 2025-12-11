@@ -1,0 +1,31 @@
+<div class="category-toolbar">
+    <div class="view-as-btn">
+        <div class="btn-group">
+            <a href="javascript:void(0);" id="grid-view" title="Grid View" class="{{#if theme_settings.product_list_display_mode '===' 'grid'}} current-view {{/if}}">
+                <div>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                </div>
+                <span>GRID</span>
+            </a>
+            <a href="javascript:void(0);" id="list-view" title="List View" class="{{#if theme_settings.product_list_display_mode '===' 'list'}} current-view {{/if}}">
+                <div>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                </div>
+                <span>LIST</span>
+            </a>
+        </div>
+    </div>
+    {{> components/products/filter sort=pagination.brand.sort}}
+</div>
+<form action="{{urls.compare}}" method='POST' data-product-compare>
+    {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+        {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings columns=theme_settings.categorypage_products_column_count}}
+    {{else}}
+        {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings columns=theme_settings.categorypage_products_column_count}}
+    {{/if}}
+</form>
+{{> components/common/paginator pagination.brand}}

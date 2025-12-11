@@ -1,0 +1,46 @@
+{{{ snippet "forms_search"}}}
+<form class="form" action="{{urls.search}}">
+    <fieldset class="form-fieldset">
+        <div class="form-field">
+        	<div id="search_category">
+        	<select name="category" class="select_category">
+		        <option value="" selected="">All</option>
+		        {{#each categories}}
+		            <option value="{{id}}">{{name}}</option>
+		            {{#if children}}
+
+		                {{#each children}}
+		                    <option value="{{id}}">--- {{name}}</option>
+		                    {{#if children}}
+
+		                        {{#each children}}
+		                            <option value="{{id}}">------ {{name}}</option>
+		                            {{#if children}}
+
+		                                {{#each children}}
+		                                    {{#if children}}
+		                                        <option value="{{id}}">--------- {{name}}</option>
+		                                    {{else}}
+		                                        <option value="{{id}}">--------- {{name}}</option>
+		                                    {{/if}}
+		                                {{/each}}
+
+		                            {{/if}}
+		                        {{/each}}
+
+		                    {{/if}}
+		                {{/each}}
+		            {{/if}}
+		        {{/each}}
+		    </select> 
+		    <i class="fa fa-chevron-down"></i>
+		    </div>  
+            <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+            <input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+            <button type="submit"><svg><use xlink:href="#icon-search"></use></svg></button>
+        </div>
+    </fieldset>
+</form>
+<div class="quickSearchResultsWrap" data-prevent-quick-search-close>
+    <section class="quickSearchResults" data-bind="html: results"></section>
+</div>

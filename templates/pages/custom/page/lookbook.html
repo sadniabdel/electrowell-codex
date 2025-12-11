@@ -1,0 +1,82 @@
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{ page.title }}</h1> {{#if page.sub_pages}}
+    <main class="page">
+        <nav class="navBar navBar--sub">
+            <ul class="navBar-section account-navigation">
+                {{#each page.sub_pages}}
+                <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+        {{/if}}
+        <div class="page-content page-content--centered">
+            <section class="lookbook">
+                <!-- Begin Look Book Carousel items -->
+                <ul class="owl-carousel" data-owl='{
+                     "nav": true,
+                     "dots": true,
+                     "items": 1,
+                     "autoplay": true,
+                     "autoplayTimeout": 5000,
+                     "autoplayHoverPause": true,
+                     "loop": true,
+                     "responsiveRefreshRate": 0
+                }'>
+
+                    <li class="slide-item">
+                        <a href="#"><img src="/product_images/uploaded_images/lb-slideshow-1.jpg" class="slide-img" alt="Cosmopolis"></a>
+                        <div class="slide-desc slide-desc-left">
+                            <p class="text-sample">The</p>
+                            <h2 class="slide-heading">Cosmopolis</h2>
+                            <p class="slide-text">Denean pulvinar vulputate enim et tempus</p>
+                        </div>
+                    </li>
+
+                    <li class="slide">
+                        <a href="#"><img src="/product_images/uploaded_images/lb-slideshow-2.jpg" class="slide-img" alt="Lorem Mauris"></a>
+                        <div class="slide-desc slide-desc-right">
+                            <p class="text-sample">The</p>
+                            <h2 class="slide-heading">Lorem Mauris</h2>
+                            <p class="slide-text">Pellentesque dignissim aliquet nisi non semper cosmo.</p>
+                        </div>
+                    </li>
+
+                    <li class="slide">
+                        <a href="#"><img src="/product_images/uploaded_images/lb-slideshow-3.jpg" class="slide-img" alt="Cursus Ornare"></a>
+                        <div class="slide-desc slide-desc-right">
+                            <p class="text-sample">Milancelos</p>
+                            <h2 class="slide-heading">Cursus Ornare</h2>
+                            <p class="slide-text">Vivamus sed varius lectus deu bibendum metus</p>
+                        </div>
+                    </li>
+
+                </ul>
+                <!-- End Look Book Carousel items -->
+
+                <!-- Begin Social Icons -->
+                <div class="black-icons">
+                    {{> components/common/social-links}}
+                </div>
+                <!-- End Social Icons -->
+
+                <div class="lookbook-bottom">
+                    <a href="#" class="btn btn-primary btn-lg btn-lookbook">Shop It.</a>
+                </div>
+
+            </section>
+        </div>
+        {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+            <li>
+                <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                <p>{{content}}</p>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </main>
+</div>
+{{/partial}} {{> layout/base}}

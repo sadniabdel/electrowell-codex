@@ -1,0 +1,64 @@
+---
+products:
+    top_sellers:
+         limit: {{theme_settings.side_top_products_count}}
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{category.name}}</h1>
+    {{{region name="category_below_header"}}}
+    <div class="page">
+        <div class="row">
+            {{#or category.subcategories category.faceted_search_enabled}}
+                <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+                    {{> components/halothemes/sidebar-toggle-mobile}}
+                    {{> components/category/sidebar}}
+                </aside>
+            {{else}}
+                <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+                    {{> components/halothemes/sidebar-toggle-mobile}}
+                    {{> components/category/sidebar}}
+                </aside>
+            {{/or}}
+            <main class="page-content col-sm-9" id="product-listing-container">
+
+                {{#if category.image}}
+                    <div class="category-image"><img src="{{getImage category.image 'zoom_size'}}"></div>
+                {{/if}}
+
+                {{#if category.description}}
+                    <div class="halo-category-description">
+                        {{{category.description}}}
+                    </div>
+                {{/if}}
+
+                {{{snippet 'categories'}}}
+                <div class="listing-container-inner"> 
+                    {{#if category.products}}
+                        {{> components/category/product-listing}}
+                    {{else}}
+                        <div class="alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>
+                    {{/if}}
+                </div>
+                {{{region name="category_below_content"}}}
+            </main>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

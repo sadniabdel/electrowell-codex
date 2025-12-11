@@ -1,0 +1,73 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+
+
+.login-row {	
+	.panel-body,
+	.panel-header{
+		background:none;
+		padding:0;
+		margin:0;
+	}
+	.panel-header{
+		margin-bottom:10px;
+	}
+	.panel-title{
+		margin: 0;
+		padding:0;
+		font: 700 16px $fontFamily-headings;
+		text-transform:capitalize;
+	}
+}
+
+.login-form {
+    .form-actions {
+        text-align: left;
+		border:none!important;
+		padding-top:0!important;
+        input.btn, a.forgot-password {
+            display: inline-block;
+            vertical-align: middle;
+        }
+		a.forgot-password {
+			margin-left:30px;
+		}
+        input.btn{			
+			color: stencilColor('button--checkout-color');
+			background: stencilColor('button--checkout-bgColor');
+			&:hover{
+				color: stencilColor('button--primary-colorHover'); 
+				background: stencilColor('button--primary-backgroundColorHover');	
+			}
+		}
+    }
+}
+
+.new-customer {
+	& > .panel{
+		background:stencilColor('color-background-body') - #090806;
+		padding:25px;
+		border-radius:4px;
+		-moz-border-radius:4px;
+		.btn-primary{
+			box-shadow:1px 0 4px rgba(0,0,0,0.2);
+			-moz-box-shadow:1px 0 4px rgba(0,0,0,0.2);
+		}
+	}
+}
+
+.new-customer-intro {
+    margin-bottom: 7px;
+}
+
+.new-customer-fact-list {
+	margin:0 0 20px 20px;
+	li{
+		padding:3px 0;
+	}
+}
+
+.new-customer-fact {
+    padding-left: spacing("half");
+}

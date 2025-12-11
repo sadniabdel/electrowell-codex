@@ -1,0 +1,112 @@
+// =============================================================================
+// COMPARE (CSS)
+// =============================================================================
+
+
+// Compare table layout
+// -----------------------------------------------------------------------------
+//
+// 1. Foundation Magellan plugin.
+//
+// -----------------------------------------------------------------------------
+.product-list{
+	margin:0 -15px;
+	overflow:hidden;
+	list-style:none;
+	.product-card{
+		width:20%;
+		display:inline-block;
+		padding:0 15px 30px;
+		margin:0 -1.5px 0 -1.2px;
+		vertical-align:top;
+		.card{
+			margin-bottom:20px;
+			.compareTable-removeProduct{				
+				height: spacing("single") + spacing("base");
+				position: absolute;
+				right:0;
+				top:0;
+				transition: background-color 0.15s ease;
+				width: spacing("single") + spacing("base");
+				text-align: center;
+				z-index:10;
+				.icon {
+					fill: stencilColor("icon-color");
+					height: spacing("single");
+					margin-top: spacing("third");
+					width: spacing("single");
+				}
+				&:hover{
+					.icon{
+						fill: stencilColor('color-other-textLink--hover');
+					}
+				}
+			}
+		}
+		.card-text{
+			margin-bottom: 10px;
+			overflow: hidden;
+			min-height: 18px;
+			a{
+				color:#a5a5a5;
+			}
+		}
+		.card-title{
+			margin-top: 0px;
+			margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: stencilColor('card-title-color');
+            letter-spacing: 0;
+			a{
+				color: stencilColor('card-title-color');
+				&:hover{
+					color: stencilColor('card-title-color-hover');
+					text-decoration: none;
+				}
+			}
+            &:hover a {
+                color: stencilColor('card-title-color-hover');
+                text-decoration: none;
+            }
+		}
+		.price-section {
+			color: stencilColor('basic-price-color');
+			font-size: 14px;
+			font-weight: 700;    
+			margin-bottom: 10px;
+			& .price--rrp {
+				color: stencilColor('retail-price-color');
+				margin-right: 5px;
+				& + span{
+					color: stencilColor('sale-price-color');
+				}
+			}
+		}
+		.prod-summary{
+			padding-top:23px;
+		}
+		.star-rating,
+		.availability{
+			margin-bottom:15px;
+		}
+		@media(max-width:767px){
+			width:50%!important;
+		}
+	}
+	&.product-list-2{
+		.product-card{
+			width:50%;
+		}
+	}
+	&.product-list-3{
+		.product-card{
+			width:33%;
+		}
+	}
+	&.product-list-4{
+		.product-card{
+			width:25%;
+		}
+	}
+}

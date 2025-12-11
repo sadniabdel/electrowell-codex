@@ -1,0 +1,74 @@
+// =============================================================================
+// SOCIAL LINKS (CSS)
+// =============================================================================
+.social-icons {
+    margin: 0;
+}
+
+.social-icons li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 9px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: #454545;
+    border-radius: 50%;
+    text-align: center;
+    & svg {
+        width: 14px;
+        fill: #fff;
+    }	
+    &.icon--facebook {
+		&:hover{
+			background: rgba(74, 115, 189, 1);
+		}
+    }
+    &.icon--twitter{
+		&:hover{
+			background: rgba(70, 176, 226, 1);
+		}
+    }
+    &.icon--google {
+		&:hover{
+			background: rgba(234, 59, 2, 1);
+		}
+    }
+    &.icon--instagram{
+		&:hover{
+			background: rgba(251, 51, 88, 1);
+		}
+    }
+    &.icon--rss {
+		&:hover{
+			background: rgba(249, 188, 46, 1);
+		}
+    }
+    &.icon--pinterest {
+		&:hover{
+			background: rgba(204, 33, 39, 1);
+		}
+    }
+    &.icon--tumblr {
+		&:hover{
+			background: rgba(51, 70, 93, 1);
+		}
+    }
+    &.icon--youtube {
+		&:hover{
+			background: rgba(207, 52, 39, 1);
+		}
+    }
+    &.icon--linkedin {
+		&:hover{
+			background: rgba(0, 119, 181, 1);
+		}
+    }
+    &.icon--stumbleupon {
+		&:hover{
+			background: rgba(235, 73, 36, 1);
+		}
+    }
+}

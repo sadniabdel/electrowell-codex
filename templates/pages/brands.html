@@ -1,0 +1,41 @@
+---
+brands:
+    limit: {{theme_settings.brandpage_brands_per_page}}
+---
+
+{{#partial "page"}}
+<div class="container">
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{lang 'brand.label'}}</h1>
+{{{region name="brands_below_header"}}}
+<main class="page">
+    <div class="page-brands">
+        {{#if theme_settings.halothemes_brandlayout '===' 'aztable'}}
+            {{> components/halothemes/halo-azbrand}}
+        {{else}}
+            <ul class="brandGrid">
+                {{#each brands}}
+                    <li class="brand">
+                        <article class="card {{#if alternate}}card--alternate{{/if}}">
+                            <figure class="card-figure">
+                                <a href="{{url}}">
+                                    <img class="card-image" src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="{{url}}">{{name}}</a>
+                                </h4>
+                            </div>
+                        </article>
+                    </li>
+                {{/each}}
+            </ul>
+            {{> components/common/paginator pagination.brands}}
+        {{/if}}
+        {{{region name="brands_below_content"}}}
+    </div>
+</main>
+</div>
+{{/partial}}
+{{> layout/base}}

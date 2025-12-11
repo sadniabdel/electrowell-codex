@@ -1,0 +1,232 @@
+// =============================================================================
+// BUTTONS (CSS)
+// =============================================================================
+
+/*Buttons*/
+.btn,
+.tab-content .productView-reviewLink a,
+.button {
+    font-family:$fontFamily-page;
+    font-size: 12px;
+    font-weight: 700;
+    height: auto;
+    padding: 10px 20px 9px;
+    text-transform: uppercase;
+    border-radius: 3px;
+	-moz-border-radius:3px;
+    background: #fff;
+    line-height: 1.25;
+	letter-spacing:normal!important;
+	white-space:normal;
+	@media(min-width:992px){
+		min-width:150px;
+	}
+	@media(max-width:767px){
+		padding-left:10px;
+		padding-right:10px;
+	}
+	@media(min-width:1199px){
+		padding-left:40px;
+		padding-right:40px;
+	}
+}
+.btn,
+.tab-content .productView-reviewLink a{
+	.fa{
+		display:none;
+	}
+}
+a.btn {
+    line-height: 1.25;
+}
+
+.btn.btn-sm {
+    line-height: 1.25;
+    border-width: 1px !important;
+}
+
+.btn.btn-lg {
+    line-height: 44px;
+    height: 46px;
+    padding: 0 27px;
+}
+
+
+/*btn-primary*/
+
+.btn.btn-primary ,
+.tab-content .productView-reviewLink a{	
+	color: stencilColor('button--primary-color'); 
+    background: stencilColor('button--primary-backgroundColor'); 
+    border: 1px solid transparent;
+}
+
+.btn.btn-primary:hover,
+[data-wishlist-add] > button:hover,
+.tab-content .productView-reviewLink a:hover ,
+.button--primary:hover, 
+.button--primary:focus, 
+.button--primary.is-active, 
+.button--primary.active,
+#gift-certificate-submit:hover{
+	color: stencilColor('button--primary-colorHover'); 
+    background: stencilColor('button--primary-backgroundColorHover');		
+	border: 1px solid transparent; 
+}
+
+.btn.btn-primary[disabled],
+.btn.btn-primary[disabled]:hover,
+.btn.btn-primary[disabled]:focus,
+.btn.btn-primary[disabled]:active {
+    color: stencilColor('button--primary-color');
+    border: 1px solid stencilColor('button--primary-backgroundColor');
+    background: stencilColor('button--primary-backgroundColor');
+	.fa{
+		color: stencilColor('button--primary-color'); 
+	}
+}
+
+.btn > i.fa.fa-caret-right {
+    font-size: 16px;
+    position: relative;
+    top: 1px;
+    margin-left: 9px;
+}
+
+/*btn alternate*/
+.btn.btn-alt {	
+	color: stencilColor('button--alt-color'); 
+    background: stencilColor('button--alt-bgColor');		
+	border: 1px solid stencilColor('button--alt-borderColor'); 
+}
+
+.btn.btn-alt:hover{    
+	color: stencilColor('button--primary-colorHover'); 
+    background: stencilColor('button--primary-backgroundColorHover');		
+	border: 1px solid transparent;
+	.fa{
+		color: stencilColor('button--primary-colorHover'); 
+	}
+}
+.btn.btn_out_of_stock{
+	border-color:stencilColor('button--disabled-borderColor');
+	color: stencilColor('button--disabled-color');
+	background:stencilColor('button--disabled-backgroundColor');
+	cursor:normal;
+	&:hover{
+		cursor:normal;
+		border-color:stencilColor('button--disabled-borderColor');
+		color:stencilColor('button--disabled-color');
+		background:transparent;
+	}
+}
+
+.btn.btn-alt-white {
+    color: #fff;
+    border: 2px solid #fff;
+    background: #000;
+}
+
+.btn.btn-alt-white:hover {
+    color: #000;
+    background: #fff;
+}
+.btn.btn-alt[disabled],
+.btn.btn-alt[disabled]:hover,
+.btn.btn-alt[disabled]:focus,
+.btn.btn-alt[disabled]:active {
+    color: stencilColor('button--disabled-color');
+    border: 1px solid stencilColor('button--disabled-borderColor');
+    background: stencilColor('button--disabled-backgroundColor');
+}
+
+
+/*btn-default*/
+
+.btn.btn-default {
+    border-color: #cbcbcb;
+}
+
+.btn.btn-default:hover {
+    background: #f5f5f5;
+}
+
+
+/*btn-checkout*/
+
+.btn.btn-checkout {
+	min-width:250px;
+    max-width: 270px;
+	font-size:14px;
+	text-decoration: none;
+	color: stencilColor('button--checkout-color');
+	background: stencilColor('button--checkout-bgColor');
+	border:1px solid transparent;
+	i.fa{
+		color:#ffdd02;
+	}	
+}
+
+.btn.btn-checkout:hover,
+#gift-certificate-submit {
+	color: stencilColor('button--primary-colorHover'); 
+    background: stencilColor('button--primary-backgroundColorHover');		
+	border: 1px solid transparent;  
+	.fa{
+		color: stencilColor('button--alt-color');
+	}
+}
+
+/*btn disabled*/
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.button {
+    line-height: 1rem;
+    transition: all 0.15s ease;
+
+    + .button {
+        margin-left: 0;
+
+        @include breakpoint("medium") {
+            margin-left: spacing("half");
+        }
+    }
+}
+
+.button[disabled] {
+    cursor: not-allowed;
+}
+
+.button--icon {
+    svg {
+        fill: stencilColor("button--icon-svg-color");
+    }
+}
+.btn .fa {
+    font-size: 11px;
+    padding-left: 9px;
+	color:stencilColor('button--alt-color');
+	@media(max-width:767px){
+		padding-left: 5px;
+		font-size: 10px;
+		    line-height: 1.3;
+	}	
+	@media(max-width:350px){
+		display:none;
+	}
+}
+.btn.btnATC{
+	padding:11px 15px 8px;
+	@media(min-width:768px) and (max-width:991px){
+		padding-left:10px;
+		padding-right:10px;
+	}
+	&:hover{
+		color: stencilColor('button--checkout-color');
+		background: stencilColor('button--checkout-bgColor');
+	}
+}
+

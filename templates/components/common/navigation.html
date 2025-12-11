@@ -1,0 +1,62 @@
+<nav class="navUser">
+    <ul>
+        <li id="trigger-mobile" class="visible-xs"></li>
+        {{#if settings.phone_number}}
+        <li class="phone_number hidden-xs"><a href="tel:{{settings.phone_number}}">Customer Service <span>{{settings.phone_number}}</span></a></li>
+        {{/if}}
+        <li class="hidden-xs"><a href="#" title="Need Help?">Need Help?</a></li>
+        {{#if settings.account_creation_enabled}}
+        {{#if customer}}
+        <li class="hidden-xs">{{lang 'Welcome back,'}} <strong>{{customer.name}}</strong></li>
+        <li class="logged-out hidden-sm hidden-xs"><a href="{{urls.auth.logout}}"><span>{{lang 'common.logout'}}</span></a></li>
+        {{else}}
+            <li class="login hidden-sm hidden-xs customer-login"><a href="javascript:void(0);" class="toggle-dropdown-login"><span>{{lang 'common.login'}}</span></a>
+                <div id="dropdown-login">
+                    <h3>Login</h3>
+                    <form class="login-popup" id="loginForm" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post" name="mainLoginForm">
+                        <fieldset class="form-fieldset">
+                            <div class="form-field">
+                                <input class="form-input" name="login_email" id="login_email" type="email" placeholder="Email address">
+                            </div>
+                            <div class="form-field">
+                                <input class="form-input" id="login_pass" type="password" name="login_pass" placeholder="Password">
+                            </div>
+                            <p style="text-align: center;display: none;" id="popup-loading"><img src="{{cdn '/assets/img/vendor/jstree/throbber.gif'}}"></p>
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-alt" value="Login">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="separated-form">
+                        <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                        <span>OR</span>
+                        <a href="{{urls.auth.create_account}}" class="btn btn-primary"><span>{{lang 'login.new_customer.create_account'}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li class="sing_up hidden-sm hidden-xs"><a href="{{urls.auth.create_account}}"><span>{{lang 'common.sign_up'}}</span></a></li>
+        {{/if}}
+        {{/if}}        
+        {{#if settings.gift_certificates_enabled}}
+        <li class="hidden-xs">
+            <a href="{{urls.gift_certificate.purchase}}"><span>{{lang 'common.gift_cert'}}</span></a>
+        </li>
+        {{/if}}
+        <li class="hidden-xs">
+            <a href="{{urls.brands}}">Brands</a>
+        </li>
+        {{#if customer.store_credit.value '>' 0}}
+        <li class="my-account hidden-xs hidden-sm">
+            <a class="navUser-action--storeCredit" data-dropdown="storeCredit-dropdown" data-options="align:bottom" href="{{urls.cart}}">
+                <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+            </a>
+            <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                <div class="triangle-with-shadow"></div>
+                {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+            </div>
+        </li>
+        {{/if}}
+        {{> components/common/currency-selector}}
+        <li id="topcart-mobile" class="visible-xs"></li>
+    </ul>
+</nav>

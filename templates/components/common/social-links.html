@@ -1,0 +1,33 @@
+{{#if social_media}}
+    <div class="social_media">
+    <h5>Stay Connected</h5>
+    <ul class="social-icons">
+        {{#each social_media}}
+            <li class="socialLinks-item">
+                {{#if display_name '===' 'google+'}}
+                    <a class="icon icon--google" href="{{url}}" target="_blank">
+                        <svg><use xlink:href="#icon-google" /></svg>
+                    </a>
+                {{else}}
+                    <a class="icon icon--{{display_name}}" href="{{url}}" target="_blank">
+                        <svg><use xlink:href="#icon-{{display_name}}" /></svg>
+                    </a>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+    <div class="social_icon HL-facebooklike" style="display:;">       
+        <!-- FaceBook Like Button Code -->
+        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true"></div>
+             <div id="fb-root"></div>
+        <script>(function(d, s, id) {            
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));            
+        </script>                    
+    </div>
+    </div>
+{{/if}}

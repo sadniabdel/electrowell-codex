@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{{snippet 'htmlhead'}}}
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-589d7698f6fa5c40"></script>
+    </head>
+<body>
+
+    <div id="st-container" class="st-container">
+            <!-- content push wrapper -->
+            <div class="st-pusher">
+                <nav class="st-menu st-effect st-effect-1" id="mobile-categories">
+                    <ul></ul>
+                </nav>
+                <nav class="st-menu st-effect st-effect-2" id="mobile-customer">
+                    <ul>
+                        {{#if settings.account_creation_enabled}}
+                        <li class="login-register">
+                            {{#if customer}}
+                                <div class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></div>
+                            {{else}}
+                                <div class="not-logged">
+                                    <a href="{{urls.auth.login}}">{{lang 'common.login'}}</a><a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                                </div>
+                            {{/if}}
+                        </li>
+                        {{/if}}
+
+                        {{#if customer.store_credit.value '>' 0}}
+                        <li class="hasSub">
+                            <a class="navUser-action--storeCredit">
+                                {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                            </a>
+                            <span class="toggle-expand"></span>
+                            <div id="storeCredit-dropdown">
+                                <div class="alert alert-info">
+                                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+
+                        {{#if settings.gift_certificates_enabled}}
+                        <li>
+                            <a href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                        </li>
+                        {{/if}}
+
+                        {{#if customer}}
+                        <li><a href="{{urls.account.index}}">{{lang 'common.account'}}</a></li>
+                        <li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                        {{#if settings.returns_enabled}}
+                        <li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                        {{/if}}
+                        <li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                        <li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                        {{#if settings.show_wishlist}}
+                        <li><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li>
+                        {{/if}}
+                        <li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                        <li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                        {{else}}
+                        <li><a href="{{urls.account.index}}">{{lang 'common.account'}}</a></li>
+                        {{/if}}
+
+                        {{#if customer}}
+                        <li><a href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                        {{/if}}
+                    </ul>
+                </nav>
+                {{{snippet 'header'}}}
+                <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+
+                {{#if settings.privacy_cookie}}
+                    {{> components/common/cookie}}
+                {{/if}}
+
+                {{> components/common/header }} 
+                {{#block "page"}}{{/block}}
+                {{> components/common/footer }}
+
+                <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+
+                <script src="{{cdn '/assets/js/theme/halothemes/jquery.min.js'}}"></script>
+                <!--<script src="{{cdn '/assets/js/theme/halothemes/bootstrap.min.js'}}"></script>-->
+                <script src="{{cdn '/assets/modernizr-custom.js'}}"></script>
+
+                {{#if theme_settings.halothemes_megamenu}}
+                <!-- Begin HaloThemes MegaMenu -->
+                <script src="{{cdn '/assets/js/theme/halothemes/haloMegaMenu.js'}}"></script>
+                {{> components/halothemes/halo-megamenu }}
+                <!-- End HaloThemes MegaMenu -->
+                {{else}}
+                <script>
+                    jQuery(document).ready(function($) {
+                        $('#mobile-categories ul').prepend($('#menu.navPages-container > nav > ul').html());
+                        $('#mobile-categories ul').css('max-height', screen.height);
+                        $('#mobile-categories ul li').has('ul li').addClass('hasSub').prepend('<span class="toggle-expand"></span>');
+
+                        $('#mobile-categories ul li.hasSub > span').click(function() {
+                           if ($(this).hasClass('toggle-expand')) {
+                               $(this).siblings('.subMegaMenu').addClass('sub-expand');
+                               $(this).parent().addClass('expanded');
+                               $(this).attr('class', 'toggle-close');
+                           } else if ($(this).hasClass('toggle-close')) {
+                               $(this).siblings('.subMegaMenu').removeClass('sub-expand');
+                               $(this).parent().removeClass('expanded');
+                               $(this).attr('class', 'toggle-expand');
+                           }
+                        });
+                    });
+                </script>
+                {{/if}}
+
+
+                {{{footer.scripts}}}
+                {{{snippet 'footer'}}}
+            </div>
+        </div>
+</body>
+</html>

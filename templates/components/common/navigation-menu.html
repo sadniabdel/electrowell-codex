@@ -1,0 +1,16 @@
+<nav class="navPages dropdown-menu"  id="dropNavigation" data-dropdown-content aria-hidden="true" tabindex="-1">
+    <ul class="navPages-list">
+        {{#each categories}}
+            <li class="navPages-item">
+                {{> components/common/navigation-list}}
+            </li>
+        {{/each}}
+        {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item">
+                     <a class="navPages-action" href="{{url}}">{{name}}</a>
+                 </li>
+             {{/each}}
+        {{/unless}}
+    </ul>
+</nav>

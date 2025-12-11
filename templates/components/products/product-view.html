@@ -1,0 +1,491 @@
+<div class="productView productView-1">
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{>components/common/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{>components/common/alert-success success}}
+        {{/if}}
+    {{/each}}
+    <div class="row">
+        <section class="productView-images col-sm-6" data-image-gallery>
+            <div class="productView-image-wrap">
+                {{#each products.new}}
+                {{#if this.id '==' ../product.id}}
+                <div class="new-badge">{{lang 'halothemes.new_badge_text'}}</div>
+                {{/if}}
+                {{/each}}
+                {{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
+                <div class="sale-badge">{{lang 'products.sale_badge'}}</div>
+                {{/or}}
+                <div class="productView-nav" data-slick='{
+                    "arrows": false,
+                    "dots": false,
+                    "infinite": true,
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1,
+                    "asNavFor": ".productView .productView-for"
+                }'>
+                    {{#each product.images}}
+                        <figure class="productView-image"
+                            data-image-gallery-main
+                            data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                            data-mfp-src="{{getImage this 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                            <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                                <img class="productView-image--default"
+                                     src="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
+                                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                            </a>
+                        </figure>
+                    {{/each}}
+                </div>
+                {{#if product.videos}}
+                <div class="photos-videos">
+                    <a href="#" class="current-tab photos-tab"><span>Photos</span></a>
+                        <a href="#" class="videos-tab"><span>Video</span></a>
+                </div>
+                {{/if}}
+                <div class="productView-for" data-slick='{
+                    "arrows": true,
+                    "dots": false,
+                    "infinite": true,
+                    "focusOnSelect": true,
+                    "slidesToShow": 4,
+                    "slidesToScroll": 1,
+                    "asNavFor": ".productView .productView-nav",
+                    "nextArrow": "<div class=&apos;slick-next slick-arrow slick-arrow-custom&apos;></div>", 
+                    "prevArrow": "<div class=&apos;slick-prev slick-arrow slick-arrow-custom&apos;></div>",
+                    "responsive": [
+                        {
+                            "breakpoint": 1450,
+                            "settings": {
+                                "slidesToShow": 4,
+                                "slidesToScroll": 1
+                            }
+                        },
+                        {
+                            "breakpoint": 381,
+                            "settings": {
+                                "slidesToShow": 3,
+                                "slidesToScroll": 1
+                            }
+                        }
+                    ]
+                }'>
+                    {{#each product.images}}
+                        <div class="productView-thumbnail">
+                            <a 
+                                data-image-gallery-item
+                                data-image-gallery-new-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
+                                data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                                <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{#if product.videos}}
+            <div class="productView-videos-wrap is-hidden">
+                <div class="videoGallery themevale_videoGallery" data-video-gallery>
+                    <div id="videoGallery-content">
+                        <div class="videoGallery-main">
+                            <iframe
+                                id="player"
+                                class="lazyload"
+                                type="text/html"
+                                width="100%"
+                                height="450"
+                                frameborder="0"
+                                webkitAllowFullScreen
+                                mozallowfullscreen
+                                allowFullScreen
+                                data-src="//www.youtube.com/embed/{{product.videos.featured.id}}?enablejsapi=1"
+                                data-video-player>
+                            </iframe>
+                        </div>
+                        <div class="photos-videos">
+                            <a href="#" class="photos-tab"><span>Photos</span></a>
+                            <a href="#" class="videos-tab current-tab"><span>Video</span></a>
+                        </div>
+                        <ul class="videoGallery-list" data-slick='{
+                            "arrows": true,
+                            "dots": false,
+                            "infinite": true,
+                            "focusOnSelect": true,
+                            "slidesToShow": 3,
+                            "slidesToScroll": 1,
+                            "nextArrow": "<div class=&apos;slick-next slick-arrow slick-arrow-custom&apos;></div>", 
+                            "prevArrow": "<div class=&apos;slick-prev slick-arrow slick-arrow-custom&apos;></div>",
+                            "responsive": [
+                                {
+                                    "breakpoint": 1450,
+                                    "settings": {
+                                        "slidesToShow": 3,
+                                        "slidesToScroll": 1
+                                    }
+                                },
+                                {
+                                    "breakpoint": 381,
+                                    "settings": {
+                                        "slidesToShow": 2,
+                                        "slidesToScroll": 1
+                                    }
+                                }
+                            ]
+                        }'>
+                        {{#each product.videos.list}}
+                            <li class="videoGallery-item">
+                                <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
+                                    <div class="video-figure">
+                                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </section>
+
+        <section class="productView-details col-sm-6">
+            <div class="productView-product">
+                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                </h2>
+                <h1 class="productView-title" data-url="{{product.url}}" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+                    {{#if settings.show_product_rating}}
+                        {{#if product.num_reviews '>' 0}}
+                            {{#if schema}}
+                                <meta itemprop="ratingValue" content="{{product.rating}}">
+                                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                            {{/if}}
+                        {{/if}}
+                        {{> components/products/ratings rating=product.rating}}
+                        <span class="productView-reviewLink reviewLinkCount">
+                            {{#if product.num_reviews '>' 0}}
+                                <a href="{{product.url}}#product-reviews">
+                                    {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                                </a>
+                            {{else}}
+                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                            {{/if}}
+                        </span>
+                    {{/if}}
+                    {{#if settings.show_product_reviews}}
+                        <span class="productView-reviewLink btn-review">
+                            <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}"
+                               {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                               {{lang 'products.reviews.new'}}
+                            </a>
+                        </span>
+                        {{> components/products/modals/writeReview}}
+                    {{/if}}
+                </div>
+                {{#if product.call_for_price}}
+                    <p class="productView-price">
+                        <span>{{product.call_for_price}}</span>
+                    </p>
+                {{/if}}
+                {{#if product.price}}
+                    <div class="productView-price">
+                        {{> components/products/price price=product.price schema_org=schema}}
+                    </div>
+                {{/if}}
+                {{{region name="product_below_price"}}}
+                {{product.detail_messages}}                
+                {{#if product.shipping}}
+                    {{#if product.shipping.price.value '===' 0}}
+                        <p class="free_shipping"><i class="fa fa-truck" aria-hidden="true"></i> {{lang 'products.shipping_free_order'}}</p>
+                    {{/if}}
+                {{/if}}
+                <dl class="productView-info">
+                    {{#if product.sku}}
+                        <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
+                        <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
+                    {{/if}}
+                    {{#if product.upc}}
+                        <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
+                        <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                    {{/if}}
+                    {{#if product.condition}}
+                        <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                        <dd class="productView-info-value">{{product.condition}}</dd>
+                    {{/if}}
+                    {{#if product.availability}}
+                        <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                        <dd class="productView-info-value">{{product.availability}}</dd>
+                    {{/if}}
+                    {{#if product.weight}}
+                        <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                        <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                    {{/if}}
+                    {{#if product.min_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.max_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.gift_wrapping_available}}
+                        <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                    {{/if}}
+                    {{#if product.shipping}}
+                        {{#if product.shipping.calculated}}
+                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                        {{else}}
+                            {{#if product.shipping.price.value '===' 0}}
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value hl_shipping_free">{{lang 'products.shipping_free'}}</dd>
+                            {{else}}
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if product.bulk_discount_rates.length}}
+                        <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
+                        <dd class="productView-info-value">
+                            <a href="{{product.url}}"
+                                {{#unless is_ajax }}data-reveal-id="bulkPricingModal" {{/unless}}>
+                                {{lang 'products.bulk_pricing.view'}}
+                            </a>
+                        </dd>
+
+                        <div id="bulkPricingModal" class="modal modal--small" data-reveal>
+                            <div class="modal-header">
+                                <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
+                                <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{lang 'products.bulk_pricing.instructions'}}</p>
+                                <ul>
+                                {{#each product.bulk_discount_rates}}
+                                    <li>
+                                        {{lang 'products.bulk_pricing.range' min=min max=max}}
+                                        {{#if type '===' 'percent'}}
+                                            {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                                        {{/if}}
+                                        {{#if type '===' 'fixed'}}
+                                            {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                                        {{/if}}
+                                        {{#if type '===' 'price'}}
+                                            {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                                        {{/if}}
+                                    </li>
+                                {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                    {{#each product.custom_fields}}
+                        <dt class="productView-info-name">{{name}}:</dt>
+                        <dd class="productView-info-value">{{{value}}}</dd>
+                    {{/each}}
+                </dl>
+                <div class="productView-summary">
+                    {{summary}}
+                </div>
+            </div>
+
+            <div class="productView-options">
+                {{#if product.release_date }}
+                    <p>{{product.release_date}}</p>
+                {{/if}}
+
+                <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                      data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}"/>
+
+
+                        {{#each product.customizations}}
+                            {{{dynamicComponent 'components/products/customizations'}}}
+                        {{/each}}
+                    <div data-product-option-change style="display:none;">
+                        {{#each product.options}}
+                            {{{dynamicComponent 'components/products/options'}}}
+                        {{/each}}
+                    </div>
+
+                    {{#if product.event_date}}
+                        <div class="form-field">
+                            <label class="form-label form-label--alternate form-label--inlineSmall">
+                            {{product.event_date.name}}:
+                            <small>{{lang 'common.required'}}</small>
+                            </label>
+                            <select class="form-select form-select--date" name="EventDate[Mth]" required>
+                                <option value="">{{lang 'common.month'}}</option>
+                                {{#enumerate 1 12}}
+                                    <option value="{{this}}">{{getShortMonth this}}</option>
+                                {{/enumerate}}
+                            </select>
+                            <select class="form-select form-select--date" name="EventDate[Day]" required>
+                                <option value="">{{lang 'common.day'}}</option>
+                                {{#enumerate 1 31}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/enumerate}}
+                            </select>
+                            <select class="form-select form-select--date" name="EventDate[Yr]" required>
+                                <option value="">{{lang 'common.year'}}</option>
+                                {{#enumerate product.event_date.earliest_year product.event_date.latest_year}}
+                                    <option value="{{this}}" >{{this}}</option>
+                                {{/enumerate}}
+                            </select>
+                        </div>
+                    {{/if}}
+
+                    <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                        <label class="form-label form-label--alternate">
+                            {{lang 'products.current_stock'}}
+                            <span data-product-stock>{{product.stock_level}}</span>
+                        </label>
+
+                    </div>
+
+                    {{#if product.can_purchase}}
+
+                        <div class="form-field form-field--increments">
+                            <label class="form-label form-label--alternate"
+                                   for="qty[]">{{lang 'products.quantity'}}</label>
+
+                            <div class="form-increment" data-quantity-change>
+                                <button class="button button--icon" data-action="dec">
+                                    <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                                <input class="form-input form-input--incrementTotal"
+                                       id="qty[]"
+                                       name="qty[]"
+                                       type="tel"
+                                       value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                                       data-quantity-min="{{product.min_purchase_quantity}}"
+                                       data-quantity-max="{{product.max_purchase_quantity}}"
+                                       min="1"
+                                       pattern="[0-9]*"
+                                       aria-live="polite">
+                                <button class="button button--icon" data-action="inc">
+                                    <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                                    <i class="fa fa-chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="alertBox productAttributes-message" style="display:none">
+                            <div class="alertBox-column alertBox-icon">
+                                <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+                            </div>
+                            <p class="alertBox-column alertBox-message"></p>
+                        </div>
+                        <button id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="btn btn-primary" type="submit">{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}</button>
+
+                        {{{snippet 'product_addtocart'}}}
+                    {{/if}}
+                    {{#if product.out_of_stock}}
+                        {{#if product.out_of_stock_message}}
+                            {{>components/common/alert-error-out-of-stock  product.out_of_stock_message}}
+                        {{else}}
+                            {{>components/common/alert-error (lang 'products.sold_out')}}
+                        {{/if}}
+                    {{/if}}
+
+                </form>
+                {{#if settings.show_wishlist}}
+                    <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
+                        <input type="hidden" name="variation_id" value="">
+                        <button class="button btn" type="submit">
+                            <span>{{lang 'account.wishlists.add_item'}}</span>
+                        </button>
+                    </form>
+                {{/if}}
+            </div>
+
+            {{>components/common/share}}
+            {{{snippet 'product_details'}}}
+            {{> components/halothemes/halo_AddThisLink }}
+            <!-- BEGIN Custom Product Advice -->            
+            {{>components/halothemes/custom-product-advice}}
+            <!-- END Custom Product Advice -->
+        </section>
+    </div>
+
+
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
+        <ul class="tabs" data-tab>
+            {{#if product.description }}
+            <li class="tab is-active">
+                <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+            </li>
+            {{/if}}
+            {{#if settings.show_product_reviews}}
+            <li class="tab">
+                <a href="#tab-reviews" class="tab-title">
+                    Reviews
+                </a>
+            </li>
+            {{/if}}
+            <!-- BEGIN Shipping & Returns title -->
+            <li class="tab">
+                <a href="#tab-shipping-return" class="tab-title">
+                    Shipping & Returns
+                </a>
+            </li>
+            <!-- END Shipping & Returns Tab title -->
+            <!-- BEGIN Custom Product Tab title -->
+            <li class="tab">
+                <a href="#tab-custom" class="tab-title">
+                    Custom product tab
+                </a>
+            </li>
+            <!-- END Custom Product Tab title -->
+        </ul>
+        <div class="tabs-contents">
+            {{#if product.description }}
+            <div class="tab-content is-active" id="tab-description">
+                {{{product.description}}}
+                {{{snippet 'product_description'}}}
+            </div>
+            {{/if}}
+            {{#if settings.show_product_reviews}}
+            <div class="tab-content" id="tab-reviews">
+                <div class="hl-product-review">
+                    <span class="productView-reviewLink">
+                        <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}" class="btn btn-primary"
+                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                           {{lang 'products.reviews.new'}}
+                           <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </span>
+                    {{#if settings.show_product_reviews}}
+                        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                    {{/if}}
+                </div>
+            </div>
+            {{/if}}
+            <!-- BEGIN Shipping & Returns Tab -->
+            <div class="tab-content" id="tab-shipping-return">
+               {{>components/halothemes/shipping-returns-tab}}
+           </div>
+            <!-- END Shipping & Returns Tab -->
+            <!-- BEGIN Custom Product Tab -->
+            <div class="tab-content" id="tab-custom">
+               {{>components/halothemes/custom-product-tab}}
+           </div>
+            <!-- END Custom Product Tab -->
+        </div>
+    </article>
+</div>
+<div id="previewModal" class="modal modal--large preview-cart" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>

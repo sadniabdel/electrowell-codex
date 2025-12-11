@@ -1,0 +1,16 @@
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h2 class="page-heading">{{lang 'account.addresses.heading' }}</h2>
+    <div class="account-address">
+        {{> components/account/navigation account_page='addresses'}}
+
+        <div class="account account--fixedLarge">
+            <div class="account-body">
+                {{> components/account/address-list }}
+            </div>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

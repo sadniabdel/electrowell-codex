@@ -1,0 +1,45 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{brand.name}}</h1>
+    {{{region name="brand_below_header"}}}
+    <div class="page row">
+        <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+            {{> components/halothemes/sidebar-toggle-mobile}}
+            {{> components/brand/sidebar}}
+        </aside>
+
+        <main class="page-content col-sm-9" id="product-listing-container">
+            {{#if brand.image}}
+                <img class="brand-logo-heading" src="{{getImage brand.image 'thumb_size'}}">
+            {{/if}}
+
+            {{{snippet 'brand'}}}
+            <div class="listing-container-inner">
+                {{#if brand.products}}
+                    {{> components/brand/product-listing}}
+                {{else}}
+                    <div class="alert alert-warning text-center"><p>{{lang 'brands.no_products'}}</p></div>
+                {{/if}}
+            </div>
+            {{{region name="brand_below_content"}}}
+        </main>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}
