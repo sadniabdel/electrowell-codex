@@ -34,7 +34,11 @@
                             <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
                                 <img class="productView-image--default"
                                      src="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
-                                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                                     alt="{{#if this.alt}}{{this.alt}}{{else}}{{product.title}}{{/if}}"
+                                     title="{{#if this.alt}}{{this.alt}}{{else}}{{product.title}}{{/if}}"
+                                     data-main-image
+                                     decoding="async"
+                                     {{#if @first}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}}>
                             </a>
                         </figure>
                     {{/each}}
@@ -78,7 +82,7 @@
                                 data-image-gallery-item
                                 data-image-gallery-new-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
                                 data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                                <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                                <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}" loading="lazy" decoding="async">
                             </a>
                         </div>
                     {{/each}}
