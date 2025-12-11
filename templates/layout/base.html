@@ -85,7 +85,9 @@
                 {{/if}}
 
                 {{> components/common/header }}
-                {{> components/common/body }}
+                <main role="main">
+                    {{> components/common/body }}
+                </main>
                 {{> components/common/footer }}
 
                 <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>

@@ -1,0 +1,46 @@
+{{#if product}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{product.title}}",
+  "image": [
+    {{#each product.images}}
+    "{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  {{#if product.description}}
+  "description": "{{strip_html product.description}}",
+  {{/if}}
+  {{#if product.sku}}
+  "sku": "{{product.sku}}",
+  {{/if}}
+  {{#if product.upc}}
+  "gtin": "{{product.upc}}",
+  {{/if}}
+  {{#if product.brand}}
+  "brand": {
+    "@type": "Brand",
+    "name": "{{product.brand.name}}"
+  },
+  {{/if}}
+  {{#if product.num_reviews}}
+  {{#if product.num_reviews '>' 0}}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{product.rating}}",
+    "reviewCount": "{{product.num_reviews}}"
+  },
+  {{/if}}
+  {{/if}}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{product.url}}",
+    "priceCurrency": "{{currency_selector.active_currency_code}}",
+    "price": "{{#if product.price.without_tax}}{{product.price.without_tax.value}}{{else}}{{product.price.with_tax.value}}{{/if}}",
+    "availability": "{{#if product.out_of_stock}}https://schema.org/OutOfStock{{else}}https://schema.org/InStock{{/if}}"{{#if product.price.sale_price_with_tax}},
+    "priceValidUntil": "2025-12-31"{{/if}}
+  }
+}
+</script>
+{{/if}}

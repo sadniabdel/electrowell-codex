@@ -34,7 +34,12 @@
                             <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
                                 <img class="productView-image--default"
                                      src="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
-                                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                                     alt="{{product.main_image.alt}}"
+                                     title="{{product.main_image.alt}}"
+                                     width="1280"
+                                     height="1280"
+                                     {{#if @first}}fetchpriority="high"{{/if}}
+                                     data-main-image>
                             </a>
                         </figure>
                     {{/each}}
@@ -74,11 +79,15 @@
                 }'>
                     {{#each product.images}}
                         <div class="productView-thumbnail">
-                            <a 
+                            <a
                                 data-image-gallery-item
                                 data-image-gallery-new-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"
                                 data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                                <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                                <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}"
+                                     alt="{{this.alt}}"
+                                     title="{{this.alt}}"
+                                     width="90"
+                                     height="120">
                             </a>
                         </div>
                     {{/each}}

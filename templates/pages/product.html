@@ -48,6 +48,7 @@ product:
             </aside>
 
             <main itemscope itemtype="http://schema.org/Product" class="page-content col-sm-9">
+                {{> components/common/product-jsonld-schema}}
                 {{> components/products/product-view schema=true}}
 
                 {{{region name="product_below_content"}}}
