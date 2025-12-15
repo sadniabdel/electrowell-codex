@@ -10,6 +10,8 @@ import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
 import productViewMagnificPopup from './halothemes/productViewMagnificPopup';
 import setActiveCategory from './halothemes/setActiveCategory';
+import nod from './common/nod';
+import forms from './common/models/forms';
 
 export default class Product extends PageManager {
     constructor() {
@@ -89,7 +91,8 @@ export default class Product extends PageManager {
         const review = new Review($reviewForm);
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
-            validator = review.registerValidation();
+            // Register quotation form validation instead of review validation
+            validator = this.registerQuotationValidation($reviewForm);
         });
 
         $reviewForm.on('submit', () => {
@@ -102,6 +105,40 @@ export default class Product extends PageManager {
         });
 
         next();
+    }
+
+    registerQuotationValidation($form) {
+        const quotationValidator = nod({
+            submit: $form.find('input[type="submit"]'),
+        });
+
+        quotationValidator.add([
+            {
+                selector: '[name="contact_fullname"]',
+                validate: 'presence',
+                errorMessage: 'Full Name is required.',
+            },
+            {
+                selector: '[name="contact_email"]',
+                validate: (cb, val) => {
+                    const result = forms.email(val);
+                    cb(result);
+                },
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
+            },
+            {
+                selector: '[name="quote_country"]',
+                validate: 'presence',
+                errorMessage: 'Country is required.',
+            },
+            {
+                selector: '[name="contact_question"]',
+                validate: 'presence',
+                errorMessage: 'Message/Requirements is required.',
+            },
+        ]);
+
+        return quotationValidator;
     }
 
     after(next) {

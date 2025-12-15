@@ -1,6 +1,6 @@
 <div id="modal-review-form" class="modal review-for-detail" data-reveal>
     <div class="modal-header">
-        <h2 class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</h2>
+        <h2 class="modal-header-title">Request a Quote</h2>
         <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
             <span aria-hidden="true">&#215;</span>
         </a>
@@ -11,57 +11,63 @@
             <h6 class="product-brand">{{ product.brand.name }}</h6>
             <h5 class="product-title">{{ product.title }}</h5>
         </div>
-        <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
+        <form class="form writeReview-form" action="{{urls.contact_us_submit}}" method="post">
             <fieldset class="form-fieldset">
+                <!-- Full Name (Required) -->
                 <div class="form-field">
-                    <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating_label'}}
-                        <small>{{lang 'common.required' }}</small>
+                    <label class="form-label" for="contact_fullname">Full Name
+                        <small>{{lang 'common.required'}}</small>
                     </label>
-                    <!-- Stars -->
-                    <!-- TODO: Review Stars need to be componentised, both for display and input -->
-                    <select id="rating-rate" class="form-select" name="revrating">
-                        <option value="">{{lang 'products.reviews.select_rating'}}</option>
-                        {{#for 1 5}}
-                            {{#if ../product.reviews.selected_rating '===' $index}}
-                                <option selected value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
-                            {{else}}
-                                <option value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
-                            {{/if}}
-                        {{/for}}
-                    </select>
+                    <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="{{customer.name}}" required>
                 </div>
 
-                <!-- Name -->
-                 {{#if product.reviews.author}}
-                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
-                {{else}}
-                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
-                {{/if}}
+                <!-- Email Address (Required) -->
+                <div class="form-field">
+                    <label class="form-label" for="contact_email">Email Address
+                        <small>{{lang 'common.required'}}</small>
+                    </label>
+                    <input class="form-input" type="email" id="contact_email" name="contact_email" value="{{customer.email}}" required>
+                </div>
 
-                {{#if product.reviews.show_review_email}}
-                    <!-- Email -->
-                    {{#if product.reviews.email}}
-                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
-                    {{else}}
-                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
-                    {{/if}}
-                {{/if}}
+                <!-- Company Name (Optional) -->
+                <div class="form-field">
+                    <label class="form-label" for="contact_companyname">Company Name</label>
+                    <input class="form-input" type="text" id="contact_companyname" name="contact_companyname">
+                </div>
 
-                <!-- Review Subject -->
-                {{> components/common/forms/text name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
+                <!-- Country (Required) -->
+                <div class="form-field">
+                    <label class="form-label" for="quote_country">Country
+                        <small>{{lang 'common.required'}}</small>
+                    </label>
+                    <input class="form-input" type="text" id="quote_country" name="quote_country" required>
+                </div>
 
-                <!-- Comments -->
-                {{> components/common/forms/multiline name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
+                <!-- Quantity (Optional) -->
+                <div class="form-field">
+                    <label class="form-label" for="quote_quantity">Quantity</label>
+                    <input class="form-input" type="number" id="quote_quantity" name="quote_quantity" min="1" value="1">
+                </div>
 
-                {{{product.reviews.recaptcha.markup}}}
+                <!-- Message/Requirements (Required) -->
+                <div class="form-field">
+                    <label class="form-label" for="contact_question">Message / Requirements
+                        <small>{{lang 'common.required'}}</small>
+                    </label>
+                    <textarea class="form-input" id="contact_question" name="contact_question" rows="5" required></textarea>
+                </div>
+
+                {{{forms.contact.recaptcha.markup}}}
 
                 <div class="form-field">
-                    <input type="submit" class="btn btn-primary"
-                           value="{{lang 'products.reviews.form_write.submit_value' }}">
+                    <input type="submit" class="btn btn-primary" value="Submit Quote Request">
                 </div>
-                <input type="hidden" name="product_id" value="{{ product.id }}">
-                <input type="hidden" name="action" value="post_review">
-                {{#if product.reviews.throttleToken}}<input type="hidden" name="throttleToken" value="{{product.reviews.throttleToken}}">{{/if}}
+
+                <!-- Hidden Product Information Fields -->
+                <input type="hidden" name="quote_product_name" value="{{ product.title }}">
+                <input type="hidden" name="quote_product_sku" value="{{ product.sku }}">
+                <input type="hidden" name="quote_product_url" value="{{ product.url }}">
+                <input type="hidden" name="page_id" value="{{forms.contact.page_id}}">
             </fieldset>
         </form>
     </div>
