@@ -152,10 +152,6 @@ export default class Product extends PageManager {
         const $responseMsg = $('#quotation-response-message');
         const originalBtnValue = $submitBtn.val();
 
-        // Disable submit button and show loading state
-        $submitBtn.prop('disabled', true).val('Sending...');
-        $responseMsg.hide();
-
         // Gather form data
         const formData = {
             fullname: $form.find('[name="contact_fullname"]').val(),
@@ -169,63 +165,46 @@ export default class Product extends PageManager {
             productUrl: $('#quote_product_url').val(),
         };
 
-        // Format the complete message with product details
-        const fullMessage = `
-=== QUOTATION REQUEST ===
+        // Format the complete email body with product details
+        const emailBody = `QUOTATION REQUEST
 
 Customer Information:
-- Name: ${formData.fullname}
-- Email: ${formData.email}
-- Company: ${formData.companyname}
-- Country: ${formData.country}
+Name: ${formData.fullname}
+Email: ${formData.email}
+Company: ${formData.companyname}
+Country: ${formData.country}
 
 Product Information:
-- Product: ${formData.productName}
-- SKU: ${formData.productSku}
-- URL: ${formData.productUrl}
-- Requested Quantity: ${formData.quantity}
+Product: ${formData.productName}
+SKU: ${formData.productSku}
+URL: ${formData.productUrl}
+Requested Quantity: ${formData.quantity}
 
 Customer Message:
-${formData.message}
-`;
+${formData.message}`;
 
-        // Submit via AJAX
-        $.ajax({
-            type: 'POST',
-            url: '/pages.php?action=sendContactForm',
-            data: {
-                contact_fullname: formData.fullname,
-                contact_email: formData.email,
-                contact_companyname: formData.companyname,
-                contact_question: fullMessage,
-                page_id: 6,
-            },
-            success: () => {
-                $responseMsg
-                    .removeClass('alertBox-message--error')
-                    .addClass('alertBox alertBox-message alertBox-message--success')
-                    .html('<p>Thank you! Your quote request has been sent successfully. We will contact you soon.</p>')
-                    .show();
+        const emailSubject = `Quote Request - ${formData.productName} (SKU: ${formData.productSku})`;
+        const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
-                // Reset form
-                $form[0].reset();
-                $submitBtn.prop('disabled', false).val(originalBtnValue);
+        // Open email client with pre-filled information
+        window.location.href = mailtoLink;
 
-                // Auto-close modal after 3 seconds
-                setTimeout(() => {
-                    $('#modal-review-form').foundation('reveal', 'close');
-                }, 3000);
-            },
-            error: () => {
-                $responseMsg
-                    .removeClass('alertBox-message--success')
-                    .addClass('alertBox alertBox-message alertBox-message--error')
-                    .html(`<p>There was an error sending your quote request. Please email us directly at <a href="mailto:info@electrowell.com">info@electrowell.com</a> or call us.</p>`)
-                    .show();
+        // Show confirmation message
+        $responseMsg
+            .removeClass('alertBox-message--error')
+            .addClass('alertBox alertBox-message alertBox-message--success')
+            .html(`
+                <p><strong>Opening your email client...</strong></p>
+                <p>A new email will open with your quote request pre-filled. Simply review and send it.</p>
+                <p style="margin-top: 10px;">
+                    <small>Didn't open? <a href="${mailtoLink}">Click here</a> or email us at:
+                    <a href="mailto:info@electrowell.com">info@electrowell.com</a></small>
+                </p>
+            `)
+            .show();
 
-                $submitBtn.prop('disabled', false).val(originalBtnValue);
-            },
-        });
+        // Reset button
+        $submitBtn.prop('disabled', false).val(originalBtnValue);
     }
 
     after(next) {
