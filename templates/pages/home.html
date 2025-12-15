@@ -41,16 +41,14 @@ blog:
 
 <div class="main full container home-container">
 
-    <!-- BEGIN Home Top Banners -->
-    {{#if banners.top}}
-    <div class="banners banners-top" data-banner-location="top">
-        <div class="banner">
-            {{{limit banners.top 1}}}
-        </div>
-    </div>
-    {{/if}}
-    <!-- END Home Top Banners -->
+   
     {{{region name="home_below_banners_top"}}}
+    
+        <!-- BEGIN Home Middle Banner -->
+    {{> components/halothemes/home-middle-banner}}    
+    <!-- END Home Middle Bottom -->
+    {{{region name="home_below_home_middle_banner"}}}
+    
 
     <!-- BEGIN Home Bottom Content -->
     {{> components/halothemes/homeShopByTopCategory}}    
@@ -62,15 +60,17 @@ blog:
     {{/if}}
     {{{region name="home_below_featured_products"}}}
 
-    <!-- BEGIN Home Middle Banner -->
-    {{> components/halothemes/home-middle-banner}}    
-    <!-- END Home Middle Bottom -->
-    {{{region name="home_below_home_middle_banner"}}}
 
-    <!-- BEGIN Home Category Block & Banner -->
-    {{> components/halothemes/home-category-banner-block}}    
-    <!-- END Home Category Block & Banner -->
-    {{{region name="home_below_home_category_banner_block"}}}
+
+ <!-- BEGIN Home Top Banners -->
+    {{#if banners.top}}
+    <div class="banners banners-top" data-banner-location="top">
+        <div class="banner">
+            {{{limit banners.top 1}}}
+        </div>
+    </div>
+    {{/if}}
+    <!-- END Home Top Banners -->
 </div>
 {{/partial}}
 {{> layout/base}}

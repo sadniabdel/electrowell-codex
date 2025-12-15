@@ -1,3 +1,4 @@
+
 /* Custom Styles */
 body{	
     font-family: $fontFamily-sans;
@@ -394,7 +395,7 @@ a:hover, a:active, a:focus{
 			background: stencilColor('button--primary-backgroundColor'); 
 			border: 1px solid transparent;
 			.countPill{
-				background: stencilColor('button--primary-backgroundColor') + #161616;	
+				background: safe-lighten(stencilColor('button--primary-backgroundColor'), 10%);	
 			}
 		}
 	}
@@ -407,14 +408,14 @@ a:hover, a:active, a:focus{
 			padding:10px 15px 9px;
 			line-height:1.25;
 			margin-left:20px;
-			background: stencilColor('button--primary-backgroundColorHover') + #161616;		
+			background: safe-lighten(stencilColor('button--primary-backgroundColorHover'), 10%);		
 			border: 1px solid transparent;
 		}	
 	}
 }
 .form-increment .button{
 	vertical-align:top;
-	color:stencilColor('input-font-color') - #454545;
+	color:safe-darken(stencilColor('input-font-color'), 10%);
 	border-color:stencilColor('input-border-color');
 	font-size:12px;
 	height:36px;
@@ -444,7 +445,7 @@ a:hover, a:active, a:focus{
 	.navBar-section{
 		position:relative;
 		overflow:hidden;		
-		background: stencilColor('color-background-body') - #090806;
+		background: safe-darken(stencilColor('color-background-body'), 10%);
 		border-radius:4px;
 		-moz-border-radius:4px;
 		padding:5px;
@@ -603,7 +604,7 @@ ul.all-categories-list{
 								font-family:$fontFamily-page;
 								font-size: 12px;
 								font-weight: 700;
-								color:stencilColor('color-textBase') - #323232;
+								color:safe-darken(stencilColor('color-textBase'), 10%);
 								&:hover{
 									color: stencilColor('color-textLink--hover');
 								}
@@ -633,7 +634,7 @@ ul.all-categories-list{
 				& > ul{
 					& > li{
 						& > a{
-							color:stencilColor('color-textBase') - #323232;
+							color:safe-darken(stencilColor('color-textBase'), 10%);
 							font-weight:400;
 							&:hover{
 								color: stencilColor('color-textLink--hover');
@@ -655,7 +656,7 @@ ul.all-categories-list{
 	h3{
 		font-size:16px;
 		font-weight: 600;
-		border-bottom:1px solid (stencilColor('color-border-page') + #131313);
+		border-bottom:1px solid (safe-lighten(stencilColor('color-border-page'), 10%));
 		margin:20px 0 30px;
 		padding:0 0 10px;
 	}
@@ -664,7 +665,7 @@ ul.all-categories-list{
 	& > h2{
 		font-size:16px;
 		font-weight:600;
-		border-bottom:1px solid (stencilColor('color-border-page') + #131313);
+		border-bottom:1px solid (safe-lighten(stencilColor('color-border-page'), 10%));
 		margin:10px 0 15px;
 		padding:0 0 10px;
 		
@@ -678,7 +679,7 @@ ul.all-categories-list{
 	}
 }
 .custom-product-advice{
-	border-top:1px dotted (stencilColor('color-border-page') + #090808);	
+	border-top:1px dotted (safe-lighten(stencilColor('color-border-page'), 10%));	
 	margin-top:20px;
 	padding-top:20px;
 	overflow:hidden;
@@ -723,4 +724,46 @@ ul.all-categories-list{
 }
 [data-content-region="header_bottom"] {
 	clear: both;
+}
+
+/* Request Quote Button - Matches Add to Cart Style */
+.btn-request-quote {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* Request Quote Modal Styles */
+#modal-request-quote {
+	.form-field {
+		margin-bottom: 20px;
+	}
+
+	.form-label {
+		font-weight: 600;
+		margin-bottom: 8px;
+		display: block;
+
+		small {
+			font-weight: normal;
+			font-style: italic;
+			color: #666;
+		}
+	}
+
+	.form-input,
+	.form-select {
+		width: 100%;
+	}
+
+	textarea.form-input {
+		min-height: 150px;
+		resize: vertical;
+	}
+
+	.form-actions {
+		margin-top: 25px;
+		text-align: right;
+	}
 }

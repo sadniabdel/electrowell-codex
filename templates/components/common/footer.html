@@ -1,11 +1,9 @@
-<!-- BEGIN Home Brand Slider -->
-{{> components/halothemes/home-brand-slider}}
-<!-- END Home Brand Slider -->
-<footer id="footer-wrapper">
+
+<footer id="footer-wrapper"> 
     <div class="footerInfo">
-        <div class="container">
-            <p>Need help? We're available at <span>1800-000-6890</span> - Email us at <a href="mailto:service@domain.com" title="service@domain.com">service@domain.com</a> or <a href="#" title="Live Help" class="link">Live Help</a></p>
-        </div>
+       <!-- <div class="container">
+            <p>Looking for a tailored solution to match your <span>unique needs?</span> - Email us at <a href="mailto:info@danfossexpress.com" title="info@danfossexpress.com">info@danfossexpress.com</a><a href="#" title="Request a Quote" class="link">Request a Quote</a></p>
+        </div> -->
     </div>
     <div class="middle-footer">
         <!-- <div class="container themevale_service">
@@ -36,28 +34,28 @@
                     <div class="service-wrapper">
                         <i class="icon"><svg><use xlink:href="#icon-truck"></use></svg></i>
                         <h3 class="title">Worldwide Delivery</h3>
-                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                        <p class="text">Experience seamless global accessibility with our worldwide express delivery services. </p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-wrapper">
                         <i class="icon"><svg><use xlink:href="#icon-credit-card"></use></svg></i>
-                        <h3 class="title">Secure Shopping</h3>
-                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                        <h3 class="title">Navigate Securely</h3>
+                        <p class="text">Ensuring security and protecting your privacy for a safe and enjoyable online experience. </p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-wrapper">
                         <i class="icon"><svg><use xlink:href="#icon-shield"></use></svg></i>
-                        <h3 class="title">Shop with Confidence</h3>
-                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                        <h3 class="title">Browsw with Confidence</h3>
+                        <p class="text">Trust us to be your reliable partner, committed to delivering prompt and reliable assistance whenever you need it.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-wrapper">
                         <i class="icon"><svg><use xlink:href="#icon-support"></use></svg></i>
                         <h3 class="title">24/7 Help Center</h3>
-                        <p class="text">Metus tellus ultricies et quam sit amet commodo odio diam a libero nulla facilisi suspendissous enim sodales lacinia neque commodo.</p>
+                        <p class="text">Our team is here around the clock to address your inquiries, provide solutions, and ensure a seamless experience.</p>
                     </div>
                 </div>
             </div>
@@ -69,48 +67,33 @@
                 <div class="col-1 col-sm-2">
                     <h5>Further Info.</h5>
                     <ul>
-                        <li><a href="/blog/">Blog</a></li>
                         <li><a href="/about-us/">About Us</a></li>
-                        <li><a href="/rss-syndication/">RSS Syndication</a></li>
-                        <li><a href="/shipping-returns/">Shipping & Returns</a></li>
-                        <li><a href="/theme-styles/">Theme Styles</a></li>
                         <li><a href="/sitemap/">Sitemap</a></li>
                         <li><a href="/contact-us/">Contact Us</a></li>
-                        <li><a href="#">Testimonials</a></li>
                     </ul>
                 </div>
                 <div class="col-2 col-sm-2">
                     <h5>Customer Service</h5>
                     <ul>
                         <li><a href="#">Help & FAQs</a></li>
-                        <li><a href="#">Terms of Conditions</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Online Returns Policy</a></li>
-                        <li><a href="#">Rewards Program</a></li>
-                        <li><a href="#">Rebate Center</a></li>
-                        <li><a href="#">Partners</a></li>
                     </ul>
                 </div>
                 <div class="col-3 col-sm-2">                   
-                    <h5>Shop</h5>
-                    <ul>
-                        {{#each categories}}
+                    <h5>Catalog</h5>
+                  <!--   <ul>
+                        {{#each categories}} 
                         <li>
                             <a href="{{url}}">{{name}}</a>
                         </li>
                         {{/each}}
-                    </ul>
+                    </ul> -->
                 </div>
-                <div class="col-4 col-sm-2"> 
-                    <h5>Brands</h5>
-                    {{#if shop_by_brand}}
-                        {{> components/category/side-shop-by-brand}}
-                    {{/if}}
-                </div>
-                <div class="col-5 col-sm-4">
+                                <div class="col-5 col-sm-4">
                     {{#if settings.show_newsletter_box}} {{> components/common/subscription-form}} {{/if}}
                     {{> components/common/social-links}}
                 </div>
+               
             </div>
         </div>
     </section>
@@ -123,23 +106,10 @@
                             <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}}. </p>
                         </div>
                     {{/if}}
-
-                    {{#if theme_settings.show_powered_by}}
-                        <div class="powered-by">
-                            <p>eCommerce Software by <a href="http://bigcommerce.com">BigCommerce</a></p>
-                        </div>
-                    {{/if}}
-
-                    {{#if theme_settings.show_template_by}}
-                        <div class="template-by">
-                            <p>Bigcommerce Themes & Templates by <a href="http://themevale.com.com" target="_blank" rel="nofollow">ThemeVale.com</a></p>
-                        </div>
-                    {{/if}}
                 </div>
                 <div class="footer-payment col-sm-6">
                     <p>
                         <a title="Skrill" href="#"><img src="/product_images/uploaded_images/skrill.png" alt="Skrill"></a>
-                        <a title="Paypal" href="#"><img src="/product_images/uploaded_images/paypal.png" alt="Paypal"></a>
                         <a title="Visa" href="#"><img src="/product_images/uploaded_images/visa.png" alt="Visa"></a>
                         <a title="Express" href="#"><img src="/product_images/uploaded_images/american.png" alt="Express"></a>
                         <a title="Master Card" href="#"><img src="/product_images/uploaded_images/mastercard.png" alt="Master Card"></a>

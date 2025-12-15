@@ -1,3 +1,1 @@
-{
-  "components/halothemes/home-middle-banner": "<div class=\"static-block wow fadeInUp animated\" data-wow-delay=\"100ms\">\r\n    <a href=\"#\" class=\"imgAnimation\">\r\n        <img src=\"/product_images/uploaded_images/banner-first-block.jpg\" alt=\"\" />\r\n    </a>\r\n</div>\n"
-}
+{"components/halothemes/home-middle-banner":"<div class=\"static-block wow fadeInUp animated\" data-wow-delay=\"100ms\">\r\n    <a href=\"#\" class=\"imgAnimation\">\r\n        <img src=\"/product_images/uploaded_images/banner-first-block.jpg\" alt=\"\" />\r\n    </a>\r\n</div>\n"}
