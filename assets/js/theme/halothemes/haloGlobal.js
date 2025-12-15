@@ -540,8 +540,8 @@ $(window).resize(function() {
 
        $(document).on('click', '#halo-ask-an-expert-button', event => {
            var ask_proceed = true,
-               subjectMail = context.themeSettings['halo-ask-an-expert-subject'],
-               mailTo = context.themeSettings['halo-ask-an-expert-mailto'],
+               subjectMail = context.themeSettings.halo_ask_an_expert_subject,
+               mailTo = context.themeSettings.halo_ask_an_expert_mailto,
                customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val(),
                customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val(),
                customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val(),
@@ -591,6 +591,10 @@ $(window).resize(function() {
            });
 
            if (ask_proceed) {
+               console.log('[ASK EXPERT] Validation passed, preparing to send email');
+               console.log('[ASK EXPERT] mailTo:', mailTo);
+               console.log('[ASK EXPERT] subjectMail:', subjectMail);
+
                var ask_post_data = {
                    "api": "i_send_mail",
                    "subject": "Quote Request - " + customerName + " - (SKU: " + sku + ")",
@@ -600,20 +604,58 @@ $(window).resize(function() {
                    "message": message
                };
 
-               $.post('https://themevale.net/tools/sendmail/quotecart/sendmail.php', ask_post_data, function(response) {
-                   var output = "";
-                   if (response.type == 'error') {
-                       output = '<div class="error">' + response.text + '</div>';
-                   } else {
-                       output = '<div class="alertBox alertBox--success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
-                       $("#halo-ask-an-expert-form  input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
-                       $("#halo-ask-an-expert-form").hide();
+               console.log('[ASK EXPERT] Request data:', ask_post_data);
+               console.log('[ASK EXPERT] Sending AJAX request to themevale.net...');
+
+               $.ajax({
+                   url: 'https://themevale.net/tools/sendmail/quotecart/sendmail.php',
+                   type: 'POST',
+                   data: ask_post_data,
+                   dataType: 'json',
+                   timeout: 15000,
+                   beforeSend: function() {
+                       console.log('[ASK EXPERT] AJAX request started');
+                       $("#halo-ask-an-expert-results").html('<div class="alertBox alertBox--info">Sending request...</div>').show();
+                   },
+                   success: function(response) {
+                       console.log('[ASK EXPERT] AJAX success! Response:', response);
+                       var output = "";
+                       if (response.type == 'error') {
+                           output = '<div class="alertBox alertBox--error">' + response.text + '</div>';
+                           console.log('[ASK EXPERT] Server returned error:', response.text);
+                       } else {
+                           output = '<div class="alertBox alertBox--success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
+                           $("#halo-ask-an-expert-form  input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
+                           $("#halo-ask-an-expert-form").hide();
+                           console.log('[ASK EXPERT] Email sent successfully!');
+                       }
+                       $("#halo-ask-an-expert-results").hide().html(output).show();
+                   },
+                   error: function(xhr, status, error) {
+                       console.error('[ASK EXPERT] AJAX error occurred');
+                       console.error('[ASK EXPERT] Status:', status);
+                       console.error('[ASK EXPERT] Error:', error);
+                       console.error('[ASK EXPERT] XHR:', xhr);
+                       console.error('[ASK EXPERT] Response Text:', xhr.responseText);
+                       console.error('[ASK EXPERT] Status Code:', xhr.status);
+
+                       var errorMsg = 'Failed to send request';
+                       if (status === 'timeout') {
+                           errorMsg = 'Request timed out after 15 seconds';
+                       } else if (xhr.status === 0) {
+                           errorMsg = 'Network error or CORS blocked the request';
+                       } else if (xhr.status === 404) {
+                           errorMsg = 'Email service not found (404)';
+                       } else if (xhr.status === 500) {
+                           errorMsg = 'Email service error (500)';
+                       }
+
+                       var output = '<div class="alertBox alertBox--error">' + errorMsg + '. Please contact us directly at ' + mailTo + '</div>';
+                       $("#halo-ask-an-expert-results").hide().html(output).show();
                    }
-                   $("#halo-ask-an-expert-results").hide().html(output).show();
-               }, 'json').fail(function(xhr, status, error) {
-                   var output = '<div class="alertBox alertBox--error">Failed to send request. Please try again or contact us directly at ' + mailTo + '</div>';
-                   $("#halo-ask-an-expert-results").hide().html(output).show();
                });
+           } else {
+               console.log('[ASK EXPERT] Validation failed - not sending request');
            }
        });
 
