@@ -543,8 +543,8 @@ $(window).resize(function() {
            console.log('Context:', context);
 
            var ask_proceed = true,
-               subjectMail = context.themeSettings.halo_ask_an_expert_subject,
-               mailTo = context.themeSettings.halo_ask_an_expert_mailto,
+               subjectMail = context.themeSettings['halo-ask-an-expert-subject'],
+               mailTo = context.themeSettings['halo-ask-an-expert-mailto'],
                customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val(),
                customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val(),
                customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val(),
@@ -553,6 +553,8 @@ $(window).resize(function() {
                typePackage = $('#halo-ask-an-expert-form input[name=type_package]:checked').val(),
                customerMessage = $('#halo-ask-an-expert-form textarea[name=message]').val();
 
+           console.log('mailTo (recipient):', mailTo);
+           console.log('subjectMail:', subjectMail);
            console.log('Form data:', { customerName, customerMail, customerPhone, customerCountry, customerMessage });
 
            var img = $('#halo-ask-an-expert [data-product-image]').attr('data-product-image'),
