@@ -419,12 +419,17 @@
             {{>components/common/share}}
             {{{snippet 'product_details'}}}
             {{> components/halothemes/halo_AddThisLink }}
-            <!-- BEGIN Custom Product Advice -->            
+            <!-- BEGIN Custom Product Advice -->
             {{>components/halothemes/custom-product-advice}}
             <!-- END Custom Product Advice -->
         </section>
     </div>
 
+    <!-- BEGIN Ask an Expert -->
+    {{#if theme_settings.halo-ask-an-expert}}
+        {{> components/halothemes/halo-ask-an-expert}}
+    {{/if}}
+    <!-- END Ask an Expert -->
 
     <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
         <ul class="tabs" data-tab>

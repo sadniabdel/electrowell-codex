@@ -534,4 +534,155 @@ $(window).resize(function() {
       init();
    })();
 
+   // Ask an Expert functionality
+   function askAnExpert() {
+       $(document).on('click', '#halo-ask-an-expert-button', event => {
+           event.preventDefault();
+
+           let ask_proceed = true;
+           const customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val();
+           const customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val();
+           const customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val();
+           const customerCountry = $('#halo-ask-an-expert-form input[name=customer_country]').val();
+           const customerCompany = $('#halo-ask-an-expert-form input[name=customer_company]').val();
+           const typePackage = $('#halo-ask-an-expert-form input[name=type_package]:checked').val();
+           const customerMessage = $('#halo-ask-an-expert-form textarea[name=message]').val();
+
+           // Get product information from data attributes
+           const productImg = $('#halo-ask-an-expert [data-product-image]').attr('data-product-image');
+           const productTitle = $('#halo-ask-an-expert [data-product-title]').attr('data-product-title');
+           const productSku = $('#halo-ask-an-expert [data-product-sku]').attr('data-product-sku');
+           const productUrl = $('#halo-ask-an-expert [data-product-url]').attr('data-product-url');
+
+           // Validate required fields
+           $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").each(function() {
+               if (!$.trim($(this).val())) {
+                   $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+                   ask_proceed = false;
+               } else {
+                   $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+               }
+
+               // Email validation
+               const email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+               if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
+                   $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+                   ask_proceed = false;
+               }
+           });
+
+           if (ask_proceed) {
+               // Disable button and show loading
+               $('#halo-ask-an-expert-button').prop('disabled', true).text('Sending...');
+
+               // EmailJS integration
+               const serviceID = 'YOUR_EMAILJS_SERVICE_ID';
+               const templateID = 'YOUR_EMAILJS_TEMPLATE_ID';
+               const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+
+               const templateParams = {
+                   customer_name: customerName,
+                   customer_email: customerMail,
+                   customer_phone: customerPhone,
+                   customer_country: customerCountry,
+                   customer_company: customerCompany || 'N/A',
+                   type_package: typePackage,
+                   message: customerMessage,
+                   product_name: productTitle,
+                   product_sku: productSku,
+                   product_url: productUrl,
+                   product_image: productImg,
+               };
+
+               // Send via EmailJS
+               if (typeof emailjs !== 'undefined') {
+                   emailjs.send(serviceID, templateID, templateParams, publicKey)
+                       .then(() => {
+                           const output = '<div class="alertBox alertBox--success">Thank you! We\'ve received your request and will respond shortly.</div>';
+                           $("#halo-ask-an-expert-results").html(output).show();
+                           $("#halo-ask-an-expert-form input, #halo-ask-an-expert-form textarea").val('');
+                           $("#halo-ask-an-expert-form").hide();
+                           $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
+                       })
+                       .catch((error) => {
+                           console.error('EmailJS Error:', error);
+
+                           // Fallback to mailto
+                           const emailBody = `EXPERT QUOTE REQUEST
+
+Customer Information:
+Name: ${customerName}
+Email: ${customerMail}
+Phone: ${customerPhone}
+Country: ${customerCountry}
+Company: ${customerCompany}
+Request Type: ${typePackage}
+
+Product Information:
+Product: ${productTitle}
+SKU: ${productSku}
+URL: ${productUrl}
+
+Message:
+${customerMessage}`;
+
+                           const emailSubject = `Expert Quote Request - ${productTitle}`;
+                           const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+                           const output = `<div class="alertBox alertBox--error">
+                               <p>Unable to send via website. <a href="${mailtoLink}" class="button button--small">Click here to open email client</a></p>
+                           </div>`;
+                           $("#halo-ask-an-expert-results").html(output).show();
+                           $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
+                       });
+               } else {
+                   // EmailJS not loaded, use mailto fallback
+                   const emailBody = `EXPERT QUOTE REQUEST
+
+Customer Information:
+Name: ${customerName}
+Email: ${customerMail}
+Phone: ${customerPhone}
+Country: ${customerCountry}
+Company: ${customerCompany}
+Request Type: ${typePackage}
+
+Product Information:
+Product: ${productTitle}
+SKU: ${productSku}
+URL: ${productUrl}
+
+Message:
+${customerMessage}`;
+
+                   const emailSubject = `Expert Quote Request - ${productTitle}`;
+                   const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                   window.location.href = mailtoLink;
+
+                   const output = '<div class="alertBox alertBox--success">Opening your email client with pre-filled information...</div>';
+                   $("#halo-ask-an-expert-results").html(output).show();
+                   $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
+               }
+           }
+       });
+
+       // Real-time validation
+       $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").on('keyup', function() {
+           if (!$.trim($(this).val())) {
+               $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+           } else {
+               $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+           }
+
+           const email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+           if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
+               $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+           }
+
+           $("#halo-ask-an-expert-results").hide();
+       });
+   }
+
+   askAnExpert();
+
 }
