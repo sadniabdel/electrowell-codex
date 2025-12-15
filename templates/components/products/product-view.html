@@ -186,9 +186,9 @@
                     {{/if}}
                     {{#if settings.show_product_reviews}}
                         <span class="productView-reviewLink btn-review">
-                            <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}"
+                            <a href="{{product.url}}{{#if is_ajax}}#requestQuote{{/if}}"
                                {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                               {{lang 'products.reviews.new'}}
+                               Request a Quote
                             </a>
                         </span>
                         {{> components/products/modals/writeReview}}
@@ -466,9 +466,9 @@
             <div class="tab-content" id="tab-reviews">
                 <div class="hl-product-review">
                     <span class="productView-reviewLink">
-                        <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}" class="btn btn-primary"
+                        <a href="{{product.url}}{{#if is_ajax}}#requestQuote{{/if}}" class="btn btn-primary"
                            {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                           {{lang 'products.reviews.new'}}
+                           Request a Quote
                            <i class="fa fa-chevron-right"></i>
                         </a>
                     </span>
