@@ -540,8 +540,8 @@ $(window).resize(function() {
 
        $(document).on('click', '#halo-ask-an-expert-button', event => {
            var ask_proceed = true,
-               subjectMail = context.themeSettings['halo-ask-an-expert-subject'],
-               mailTo = context.themeSettings['halo-ask-an-expert-mailto'],
+               subjectMail = context.themeSettings.halo_ask_an_expert_subject,
+               mailTo = context.themeSettings.halo_ask_an_expert_mailto,
                customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val(),
                customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val(),
                customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val(),
