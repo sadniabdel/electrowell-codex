@@ -65,6 +65,42 @@ product:
                 </div>
                 {{/if}}
 
+                <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{{json product.title}}},
+  "image": [
+    {{#if product.main_image}}
+      {{{json product.main_image.url_zoom}}}
+    {{/if}}
+  ],
+  "sku": {{{json product.sku}}},
+  "brand": {
+    "@type": "Brand",
+    {{#if product.brand}}
+      "name": {{{json product.brand.name}}}
+    {{else}}
+      "name": ""
+    {{/if}}
+  },
+  "category": {{#each breadcrumbs}}{{#if @last}}{{{json name}}}{{/if}}{{/each}},
+  "offers": {
+    "@type": "Offer",
+    "url": {{{json product.url}}},
+    "priceCurrency": {{{json currency_selector.active_currency_code}}},
+    "price": {{{json product.price.without_tax.value}}},
+    "availability": "https://schema.org/PreOrder",
+    "deliveryLeadTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 21,
+      "maxValue": 28,
+      "unitCode": "DAY"
+    }
+  }
+}
+                </script>
+
             </main>
         </div>
     </div>

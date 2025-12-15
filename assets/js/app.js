@@ -30,6 +30,7 @@ const pageClasses = {
     'pages/brands': () => import('./theme/brand'),
     'pages/cart': () => import('./theme/cart'),
     'pages/category': () => import('./theme/category'),
+    'pages/ask-an-expert': () => import('./theme/contact-us'),
     'pages/compare': () => import('./theme/compare'),
     'pages/contact-us': () => import('./theme/contact-us'),
     'pages/errors': () => import('./theme/errors'),
