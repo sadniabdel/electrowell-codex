@@ -11,7 +11,7 @@ import utils from '@bigcommerce/stencil-utils';
 /* eslint-disable no-unused-vars */
 /* eslint-disable wrap-iife */
 
-export default function() {
+export default function(context) {
   var is_mobile = false;
   if ($(window).width() < 1023) {
     is_mobile = true;
@@ -535,26 +535,45 @@ $(window).resize(function() {
    })();
 
    // Ask an Expert functionality
-   function askAnExpert() {
+   function askAnExpert(context) {
+       var message;
+
        $(document).on('click', '#halo-ask-an-expert-button', event => {
-           event.preventDefault();
+           var ask_proceed = true,
+               subjectMail = context.themeSettings.halo_ask_an_expert_subject,
+               mailTo = context.themeSettings.halo_ask_an_expert_mailto,
+               customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val(),
+               customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val(),
+               customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val(),
+               customerCountry = $('#halo-ask-an-expert-form input[name=customer_country]').val(),
+               customerCompany = $('#halo-ask-an-expert-form input[name=customer_company]').val(),
+               typePackage = $('#halo-ask-an-expert-form input[name=type_package]:checked').val(),
+               customerMessage = $('#halo-ask-an-expert-form textarea[name=message]').val();
 
-           let ask_proceed = true;
-           const customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val();
-           const customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val();
-           const customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val();
-           const customerCountry = $('#halo-ask-an-expert-form input[name=customer_country]').val();
-           const customerCompany = $('#halo-ask-an-expert-form input[name=customer_company]').val();
-           const typePackage = $('#halo-ask-an-expert-form input[name=type_package]:checked').val();
-           const customerMessage = $('#halo-ask-an-expert-form textarea[name=message]').val();
+           var img = $('#halo-ask-an-expert [data-product-image]').attr('data-product-image'),
+               title =  $('#halo-ask-an-expert [data-product-title]').attr('data-product-title'),
+               sku = $('#halo-ask-an-expert [data-product-sku]').attr('data-product-sku'),
+               url = $('#halo-ask-an-expert [data-product-url]').attr('data-product-url');
 
-           // Get product information from data attributes
-           const productImg = $('#halo-ask-an-expert [data-product-image]').attr('data-product-image');
-           const productTitle = $('#halo-ask-an-expert [data-product-title]').attr('data-product-title');
-           const productSku = $('#halo-ask-an-expert [data-product-sku]').attr('data-product-sku');
-           const productUrl = $('#halo-ask-an-expert [data-product-url]').attr('data-product-url');
+           // Updated email message format per user request
+           message = "<div style='border: 1px solid #e6e6e6;padding: 30px;max-width: 600px;margin: 0 auto;'>\
+                       <h2 style='margin-top:0;margin-bottom:30px;color: #000000;'>Quote Request - "+ customerName +" - (SKU: "+ sku +")</h2>\
+                       <p style='border-bottom: 1px solid #e6e6e6;padding-bottom: 20px;margin-bottom:20px;color: #000000;'><strong>QUOTATION REQUEST</strong></p>\
+                       <table style='width:100%;'>\
+                       <tr><td colspan='2' style='padding-bottom: 15px;'><strong style='font-size: 16px;'>Customer Information:</strong></td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Name:</strong></td><td style='padding-top: 8px;'>" + customerName + "</td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Email:</strong></td><td style='padding-top: 8px;'>" + customerMail + "</td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Company:</strong></td><td style='padding-top: 8px;'>" + (customerCompany || 'N/A') + "</td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Country:</strong></td><td style='padding-top: 8px;'>" + customerCountry + "</td></tr>\
+                       <tr><td colspan='2' style='padding-top: 20px;padding-bottom: 15px;'><strong style='font-size: 16px;'>Product Information:</strong></td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Product:</strong></td><td style='padding-top: 8px;'>" + title + "</td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>SKU:</strong></td><td style='padding-top: 8px;'>" + sku + "</td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>URL:</strong></td><td style='padding-top: 8px;'><a href='"+url+"'>"+url+"</a></td></tr>\
+                       <tr><td style='padding-right: 10px;padding-top: 8px;vertical-align: top;width:40%;'><strong>Requested Quantity:</strong></td><td style='padding-top: 8px;'>" + (typePackage || 'Not specified') + "</td></tr>\
+                       <tr><td colspan='2' style='padding-top: 20px;padding-bottom: 15px;'><strong style='font-size: 16px;'>Customer Message:</strong></td></tr>\
+                       <tr><td colspan='2' style='padding-top: 8px;'>" + customerMessage + "</td></tr>\
+                   </table></div>";
 
-           // Validate required fields
            $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").each(function() {
                if (!$.trim($(this).val())) {
                    $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
@@ -563,8 +582,8 @@ $(window).resize(function() {
                    $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
                }
 
-               // Email validation
-               const email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+               var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
                if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
                    $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
                    ask_proceed = false;
@@ -572,117 +591,49 @@ $(window).resize(function() {
            });
 
            if (ask_proceed) {
-               // Disable button and show loading
-               $('#halo-ask-an-expert-button').prop('disabled', true).text('Sending...');
-
-               // EmailJS integration
-               const serviceID = 'YOUR_EMAILJS_SERVICE_ID';
-               const templateID = 'YOUR_EMAILJS_TEMPLATE_ID';
-               const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
-
-               const templateParams = {
-                   customer_name: customerName,
-                   customer_email: customerMail,
-                   customer_phone: customerPhone,
-                   customer_country: customerCountry,
-                   customer_company: customerCompany || 'N/A',
-                   type_package: typePackage,
-                   message: customerMessage,
-                   product_name: productTitle,
-                   product_sku: productSku,
-                   product_url: productUrl,
-                   product_image: productImg,
+               var ask_post_data = {
+                   "api": "i_send_mail",
+                   "subject": "Quote Request - " + customerName + " - (SKU: " + sku + ")",
+                   "from_name": customerName,
+                   "email": mailTo,
+                   "email_from": customerMail,
+                   "message": message
                };
 
-               // Send via EmailJS
-               if (typeof emailjs !== 'undefined') {
-                   emailjs.send(serviceID, templateID, templateParams, publicKey)
-                       .then(() => {
-                           const output = '<div class="alertBox alertBox--success">Thank you! We\'ve received your request and will respond shortly.</div>';
-                           $("#halo-ask-an-expert-results").html(output).show();
-                           $("#halo-ask-an-expert-form input, #halo-ask-an-expert-form textarea").val('');
-                           $("#halo-ask-an-expert-form").hide();
-                           $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
-                       })
-                       .catch((error) => {
-                           console.error('EmailJS Error:', error);
-
-                           // Fallback to mailto
-                           const emailBody = `EXPERT QUOTE REQUEST
-
-Customer Information:
-Name: ${customerName}
-Email: ${customerMail}
-Phone: ${customerPhone}
-Country: ${customerCountry}
-Company: ${customerCompany}
-Request Type: ${typePackage}
-
-Product Information:
-Product: ${productTitle}
-SKU: ${productSku}
-URL: ${productUrl}
-
-Message:
-${customerMessage}`;
-
-                           const emailSubject = `Expert Quote Request - ${productTitle}`;
-                           const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-
-                           const output = `<div class="alertBox alertBox--error">
-                               <p>Unable to send via website. <a href="${mailtoLink}" class="button button--small">Click here to open email client</a></p>
-                           </div>`;
-                           $("#halo-ask-an-expert-results").html(output).show();
-                           $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
-                       });
-               } else {
-                   // EmailJS not loaded, use mailto fallback
-                   const emailBody = `EXPERT QUOTE REQUEST
-
-Customer Information:
-Name: ${customerName}
-Email: ${customerMail}
-Phone: ${customerPhone}
-Country: ${customerCountry}
-Company: ${customerCompany}
-Request Type: ${typePackage}
-
-Product Information:
-Product: ${productTitle}
-SKU: ${productSku}
-URL: ${productUrl}
-
-Message:
-${customerMessage}`;
-
-                   const emailSubject = `Expert Quote Request - ${productTitle}`;
-                   const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                   window.location.href = mailtoLink;
-
-                   const output = '<div class="alertBox alertBox--success">Opening your email client with pre-filled information...</div>';
-                   $("#halo-ask-an-expert-results").html(output).show();
-                   $('#halo-ask-an-expert-button').prop('disabled', false).text('Request a Quote');
-               }
+               $.post('https://themevale.net/tools/sendmail/quotecart/sendmail.php', ask_post_data, function(response) {
+                   var output = "";
+                   if (response.type == 'error') {
+                       output = '<div class="error">' + response.text + '</div>';
+                   } else {
+                       output = '<div class="alertBox alertBox--success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
+                       $("#halo-ask-an-expert-form  input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
+                       $("#halo-ask-an-expert-form").hide();
+                   }
+                   $("#halo-ask-an-expert-results").hide().html(output).show();
+               }, 'json');
            }
        });
 
-       // Real-time validation
-       $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").on('keyup', function() {
+       $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").keyup(function() {
+           var ask_proceed = true;
+
            if (!$.trim($(this).val())) {
                $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+               ask_proceed = false;
            } else {
                $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
            }
 
-           const email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+           var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
            if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
                $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+               ask_proceed = false;
            }
 
            $("#halo-ask-an-expert-results").hide();
        });
    }
-
-   askAnExpert();
+   askAnExpert(context);
 
 }

@@ -65,7 +65,7 @@ export default class Global extends PageManager {
         topBarPromotion();
         haloDropdownLogin();
         haloProductImageSwap();
-        haloGlobal();
+        haloGlobal(this.context);
         haloProductNewLabel();
         backToTop();
         carousel();
