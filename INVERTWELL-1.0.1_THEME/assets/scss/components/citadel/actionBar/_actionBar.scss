@@ -1,0 +1,43 @@
+// =============================================================================
+// ACTION BAR (CSS)
+// =============================================================================
+
+
+.actionBar-section {
+
+    .form-field {
+        margin-bottom: 0;
+        font-size: 0;
+        // scss-lint:disable NestingDepth
+        // scss-lint:enable NestingDepth
+    }
+
+    .form-label {
+        color: $actionBar-form-label-color;
+        font-size: $actionBar-form-label-fontSize;
+        line-height: $actionBar-form-label-lineHeight;
+        margin-bottom: 0;
+        font-weight: $body-font-weight;
+        margin-right: 15px;
+        display: none;
+        @include breakpoint("small") {
+            display: inline-block;
+        }
+    }
+
+    .form-input,
+    .form-select {
+        border: 0;
+        width: auto;
+    }
+
+    .form-input,
+    .form-select {
+        display: inline-block;
+    }
+
+    .form-select {
+        color: stencilColor("color-textBase");
+        height: 40px;
+    }
+}

@@ -1,0 +1,12 @@
+<fieldset class="form-fieldset actionBar-section">
+    <div class="form-field">
+        <label class="form-label" for="limit">{{lang 'common.number_products.show'}}</label>
+        <select class="form-select form-select--small" name="limit" id="limit">
+            <option value="10"{{#if '10' '==' products_per_page}} selected{{/if}}>10 {{lang 'common.number_products.show_text'}}</option>
+            <option value="20"{{#if '20' '==' products_per_page}} selected{{/if}}>20 {{lang 'common.number_products.show_text'}}</option>
+            <option value="30"{{#if '30' '==' products_per_page}} selected{{/if}}>30 {{lang 'common.number_products.show_text'}}</option>
+            <option value="40"{{#if '40' '==' products_per_page}} selected{{/if}}>40 {{lang 'common.number_products.show_text'}}</option>
+            <option value="50"{{#if '50' '==' products_per_page}} selected{{/if}}>50 {{lang 'common.number_products.show_text'}}</option>
+        </select>
+    </div>
+</fieldset>

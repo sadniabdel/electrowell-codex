@@ -1,0 +1,56 @@
+{{#if theme_settings.product_block_recommended_title '!=' ''}}
+    <div id="homeProductBlockRecommended" class="home-product-block product-block-recommended {{#if theme_settings.halo_homepage_layout_1}}padding-top-30{{/if}}{{#unless theme_settings.halo_homepage_layout_1}} padding-bottom-30{{/unless}}">
+        <div class="container">
+            <div class="page-header{{#unless theme_settings.halo_homepage_layout_1}} text-left{{/unless}}">
+                <h2 class="page-heading heading-small{{#if theme_settings.product_block_recommended_view_all '==' ''}} noViewAll{{/if}}">{{theme_settings.product_block_recommended_title}}</h2>
+                {{#if theme_settings.product_block_recommended_view_all '!=' ''}}
+                    <a class="view-all{{#unless theme_settings.halo_homepage_layout_1}} text-left{{/unless}}" href="{{category_url}}">{{lang 'products.view_all'}}</a>
+                {{/if}}
+            </div>
+
+            {{#if theme_settings.product_block_recommended_type '==' 'top'}}
+                {{#if products.top_sellers}}
+                    <div id="topSellerProductRecommended" class="product-block product-block-recommended layout_{{block_layout}}">
+                        {{#if theme_settings.product_block_recommended_layout}}
+                            {{> components/products/top-2 products=products.top_sellers productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                        {{else}}
+                            {{> components/products/top-grid products=products.top_sellers productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                        {{/if}}    
+                    </div>             
+                {{/if}}
+            {{else}}
+                {{#if theme_settings.product_block_recommended_type '==' 'featured'}}
+                    {{#if products.featured}}
+                        <div id="feauturedProductRecommended" class="product-block product-block-recommended layout_{{block_layout}}">
+                            {{#if theme_settings.product_block_recommended_layout}}
+                                {{> components/products/featured-2 products=products.featured productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                            {{else}}
+                                {{> components/products/featured-grid products=products.featured productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                            {{/if}}    
+                        </div>
+                    {{/if}}
+                {{else}}
+                    {{#if theme_settings.product_block_recommended_type '==' 'new'}}
+                        <div id="newProductRecommended" class="product-block product-block-recommended layout_{{block_layout}}">
+                            {{#if theme_settings.product_block_recommended_layout}}
+                                {{> components/products/new-2 products=products.new productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                            {{else}}
+                                {{> components/products/new-grid products=products.new productsnew=products.new columns=block_columns block_id="homeProductBlockRecommended"}}
+                            {{/if}}    
+                        </div>
+                    {{else}}
+                        {{#if theme_settings.product_block_recommended_type '==' 'cateID'}}
+                            <div id="categoryProductRecommended" class="product-block product-block-recommended" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                {{> components/halothemes/ajax-products-by-category-id category_id=category_id productsnew=products.new}}
+                            </div>
+                        {{else}}
+                            <div id="listProductRecommended" class="product-block product-block-recommended" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                {{> components/halothemes/ajax-products-by-list-id block_layout=block_layout list_id=list_id id=id productsnew=productsnew}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}

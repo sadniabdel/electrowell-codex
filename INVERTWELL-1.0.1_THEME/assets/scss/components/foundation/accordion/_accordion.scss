@@ -1,0 +1,181 @@
+// =============================================================================
+// ACCORDION (CSS)
+// =============================================================================
+
+
+.accordion {
+    border-radius: $accordion-borderRadius;
+    box-shadow: none;
+
+    .navList {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-content {
+    border: 0;
+
+    .form:only-child {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-title {
+    cursor: pointer;
+    color: stencilColor('color-textHeading');
+    display: inline-block;
+    width: 100%;
+    padding: 24px 35px 22px 0px;
+    position: relative;
+    font-size: 14px;
+    font-family: stencilFontFamily("headings-font"), sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-align: left;
+    &:focus,
+    &:hover {
+        color: stencilColor('color-textHeading');
+    }
+}
+
+.accordion-navigation {
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right: 1rem;
+}
+
+
+// Accordion nav list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as navigation menu, for example: faceted search menu.
+//
+// -----------------------------------------------------------------------------
+.accordion--navList {
+    @include breakpoint("medium") {
+        border: 0;
+    }
+
+    .sidebarBlock + & {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion-block {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion-content {
+        padding: $accordion-navList-padding;
+
+        @include breakpoint("medium") {
+            padding: 0;
+        }
+        .toggleLink {
+            margin-top: 5px;
+            display: inline-block;
+            width: 100%;
+            color: stencilColor("color-textLink");
+            span {
+                background-image: linear-gradient(transparent 96%, rgba(stencilColor("color-textLink"), .3) 4%);
+                background-repeat: repeat-x;
+                background-position-y: -1px;
+            }
+            &:hover {
+                color: stencilColor("color-textLink--hover");
+                span {
+
+                 background-image: linear-gradient(transparent 96%, rgba(stencilColor("color-textLink--hover"), .3) 4%);
+                }
+            }
+        }
+    }
+
+    .accordion-navigation {
+        @include breakpoint("medium") {
+            background-position: right 0 top 50%;
+            border: 0;
+            margin-bottom: 18px !important;
+            padding: 0;
+        }
+    }
+
+    .accordion-title {
+        font-weight: $heading-font-weight;
+        font-size: $h6-font-size;
+        padding: $accordion-navList-padding;
+        text-transform: uppercase;
+
+        @include breakpoint("medium") {
+            padding: 0;
+        }
+    }
+
+    .accordion-indicator {
+        fill: color("greys", "light");
+    }
+}
+
+
+// Accordion block
+// -----------------------------------------------------------------------------
+//
+// Purpose: Child blocks of an accordion
+//
+// -----------------------------------------------------------------------------
+.accordion-block:first-child {
+    margin-top: 0;
+
+    .accordion-navigation {
+        border-radius: $accordion-borderRadius $accordion-borderRadius 0 0;
+    }
+}
+
+.accordion-block:last-child {
+    .accordion-navigation,
+    .accordion-content {
+        border-radius: 0 0 $accordion-borderRadius $accordion-borderRadius;
+    }
+
+    .accordion-navigation {
+        border-bottom-width: 0;
+
+        // scss-lint:disable NestingDepth
+        &.is-open {
+            border-bottom-width: 1px;
+            border-radius: 0;
+        }
+    }
+}
+
+.accordion-nav-clear-holder {
+    position: relative;
+}
+
+.facetedSearch-clearLink {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: stencilColor("color-textBase");
+    @include breakpoint("medium") {
+        right: 20px;
+        top: 3px;
+        transform: none;
+    }
+
+    // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textHeading");
+    }
+    // scss-lint:enable NestingDepth
+}

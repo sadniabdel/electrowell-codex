@@ -1,0 +1,28 @@
+---
+products:
+    top_sellers:
+        limit: {{theme_settings.homepage_products_count}}
+---
+
+{{#partial "page"}}
+    <div class="haloFaqs-header">
+        <div class="breadcrumb-wrapper">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+        <h1 class="page-heading">{{page.title}}</h1>
+        <div class="page-description"></div>
+    </div>
+    <div class="page page-normal page--faqs">
+        <div class="page-description"></div>
+        {{#if theme_settings.halo-faqs-sidebar}}
+            <div class="webPage-sidebar halo-faqs-sidebar">
+                {{> components/halothemes/pages/halo-faqs-sidebar}}
+            </div>
+        {{/if}}
+        <main class="page-content halo-faqs-content">
+            {{{page.content}}}
+            {{{region name="page_builder_content"}}}
+        </main>
+    </div>
+{{/partial}}
+{{> layout/base}}

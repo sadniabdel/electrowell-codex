@@ -1,0 +1,25 @@
+{{#if product.related_products}}
+    <div id="tab-related" class="detailProduct-block">
+        <div class="container">
+            <div class="page-header text-left">
+                <h3 class="page-heading heading-small">{{lang 'products.related_products'}}</h3>
+            </div>
+            {{#if settings.data_tag_enabled}}
+                {{> components/products/carousel-2 products=product.related_products columns=5 dots=true customArrowClass='js-related-product-arrow' list="Related Products"}}
+            {{else}}
+                {{> components/products/carousel-2 products=product.related_products columns=5 dots=true customArrowClass='js-related-product-arrow'}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}
+
+{{#if product.similar_by_views}}
+    <div id="tab-similar" class="detailProduct-block">
+        <div class="container">
+            <div class="page-header text-left">
+                <h3 class="page-heading heading-small">{{lang 'products.similar_by_views'}}</h3>
+            </div>
+            {{> components/products/carousel-2 products=product.similar_by_views columns=5 dots=true list="Customers Also Viewed" customArrowClass='js-viewed-product-arrow' }}
+        </div>
+    </div>
+{{/if}}

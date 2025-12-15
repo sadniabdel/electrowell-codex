@@ -1,0 +1,176 @@
+<div class="previewCartWrapper">
+    <h6 class="side-dropdown-title">{{lang "common.cart_dropdown_title"}} <span class="qty" data-cart-quantity="{{lang 'cart.qty' quantity=cart.quantity}}">{{lang 'cart.dropdown_label' quantity=cart.quantity}}</span> 
+    </h6>
+    {{#and (if theme_settings.halo_CalculateFreeShipping) (if cart.items.length)}}
+        <div class="halo-free-shipping-message animated-loading"></div>
+    {{/and}}
+  <div class="previewCart">
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            {{#each cart.items}}
+                <li class="previewCartItem" {{#if options}}data-cart-edit-productItem{{/if}}>
+                    <div class="previewCartItem-image">
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img
+                                alt="GiftCertificate"
+                                title="GiftCertificate"
+                                src="{{cdn ../theme_settings.default_image_gift_certificate}}"
+                            >
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=image
+                                fallback_size=../theme_settings.productthumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                                default_image=../theme_settings.default_image_product
+                            }}
+                        {{/if}}
+                    </div>
+                        <div class="previewCartItem-content">
+                            {{#and ../theme_settings.halo_card_brand brand.name}}
+                                <span class="previewCartItem-brand">
+                                    {{brand.name}}
+                                </span>
+                            {{/and}}
+                            <h6 class="previewCartItem-name">
+                                <a href="{{url}}" alt="{{name}}" title="{{name}}"{{#if ../theme_settings.card_title_type '==' 'clamp'}} class="clamp"{{/if}}{{#if ../theme_settings.card_title_type '==' 'clamp'}} style="-webkit-box-orient: vertical; -webkit-line-clamp: {{../theme_settings.card_title_line}};"{{/if}}>{{name}}</a>
+                            </h6>
+                            {{#if options}}
+                                <div class="previewCartItem-optionWrapper">
+                                    <div class="previewCartItem-option">
+                                        {{#each options}}
+                                            <span class="option-value">
+                                                {{{value}}}
+                                            </span>
+                                        {{/each}}
+                                    </div>
+                                    {{#if ../theme_settings.haloQuickEditCart}}
+                                        <a href="#" class="previewCartItem-edit" data-cart-edit-id="{{product_id}}" data-cart-itemid="{{id}}" data-cart-edit-price="{{price.formatted}}" data-cart-edit-quantity="{{quantity}}" aria-label="Edit Cart"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+                                    {{/if}}
+                                </div>
+                            {{/if}}
+                            <span class="previewCartItem-price">
+                                {{#unless ../theme_settings.haloQuickEditCart}}
+                                    {{#if quantity '>' 1}}
+                                        {{quantity}} <span class="times-icon">&times;</span>
+                                    {{/if}}
+                                {{/unless}}
+                                {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                    <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
+                                    {{#if price_discounted}}
+                                        {{price_discounted.formatted}}
+                                    {{/if}}
+                                {{else}}
+                                    {{> components/common/login-for-pricing}}
+                                {{/or}}
+                            </span>
+                            {{#if ../theme_settings.haloQuickEditCart}}
+                                <div class="qty-group">
+                                    <div class="previewCartItem-quantity">
+                                        <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
+                                        <div class="form-increment">
+                                            {{#if can_modify}}
+                                                <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
+                                                    <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                                                </button>
+                                            {{/if}}
+                                            <input class="form-input form-input--incrementTotal cart-item-qty-input"
+                                                   id="qty-{{id}}"
+                                                   name="qty-{{id}}"
+                                                   type="tel"
+                                                   value="{{quantity}}"
+                                                   data-stock=""
+                                                   data-quantity-min="{{min_purchase_quantity}}"
+                                                   data-quantity-max="{{max_purchase_quantity}}"
+                                                   data-quantity-min-error="{{lang 'products.quantity_min' quantity=min_purchase_quantity}}"
+                                                   data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
+                                                   min="1"
+                                                   pattern="[0-9]*"
+                                                   data-cart-itemid="{{id}}"
+                                                   data-action="manualQtyChange"
+                                                   aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
+                                            {{#if can_modify}}
+                                                <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
+                                                    <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                                                </button>
+                                            {{/if}}
+                                        </div>
+                                        <div class="cart-remove-button">
+                                            {{#if can_modify}}
+                                                <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}" aria-label="{{lang 'cart.remove'}}">×</a>
+                                            {{else}}
+                                                {{#if type '==' 'GiftCertificate'}}
+                                                    <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}" aria-label="{{lang 'cart.remove'}}">×</a>
+                                                {{/if}}
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+            <div data-cart-totals class="previewCartItem-totalPrice">
+                <ul class="cart-totals">
+                    <li class="cart-total subtotal">
+                        <div class="cart-total-label">
+                            {{lang 'cart.checkout.subtotal'}}:
+                        </div>
+                        <div class="cart-total-value">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                <span>{{cart.sub_total.formatted}}</span>
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    </li>
+                    <li class="cart-total grand_total">
+                        <div class="cart-total-label">
+                            {{lang 'cart.checkout.grand_total'}}:
+                        </div>
+                        <div class="cart-total-value cart-total-grandTotal">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                <span>{{cart.grand_total.formatted}}</span>
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="previewCartAction">
+                {{#if cart.show_primary_checkout_button}}
+                    <div class="previewCartAction-checkout">
+                        <a href="{{urls.checkout.single_address}}" class="button button--large button--primary">
+                            {{lang 'cart.preview.checkout_now'}}
+                        </a>
+                    </div>
+                {{/if}}
+                {{#if cart.show_multiple_address_shipping}}
+                    <div class="previewCartAction-checkoutMultiple">
+                        <a href="{{urls.checkout.multiple_address}}">
+                            {{lang 'cart.preview.checkout_multiple'}}
+                        </a>
+                    </div>
+                {{/if}}
+                {{#if cart.additional_checkout_buttons}}
+                    <div class="previewCart-additionalCheckoutButtons">
+                        {{#each cart.additional_checkout_buttons}}
+                            {{{this}}}
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                <div class="previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}">
+                    <a href="{{urls.cart}}" class="button button--large button--action">
+                        {{lang 'cart.preview.view_cart'}}
+                    </a>
+                </div>
+            </div>
+        {{else}}
+            <div role="alert" aria-live="polite" aria-atomic="false" class="previewCart-emptyBody">
+                {{lang 'cart.checkout.empty_cart'}}
+            </div>
+        {{/if}}
+    </div>
+</div>

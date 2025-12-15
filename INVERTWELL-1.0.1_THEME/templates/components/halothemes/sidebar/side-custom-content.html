@@ -1,0 +1,17 @@
+{{#if theme_settings.show_sidebar_custom_block}}
+	<div id="sideCustomCMS" class="sidebarBlock sidebarBorder">
+		{{#if theme_settings.sidebar_custom_block_title '!=' ''}}
+	    	<h2 class="sidebarBlock-heading"><span>{{theme_settings.sidebar_custom_block_title}}</span></h2>
+	    {{/if}}
+	    <div class="side-cms-content">
+	    	{{#with theme_settings}}
+		    	{{#or sidebar_custom_block_content_1 sidebar_custom_block_content_2 sidebar_custom_block_content_3}}
+		        	<p>{{sidebar_custom_block_content_1}}{{sidebar_custom_block_content_2}}{{sidebar_custom_block_content_3}}</p>
+		        {{/or}}
+		        {{#or sidebar_custom_block_content_4 sidebar_custom_block_content_5}}
+		        	<p>{{sidebar_custom_block_content_4}}{{sidebar_custom_block_content_5}}</p>
+		        {{/or}}	
+	        {{/with}}
+	    </div>
+	</div>
+{{/if}}	

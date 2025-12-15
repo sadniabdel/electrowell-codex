@@ -1,0 +1,43 @@
+<a class="close-sidebar" href="javascript:void(0)" title="close"><span class="icon-close">&times;</span></a>
+<nav>
+	{{> components/halothemes/blogs/halo-recent-post post=post}}
+
+	{{> components/halothemes/blogs/halo-tags post=post}}
+
+    {{#if theme_settings.sidebar_image}}
+        {{> components/halothemes/sidebar/side-custom-image}}
+    {{/if}}
+
+    {{#if theme_settings.sidebar_products_title}}
+        <div class="sidebarBlock" id="sideProducts">
+            <div class="page-header">
+                <h2 class="sidebarBlock-heading">{{theme_settings.sidebar_products_title}}</h2>
+            </div>
+            {{#if theme_settings.sidebar_products '==' 'top'}}
+                {{#if products.top_sellers}}
+                    {{> components/halothemes/sidebar/top products=products.top_sellers products_new=products.new block_id="sidebar-products"}}
+                {{/if}}
+            {{else}}
+                {{#if theme_settings.sidebar_products '==' 'featured'}}
+                    {{#if products.featured}}
+                        {{> components/halothemes/sidebar/featured products=products.featured products_new=products.new block_id="sidebar-products"}}
+                    {{/if}}
+                {{else}}
+                    {{#if theme_settings.sidebar_products '==' 'new'}}
+                        {{#if products.new}}
+                            {{> components/halothemes/sidebar/new products=products.new products_new=products.new block_id="sidebar-products"}}
+                        {{/if}}
+                    {{else}}
+                        <div id="categoryProductRecommended" class="product-block product-block-recommended" data-block-layout="carousel" data-columns="1" data-dots="true" data-limit="{{theme_settings.sidebar_products_count}}">
+                            {{> components/halothemes/ajax-products-by-category-id category_id=theme_settings.sidebar_products_id productsnew=products.new}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    {{/if}}
+
+    {{#if theme_settings.show_sidebar_custom_block}}
+        {{> components/halothemes/sidebar/side-custom-content}}
+    {{/if}}
+</nav>

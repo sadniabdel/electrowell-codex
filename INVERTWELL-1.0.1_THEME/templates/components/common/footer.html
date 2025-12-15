@@ -1,0 +1,33 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+
+{{#if theme_settings.halo_footer_layout '==' 'footer-layout-1'}}
+    {{> components/halothemes/footer/footer-layout-1}}
+{{else}}
+    {{> components/halothemes/footer/footer-layout-2}}
+{{/if}}
+
+{{#if theme_settings.halo_recently_viewed_products '==' false}}
+    {{#if theme_settings.enable_back_to_top}}
+        <div id="back-to-top">
+            <a href="javascript:void(0)">Back To Top<svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg></a>
+        </div>
+    {{/if}}
+{{/if}}

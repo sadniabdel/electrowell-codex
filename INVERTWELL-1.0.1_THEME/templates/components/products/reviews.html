@@ -1,0 +1,81 @@
+{{#if reviews.total}}
+    <section class="toggle productReviews" id="product-reviews" data-product-reviews>
+        <h4 class="toggle-title">
+            <span class="rw-title">{{lang 'products.customer_reviews'}}</span>
+            <span class="rw-total">{{lang 'products.reviews.header' total=reviews.total}}</span>
+            {{#if settings.show_product_reviews}}
+                <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                   class="productView-reviewLink productView-reviewLink--new"
+                   {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                   role="button"
+                >
+                   {{lang 'products.reviews.new'}}
+                </a>
+            {{/if}}
+            {{#if theme_settings.show_product_reviews}}
+                <a class="toggleLink" data-collapsible href="#productReviews-content">
+                    <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+                    <span class="toggleLink-text toggleLink-text--on">
+                        {{lang 'products.reviews.hide'}}
+                    </span>
+                    <span class="toggleLink-text toggleLink-text--off">
+                        {{lang 'products.reviews.show'}}
+                    </span>
+                </a>
+            {{/if}}
+        </h4>
+        <div class="toggle-content" id="productReviews-content" aria-hidden="false">
+            <ul class="productReviews-list" id="productReviews-list">
+                {{#each reviews.list}}
+                <li class="productReview">
+                    <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                        <header>
+                            <h5 itemprop="name" class="productReview-title">{{{ sanitize title }}}</h5>
+                            <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                {{> components/products/ratings rating=rating}}
+                                <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                            </span>
+                            {{#if name}}
+                                <meta itemprop="author" content="{{name}}">
+                                <p class="productReview-author">
+                                    {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
+                                </p>
+                            {{else}}
+                                <p class="productReview-author">
+                                    {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                                </p>
+                            {{/if}}
+                        </header>
+                        <p itemprop="reviewBody" class="productReview-body">{{{ sanitize text }}}</p>
+                    </article>
+                </li>
+                {{/each}}
+            </ul>
+            {{> components/common/paginator pagination.reviews}}
+        </div>
+    </section>
+{{else}}
+    <div class="productView-noReviews" id="product-reviews">
+        <h4 class="toggle-title">
+            <span class="rw-title">{{lang 'products.customer_reviews'}}</span>
+            <span class="rw-total">{{lang 'products.reviews.header' total=reviews.total}}</span>
+            {{#if settings.show_product_reviews}}
+                <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                   class="productView-reviewLink productView-reviewLink--new"
+                   {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                   role="button"
+                >
+                   {{lang 'products.reviews.new'}}
+                </a>
+            {{/if}}
+        </h4>
+        <div class="alertBox alertBox--warning">
+            <div class="alertBox-column alertBox-icon">
+                <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+            </div>
+            <p class="alertBox-column alertBox-message">
+                {{lang 'products.reviews.write_a_review_text'}}
+            </p>
+        </div>
+    </div>
+{{/if}}

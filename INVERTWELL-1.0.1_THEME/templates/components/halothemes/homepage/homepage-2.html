@@ -1,0 +1,148 @@
+{{{region name="home_below_custom_block_one_image"}}}
+
+{{{region name="home_below_custom_block_shop_by_categories"}}}
+
+<div class="home-product-block-1 module-wrapper">
+	<div class="container">
+		{{> components/halothemes/homepage/products-block-1 
+		block_layout=theme_settings.home_products_block_1_layout 
+		list_id=theme_settings.home_products_block_1_listID 
+		category_id=theme_settings.home_products_block_1_cateID 
+		block_columns=theme_settings.homepage_products1_column_count
+		id='product-block-1'  dots="true" productsnew=products.new}}
+
+		{{> components/halothemes/homepage/products-block-3 productsnew=products.new block_layout=theme_settings.home_products_block_3_layout list_id=theme_settings.home_products_block_3_listID id='product-block-3' block_columns=theme_settings.homepage_products1_column_count dots="true"}}	
+	</div> 
+</div>
+{{{region name="home_below_home_products_block_1"}}}
+
+{{> components/halothemes/homepage/products-flash-deals block_layout=theme_settings.products_flash_deals_layout block_columns=theme_settings.homepage_products2_column_count id='flash-deals' list_id=theme_settings.products_flash_deals_listID productsnew=products.new dots="true"}}
+{{{region name="home_below_products_flash_deals"}}}
+
+{{{region name="home_below_featured_brands"}}}
+
+{{> components/halothemes/homepage/products-block-2 block_layout=theme_settings.home_products_block_2_layout block_columns=theme_settings.homepage_products2_column_count list_id=theme_settings.home_products_block_2_listID id='productBlock2' dots="true"}}
+{{{region name="home_below_home_products_block_2"}}}
+
+{{{region name="home_below_custom_block_two_images"}}}
+
+{{> components/halothemes/homepage/products-block-by-cate-id 
+	left_banner=theme_settings.product_block_cateID_1_banner_left
+	left_banner_alt=theme_settings.product_block_cateID_1_banner_left_alt
+	left_banner_mb=theme_settings.product_block_cateID_1_banner_left_mb
+	right_cate=theme_settings.product_block_cateID_1_right_cate
+	category_id=theme_settings.product_block_cateID_1_ID 
+	category_title=theme_settings.product_block_cateID_1_title 
+	category_url=theme_settings.product_block_cateID_1_view_all
+	block_type = theme_settings.product_block_cateID_1_type 
+	list_id=theme_settings.product_block_cateID_1_listID
+	block_columns=theme_settings.product_block_cateID_1_column 
+	block_layout=theme_settings.product_block_cateID_1_layout 
+	banner_img_1=theme_settings.product_block_cateID_1_img_1 
+	banner_img_1_mb=theme_settings.product_block_cateID_1_img_1_mb 
+	banner_alt_1=theme_settings.product_block_cateID_1_img_1_alt 
+	banner_url_1=theme_settings.product_block_cateID_1_img_1_url 
+	banner_img_2=theme_settings.product_block_cateID_1_img_2 
+	banner_img_2_mb=theme_settings.product_block_cateID_1_img_2_mb 
+	banner_alt_2=theme_settings.product_block_cateID_1_img_2_alt 
+	banner_url_2=theme_settings.product_block_cateID_1_img_2_url
+	banner_img_3=theme_settings.product_block_cateID_1_img_3 
+	banner_img_3_mb=theme_settings.product_block_cateID_1_img_3_mb 
+	banner_alt_3=theme_settings.product_block_cateID_1_img_3_alt 
+	banner_url_3=theme_settings.product_block_cateID_1_img_3_url
+	id='productByCate1' productsnew=products.new dots="false"}}
+{{{region name="home_below_products_by_cate_id_1"}}}
+
+{{> components/halothemes/homepage/products-block-by-cate-id 
+	left_banner=theme_settings.product_block_cateID_2_banner_left
+	left_banner_alt=theme_settings.product_block_cateID_2_banner_left_alt
+	left_banner_mb=theme_settings.product_block_cateID_2_banner_left_mb
+	right_cate=theme_settings.product_block_cateID_2_right_cate
+	category_id=theme_settings.product_block_cateID_2_ID 
+	category_title=theme_settings.product_block_cateID_2_title 
+	category_url=theme_settings.product_block_cateID_2_view_all
+	block_type = theme_settings.product_block_cateID_2_type 
+	list_id=theme_settings.product_block_cateID_2_listID
+	block_columns=theme_settings.product_block_cateID_2_column
+	block_layout=theme_settings.product_block_cateID_2_layout 
+	banner_img_1=theme_settings.product_block_cateID_2_img_1 
+	banner_img_1_mb=theme_settings.product_block_cateID_2_img_1_mb 
+	banner_alt_1=theme_settings.product_block_cateID_2_img_1_alt 
+	banner_url_1=theme_settings.product_block_cateID_2_img_1_url 
+	banner_img_2=theme_settings.product_block_cateID_2_img_2 
+	banner_img_2_mb=theme_settings.product_block_cateID_2_img_2_mb 
+	banner_alt_2=theme_settings.product_block_cateID_2_img_2_alt 
+	banner_url_2=theme_settings.product_block_cateID_2_img_2_url
+	banner_img_3=theme_settings.product_block_cateID_2_img_3 
+	banner_img_3_mb=theme_settings.product_block_cateID_2_img_3_mb 
+	banner_alt_3=theme_settings.product_block_cateID_2_img_3_alt 
+	banner_url_3=theme_settings.product_block_cateID_2_img_3_url
+	id='productByCate2' productsnew=products.new dots="false"}}
+{{{region name="home_below_products_by_cate_id_2"}}}
+
+{{> components/halothemes/homepage/products-block-by-cate-id 
+	left_banner=theme_settings.product_block_cateID_3_banner_left
+	left_banner_alt=theme_settings.product_block_cateID_3_banner_left_alt
+	left_banner_mb=theme_settings.product_block_cateID_3_banner_left_mb
+	right_cate=theme_settings.product_block_cateID_3_right_cate
+	category_id=theme_settings.product_block_cateID_3_ID 
+	category_title=theme_settings.product_block_cateID_3_title 
+	category_url=theme_settings.product_block_cateID_3_view_all
+	block_type = theme_settings.product_block_cateID_3_type 
+	list_id=theme_settings.product_block_cateID_3_listID
+	block_columns=theme_settings.product_block_cateID_3_column
+	block_layout=theme_settings.product_block_cateID_3_layout 
+	banner_img_1=theme_settings.product_block_cateID_3_img_1 
+	banner_img_1_mb=theme_settings.product_block_cateID_3_img_1_mb 
+	banner_alt_1=theme_settings.product_block_cateID_3_img_1_alt 
+	banner_url_1=theme_settings.product_block_cateID_3_img_1_url 
+	banner_img_2=theme_settings.product_block_cateID_3_img_2 
+	banner_img_2_mb=theme_settings.product_block_cateID_3_img_2_mb 
+	banner_alt_2=theme_settings.product_block_cateID_3_img_2_alt 
+	banner_url_2=theme_settings.product_block_cateID_3_img_2_url
+	banner_img_3=theme_settings.product_block_cateID_3_img_3 
+	banner_img_3_mb=theme_settings.product_block_cateID_3_img_3_mb 
+	banner_alt_3=theme_settings.product_block_cateID_3_img_3_alt 
+	banner_url_3=theme_settings.product_block_cateID_3_img_3_url
+	id='productByCate3' productsnew=products.new dots="false"}}
+{{{region name="home_below_products_by_cate_id_3"}}}
+
+{{> components/halothemes/homepage/products-block-by-cate-id 
+	left_banner=theme_settings.product_block_cateID_4_banner_left
+	left_banner_alt=theme_settings.product_block_cateID_4_banner_left_alt
+	left_banner_mb=theme_settings.product_block_cateID_4_banner_left_mb
+	right_cate=theme_settings.product_block_cateID_4_right_cate
+	category_id=theme_settings.product_block_cateID_4_ID 
+	category_title=theme_settings.product_block_cateID_4_title 
+	category_url=theme_settings.product_block_cateID_4_view_all
+	block_type = theme_settings.product_block_cateID_4_type 
+	list_id=theme_settings.product_block_cateID_4_listID
+	block_columns=theme_settings.product_block_cateID_4_column
+	block_layout=theme_settings.product_block_cateID_4_layout 
+	banner_img_1=theme_settings.product_block_cateID_4_img_1 
+	banner_img_1_mb=theme_settings.product_block_cateID_4_img_1_mb 
+	banner_alt_1=theme_settings.product_block_cateID_4_img_1_alt 
+	banner_url_1=theme_settings.product_block_cateID_4_img_1_url 
+	banner_img_2=theme_settings.product_block_cateID_4_img_2 
+	banner_img_2_mb=theme_settings.product_block_cateID_4_img_2_mb 
+	banner_alt_2=theme_settings.product_block_cateID_4_img_2_alt 
+	banner_url_2=theme_settings.product_block_cateID_4_img_2_url
+	banner_img_3=theme_settings.product_block_cateID_4_img_3 
+	banner_img_3_mb=theme_settings.product_block_cateID_4_img_3_mb 
+	banner_alt_3=theme_settings.product_block_cateID_4_img_3_alt 
+	banner_url_3=theme_settings.product_block_cateID_4_img_3_url
+	id='productByCate4' productsnew=products.new dots="false"}}
+{{{region name="home_below_products_by_cate_id_4"}}}
+
+{{> components/halothemes/homepage/products-block-by-cate-id-2 
+	block_layout=theme_settings.product_block_recommended_layout 
+	block_columns=theme_settings.homepage_products2_column_count 
+	block_limit=theme_settings.homepage_products_count
+	list_id=theme_settings.product_block_recommended_listID 
+	category_id=theme_settings.product_block_recommended_cateID 
+	id='productBlockRecommended' productsnew=products.new}}
+{{{region name="home_below_products_by_cate_id_5"}}}
+
+{{{region name="home_below_custom_cms_block"}}}
+
+{{{region name="home_below_custom_block_bottom"}}}

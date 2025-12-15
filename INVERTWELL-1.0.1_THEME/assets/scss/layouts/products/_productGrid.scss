@@ -1,0 +1,435 @@
+// =============================================================================
+// PRODUCT GRID (CSS)
+// =============================================================================
+
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+//
+// -----------------------------------------------------------------------------
+
+.productGrid {
+
+    @include u-listBullets("none");
+    margin: 0 -7.5px;
+    margin-bottom: 0px;
+    max-width: none;
+    width: auto;
+    font-size: 0; // 1
+    @include breakpoint("medium") {
+        margin: 0 -10px;
+    }
+    .product {
+        padding-left: 7.5px;
+        padding-right: 7.5px;
+        width: 50%;
+        display: inline-block;
+        float: none;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(3, $total-columns);
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    &.col-2 {
+        .product {
+            width: grid-calc(6, $total-columns);
+        }
+    }
+    &.col-3 {
+        .product {
+            width: grid-calc(6, $total-columns);
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+    &.col-4 {
+        .product {
+            width: grid-calc(6, $total-columns);
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+            @media (min-width: 992px) {
+                width: grid-calc(3, $total-columns);
+            }
+            
+        }
+    }
+    &.col-5 {
+        .product {
+            width: grid-calc(6, $total-columns);
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+            @media (min-width: 992px) {
+                width: grid-calc(3, $total-columns);
+            }
+            @media (min-width: 1280px) {
+                width: 20%;
+            }
+        }
+    }
+    &.col-6 {
+        .product {
+            width: grid-calc(6, $total-columns);
+            @media (min-width: 768px) {
+                width: grid-calc(4, $total-columns);
+            }
+            @media (min-width: 992px) {
+                width: grid-calc(3, $total-columns);
+            }
+            @media (min-width: 1280px) {
+                width: 20%;
+            }
+            @media (min-width: 1600px) {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+}
+
+.homepage-layout-2 {
+  .page-type-default {
+    .productGrid {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-left: 0;
+      margin-right: 0;
+      @include breakpoint("small") {
+          margin: 0 -7.5px;
+      }
+      @include breakpoint("medium") {
+          margin: 0 -10px;
+      }
+      .product {
+          margin-bottom: 15px;
+          -webkit-box-flex: 0;
+          -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+          margin-bottom: 15px;
+          padding: 0;
+          @include breakpoint("small") {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding-left: 7.5px;
+            padding-right: 7.5px;
+          }
+          @include breakpoint("medium") {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 20px;
+          }
+          .card {
+            height: 100%;
+            margin-bottom: 0;
+          }
+          &:nth-child(n + 1) {
+            .card {
+              @media (max-width: 550px) {
+                -moz-border-radius: 6px 0px 0px 6px;
+                -webkit-border-radius: 6px 0px 0px 6px;
+                -ms-border-radius: 6px 0px 0px 6px;
+                border-radius: 6px 0px 0px 6px;
+              }
+            }
+          }
+          &:nth-child(2n) {
+            .card {
+              @media (max-width: 550px) {
+                -moz-border-radius: 0px 6px 6px 0px;
+                -webkit-border-radius: 0px 6px 6px 0px;
+                -ms-border-radius: 0px 6px 6px 0px;
+                border-radius: 0px 6px 6px 0px;
+              }
+            }
+          }
+      }
+      &.col-2 {
+          .product {
+              -webkit-box-flex: 0;
+              -ms-flex: 0 0 50%;
+              flex: 0 0 50%;
+              max-width: 50%;
+          }
+      }
+      &.col-3 {
+         .product {
+              -webkit-box-flex: 0;
+              -ms-flex: 0 0 50%;
+              flex: 0 0 50%;
+              max-width: 50%;
+              @include breakpoint("small") {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+              }
+          }
+      }
+      &.col-4 {
+          .product {
+              -webkit-box-flex: 0;
+              -ms-flex: 0 0 50%;
+              flex: 0 0 50%;
+               max-width: 50%; 
+              @include breakpoint("small") {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+              }
+              @media (min-width: 992px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 25%;
+                flex: 0 0 25%;
+                max-width: 25%;
+              }  
+          }
+      }
+      &.col-5 {
+          .product {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+            @include breakpoint("small") {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+              @media (min-width: 992px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 25%;
+                flex: 0 0 25%;
+                max-width: 25%;
+              }
+              @media (min-width: 1280px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 20%;
+                flex: 0 0 20%;
+                max-width: 20%;
+              }
+          }
+      }
+      &.col-6 {
+          .product {
+              -webkit-box-flex: 0;
+              -ms-flex: 0 0 50%;
+              flex: 0 0 50%;
+              max-width: 50%;
+              @media (min-width: 768px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+              }
+              @media (min-width: 992px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 25%;
+                flex: 0 0 25%;
+                max-width: 25%;
+              }
+              @media (min-width: 1280px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 20%;
+                flex: 0 0 20%;
+                max-width: 20%;
+              }
+              @media (min-width: 1600px) {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 16.66%;
+                flex: 0 0 16.66%;
+                max-width: 16.66%;
+              }
+          }
+      }
+    }
+  }
+}
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.sidebar-show + #product-listing-container,
+.sidebar-show + .page-content {
+
+    .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            width: grid-calc(6, $total-columns);    
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+
+            @media (min-width: 992px) {
+                width: grid-calc(3, $total-columns);
+            }
+        }
+        &.col-2 {
+            .product {
+                width: grid-calc(6, $total-columns);
+            }
+        }
+        &.col-3 {
+            .product {
+                width: grid-calc(6, $total-columns);
+                @include breakpoint("small") {
+                    width: grid-calc(4, $total-columns);
+                }
+            }
+        }
+        &.col-4 {
+            .product {
+                width: grid-calc(6, $total-columns);
+                @include breakpoint("small") {
+                    width: grid-calc(4, $total-columns);
+                }
+                @media (min-width: 992px) {
+                    width: grid-calc(3, $total-columns);
+                }
+                
+            }
+        }
+        &.col-5 {
+            .product {
+                width: grid-calc(6, $total-columns);
+                @include breakpoint("small") {
+                    width: grid-calc(4, $total-columns);
+                }
+                @media (min-width: 992px) {
+                    width: grid-calc(3, $total-columns);
+                }
+                @media (min-width: 1400px) {
+                    width: 20%;
+                }
+            }
+        }
+        &.col-6 {
+            .product {
+                width: grid-calc(6, $total-columns);
+                @include breakpoint("small") {
+                    width: grid-calc(4, $total-columns);
+                }
+                @media (min-width: 992px) {
+                    width: grid-calc(3, $total-columns);
+                }
+                @media (min-width: 1440px) {
+                    width: 20%;
+                }
+                @media (min-width: 1600px) {
+                    width: 16.66%;
+                }
+            }
+        }
+    }
+
+}
+
+
+//
+// Product Grid with masonry layout
+//
+// Purpose: Display products in a masonry grid, with a display inline-block for
+// older browsers that don't support css multicolumn
+//
+// -----------------------------------------------------------------------------
+
+.productMasonry {
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
+
+    @include breakpoint("small") {
+        column-count: 3;
+    }
+
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
+
+    .product {
+        break-inside: avoid;
+        page-break-inside: avoid; // for firefox
+        display: block;
+        margin-bottom: spacing("double");
+        padding: 0;
+        width: 100%;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            column-count: 6;
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            @include grid-column(12);
+
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                @include grid-column(4, $float: none);
+            }
+        }
+    }
+}

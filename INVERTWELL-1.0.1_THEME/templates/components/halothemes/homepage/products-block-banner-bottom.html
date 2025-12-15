@@ -1,0 +1,65 @@
+{{#or (if banner_img_1 '!=' '') (if banner_img_2 '!=' '') (if banner_img_3 '!=' '')}}
+    <div class="product-banner{{#if theme_settings.halo_homepage_layout_1}} padding-top-50{{else}} padding-top-20{{/if}}">
+        <div class="banner-list">
+            {{#if banner_img_1 '!=' ''}}
+        	   <a class="banner-item {{#if banner_img_2 '!=' ''}}{{#if banner_img_3 '!=' ''}} banner-three{{else}} banner-half{{/if}} {{else}}{{#if banner_img_3 '!=' ''}} banner-half{{/if}}{{/if}}" href="{{banner_url_1}}" title="{{banner_alt_1}}">
+                    <img class="lazyload{{#if banner_img_1_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_1}}" alt="{{banner_alt_1}}">
+                    {{#if banner_img_1_mb '!=' ''}}
+                        <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_1_mb}}" alt="{{banner_alt_1}}">
+                    {{/if}}
+                </a>
+                {{#if banner_img_2 '!=' ''}}
+                    <a class="banner-item{{#if banner_img_3 '!=' ''}} banner-three{{else}} banner-half{{/if}}" href="{{banner_url_2}}" title="{{banner_alt_2}}">
+                        <img class="lazyload{{#if banner_img_2_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_2}}" alt="{{banner_alt_2}}">
+                        {{#if banner_img_2_mb '!=' ''}}
+                            <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_2_mb}}" alt="{{banner_alt_2}}">
+                        {{/if}}
+                    </a>
+                    {{#if banner_img_3 '!=' ''}}
+                       <a class="banner-item banner-three" href="{{banner_url_3}}" title="{{banner_alt_3}}">
+                            <img class="lazyload{{#if banner_img_3_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3}}" alt="{{banner_alt_3}}">
+                            {{#if banner_img_3_mb '!=' ''}}
+                                <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3_mb}}" alt="{{banner_alt_3}}">
+                            {{/if}}
+                        </a>
+                    {{/if}}
+                {{else}}
+                    {{#if banner_img_3 '!=' ''}}
+                       <a class="banner-item banner-half" href="{{banner_url_3}}" title="{{banner_alt_3}}">
+                            <img class="lazyload{{#if banner_img_3_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3}}" alt="{{banner_alt_3}}">
+                            {{#if banner_img_3_mb '!=' ''}}
+                                <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3_mb}}" alt="{{banner_alt_3}}">
+                            {{/if}}
+                        </a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                {{#if banner_img_2 '!=' ''}}
+                    <a class="banner-item{{#if banner_img_3 '!=' ''}} banner-half{{/if}}" href="{{banner_url_2}}" title="{{banner_alt_2}}">
+                        <img class="lazyload{{#if banner_img_2_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_2}}" alt="{{banner_alt_2}}">
+                        {{#if banner_img_2_mb '!=' ''}}
+                            <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_2_mb}}" alt="{{banner_alt_2}}">
+                        {{/if}}
+                    </a>
+                    {{#if banner_img_3 '!=' ''}}
+                       <a class="banner-item banner-half" href="{{banner_url_3}}" title="{{banner_alt_3}}">
+                            <img class="lazyload{{#if banner_img_3_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3}}" alt="{{banner_alt_3}}">
+                            {{#if banner_img_3_mb '!=' ''}}
+                                <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3_mb}}" alt="{{banner_alt_3}}">
+                            {{/if}}
+                        </a>
+                    {{/if}}
+                {{else}}
+                    {{#if banner_img_3 '!=' ''}}
+                       <a class="banner-item" href="{{banner_url_3}}" title="{{banner_alt_3}}">
+                            <img class="lazyload{{#if banner_img_3_mb '!=' ''}} hasMobileImage{{/if}}" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3}}" alt="{{banner_alt_3}}">
+                            {{#if banner_img_3_mb '!=' ''}}
+                                <img class="lazyload banner-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{banner_img_3_mb}}" alt="{{banner_alt_3}}">
+                            {{/if}}
+                        </a>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+{{/or}}

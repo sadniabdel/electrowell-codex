@@ -1,0 +1,11 @@
+{{#if theme_settings.sidebar_image '!=' ''}}
+    <div class="sidebarBlock" id="sideBannerImage">
+    	<div class="side-cms-content">
+    		<a class="cms-image" href="{{theme_settings.sidebar_image_link}}">
+    			<div class="card-img-container">
+                    <img class="lazyload card-image" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.sidebar_image}}" alt="{{theme_settings.sidebar_image}}" />
+                </div>
+    		</a>
+    	</div>
+    </div>
+{{/if}}

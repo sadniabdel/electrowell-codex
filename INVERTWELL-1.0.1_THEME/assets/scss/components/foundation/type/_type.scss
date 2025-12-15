@@ -1,0 +1,174 @@
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+
+// Stencil type component additions
+// -----------------------------------------------------------------------------
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+html * {
+    outline: none !important;
+
+    &:focus,
+    &:active,
+    &:hover,
+    &:visited {
+        outline: none !important;
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        color: stencilColor('color-textLink');
+    }
+}
+
+body {
+    font-size: $body-fontSize;
+    font-weight: $body-font-weight;
+    line-height: 22px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: $header-font-weight;
+    margin-top: $heading-marginTop;
+    letter-spacing: $letterSpacing-base;
+}
+
+h5,
+h6 {
+    text-transform: $heading-textTransform;
+}
+
+a {
+    transition: $anchor-transition;
+}
+
+cite {
+    line-height: $blockquote-cite-lineHeight;
+    margin: $blockquote-cite-margin;
+}
+
+.page-heading {
+    margin: 0 0 28px;
+    text-align: left;
+    font-size: $h3-font-size - 10;
+    line-height: $h3-font-size - 2;
+    text-transform: uppercase;
+
+    @media (min-width: 361px) {
+        font-size: $h3-font-size - 6;
+        line-height: $h3-font-size + 2;
+    }
+
+    @include breakpoint("small") {
+        font-size: $h3-font-size;
+        line-height: $h3-font-size + 8;
+    }
+
+    &.heading-small {
+        font-size: $h4-font-size - 2;
+        line-height: $h4-font-size + 2;
+
+        @include breakpoint("small") {
+            font-size: $h4-font-size;
+            line-height: $h4-font-size + 8;
+        }
+    }
+}
+
+h1 {
+    font-size: $h1-font-size;
+}
+
+h2 {
+    font-size: $h2-font-size - 10;
+    line-height: $h2-font-size - 2;
+
+    @media (min-width: 361px) {
+        font-size: $h2-font-size - 6;
+        line-height: $h2-font-size + 2;
+    }
+
+    @include breakpoint("small") {
+        font-size: $h2-font-size - 2;
+        line-height: $h2-font-size + 6;
+    }
+
+    @include breakpoint("medium") {
+        font-size: $h2-font-size;
+        line-height: $h2-font-size + 8;
+    }
+}
+
+h3 {
+    font-size: $h3-font-size - 4;
+    line-height: $h3-font-size + 4;
+
+    @include breakpoint("small") {
+        font-size: $h3-font-size - 2;
+        line-height: $h3-font-size + 6;
+    }
+
+    @include breakpoint("medium") {
+        font-size: $h3-font-size;
+        line-height: $h3-font-size + 8;
+    }
+}
+
+h4 {
+    font-size: $h4-font-size - 5;
+    line-height: $h4-font-size + 3;
+
+    @media (min-width: 361px) {
+        font-size: $h4-font-size - 4;
+        line-height: $h4-font-size + 4;
+    }
+
+    @include breakpoint("small") {
+        font-size: $h4-font-size - 2;
+        line-height: $h4-font-size + 6;
+    }
+
+    @include breakpoint("medium") {
+        font-size: $h4-font-size;
+        line-height: $h4-font-size + 8;
+    }
+}
+
+h5 {
+    font-size: $h5-font-size;
+}
+
+h6 {
+    font-size: $h6-font-size;
+}
+
+.definitionList {
+    @include clearfix;
+}
+
+.definitionList-key {
+    color: stencilColor("color-textSecondary");
+    float: left;
+    font-weight: fontWeight("normal");
+    margin: 0 spacing("quarter") 0 0;
+}
+
+.definitionList-value {
+    margin: 0;
+}

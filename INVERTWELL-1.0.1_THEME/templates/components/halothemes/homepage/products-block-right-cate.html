@@ -1,0 +1,60 @@
+{{#if right_cate}}
+    <div class="right-cate">
+        {{#each categories}}
+            {{#if id '==' ../cateID}}
+                {{#each (limit children 3)}}
+                    <div class="cate-item">
+                        <div class="cate-info">
+                            <span class="cate-name">{{name}}</span>
+                            <a class="link" href="{{url}}">{{lang 'halothemes.shop_now'}}</a>
+                        </div>
+                        <div class="cate-img">
+                            <img src="{{getImage image 'productview_thumb_size'}}" alt="{{name}}" />
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="cate-item view-all">
+                    <a class="link" href="{{url}}">{{lang 'halothemes.view_all_categories'}}</a>
+                </div>
+            {{else}}
+                {{#each (limit children 3)}}
+                    {{#if id '==' ../../cateID}}
+                        {{#each children}}
+                            <div class="cate-item">
+                                <div class="cate-info">
+                                    <span class="cate-name">{{name}}</span>
+                                    <a class="link" href="{{url}}">{{lang 'halothemes.shop_now'}}</a>
+                                </div>
+                                <div class="cate-img">
+                                    <img src="{{getImage image 'productview_thumb_size'}}" alt="{{name}}" />
+                                </div>
+                            </div>
+                        {{/each}}
+                        <div class="cate-item view-all">
+                            <a class="link" href="{{url}}">{{lang 'halothemes.view_all_categories'}}</a>
+                        </div>
+                    {{else}}
+                        {{#each (limit children 3)}}
+                            {{#if id '==' ../../../cateID}}
+                                {{#each children}}
+                                    <div class="cate-item">
+                                        <div class="cate-info">
+                                            <span class="cate-name">{{name}}</span>
+                                            <a class="link" href="{{url}}">{{lang 'halothemes.shop_now'}}</a>
+                                        </div>
+                                        <div class="cate-img">
+                                            <img src="{{getImage image 'productview_thumb_size'}}" alt="{{name}}" />
+                                        </div>
+                                    </div>
+                                {{/each}}
+                                <div class="cate-item view-all">
+                                    <a class="link" href="{{url}}">{{lang 'halothemes.view_all_categories'}}</a>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    </div>
+{{/if}}

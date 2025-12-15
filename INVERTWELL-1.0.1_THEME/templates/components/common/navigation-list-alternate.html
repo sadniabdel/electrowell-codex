@@ -1,0 +1,20 @@
+{{#if children}}
+    <a class="navPages-action has-subMenu is-root{{#if is_active}} activePage{{/if}}"
+       href="{{url}}"
+       aria-label="{{name}}"
+    >
+        <span class="text">{{name}}</span>
+        <span class="navPages-action-moreIcon">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+            Back
+        </span>
+    </a>
+    {{> components/common/navigation-dropdown}}
+{{else}}
+    <a class="navPages-action{{#if is_active}} activePage{{/if}}"
+       href="{{url}}"
+       aria-label="{{name}}"
+    >
+        <span class="text">{{name}}</span>
+    </a>
+{{/if}}

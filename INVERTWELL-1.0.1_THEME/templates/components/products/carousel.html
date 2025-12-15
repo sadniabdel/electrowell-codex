@@ -1,0 +1,52 @@
+<section class="productCarousel"
+    id="{{block_id}}"
+    data-product-type="{{type}}"
+    data-list-name="{{list}}"
+    data-slick='{
+        "dots": true,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "slide": "[data-product-slide]",
+        "responsive": [
+            {
+                "breakpoint": 1400,
+                "settings": {
+                    "slidesToShow": {{ columns }},
+                    "slidesToScroll": {{ columns }},
+                    "dots": {{dots}}
+                }
+            },
+            {
+                "breakpoint": 991,
+                "settings": {
+                    {{#if columns '==' 3}}
+                        "slidesToShow": {{subtract columns 1}},
+                        "slidesToScroll": {{subtract columns 1}},
+                    {{else}}
+                        "slidesToShow": {{ columns }},
+                        "slidesToScroll": {{ columns }},
+                    {{/if}}
+                    "dots": true
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": {{ columns }},
+                    "slidesToScroll": {{ columns }},
+                    "dots": true
+                }
+            }
+        ]
+    }'>
+    {{#each (limit products theme_settings.homepage_products_count)}}
+    <div class="productCarousel-slide col-{{ ../columns }}" data-product-slide>
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_compare=../show_compare show_rating=../settings.show_product_rating productsnew=../productsnew show_wishlist=../settings.show_wishlist event="list" position=(add @index 1)}}
+    </div>
+    {{/each}}
+    {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}}
+</section>

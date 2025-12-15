@@ -1,0 +1,58 @@
+<div class="navPage-subMenu navPage-subMenu-horizontal level-2" id="navPages-{{id}}">
+    <ul class="navPage-subMenu-list navPage-subMenu-list-level1">
+        <li class="navPage-subMenu-item-child navPage-subMenu-title navPages-action-end" data-level="2">
+            <a class="navPage-subMenu-action navPages-action" href="{{url}}">
+                <span class="navPages-action-moreIcon">
+                    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+                    Back
+                </span>
+                <span class="text" href="{{url}}">{{name}}</span>
+            </a>
+        </li>
+        <li class="navPage-subMenu-item-child navPage-subMenu-all navPages-action-end" data-level="2">
+            <a class="navPage-subMenu-action navPages-action" href="{{url}}">
+                <span class="text">{{lang 'category.view_all.name' category=name}}</span>
+            </a>
+        </li>
+        {{#each children}}
+            {{#if children}}
+                <li class="navPage-subMenu-item-child" data-level="3">
+                    <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu level-2" href="{{url}}">
+                        <span class="text">{{name}}</span>
+                        <span class="navPages-action-moreIcon">
+                            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+                            Back
+                        </span>
+                    </a>
+                    <div class="navPage-subMenu navPage-subMenu-horizontal level-3" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+                         <ul class="navPage-subMenu-list">
+                             <li class="navPage-subMenu-item-child navPage-subMenu-title navPages-action-end" data-level="3">
+                                <a class="navPage-subMenu-action navPages-action" href="{{url}}">
+                                    <span class="navPages-action-moreIcon">
+                                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+                                        Back
+                                    </span>
+                                    <span class="text" href="{{url}}">{{name}}</span>
+                                </a>
+                            </li>
+                            <li class="navPage-subMenu-item-child navPage-subMenu-all navPages-action-end" data-level="3">
+                                <a class="navPage-subMenu-action navPages-action" href="{{url}}">
+                                    <span class="text">{{lang 'category.view_all.name' category=name}}</span>
+                                </a>
+                            </li>
+                            {{#each children}}
+                                <li class="navPage-subMenu-item-child" data-level="4">
+                                    <a class="navPage-subMenu-action navPages-action level-3" href="{{url}}"><span class="text">{{name}}</span></a>
+                                </li>
+                            {{/each}}
+                         </ul>
+                    </div>
+                </li>
+            {{else}}
+                <li class="navPage-subMenu-item-child navPages-action-end" data-level="3">
+                    <a class="navPage-subMenu-action navPages-action" href="{{url}}"><span class="text">{{name}}</span></a>
+                </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>

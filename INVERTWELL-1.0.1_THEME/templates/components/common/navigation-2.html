@@ -1,0 +1,51 @@
+<nav class="navUser" role="navigation" aria-label="User Navigation">
+    <ul class="navUser-section navUser-section--alt"> 
+        <li class="navUser-item navUser-item--wishlist">
+          {{#if customer}}
+            <a class="navUser-action" href="/wishlist.php">
+          {{else}}
+            <a class="navUser-action" href="{{urls.auth.login}}">
+          {{/if}}  
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-wishlist"></use></svg>
+            <span>{{lang 'common.wish_lists'}}</span>
+          </a>
+        </li>
+        {{#and (if theme_settings.header-gift-cards) (if theme_settings.header-gift-cards-link)}}
+	        <li class="navUser-item navUser-item--giftCard">
+	        	 <a class="navUser-action" href="{{theme_settings.header-gift-cards-link}}">
+	        	 	<svg class="icon" aria-hidden="true"><use xlink:href="#icon-gift-card"></use></svg>
+	        	 	<span>{{theme_settings.header-gift-cards}}</span>
+	        	</a>
+	        </li>
+        {{/and}}
+        <li class="navUser-item navUser-item--account">
+            {{#if customer}}
+                <a class="navUser-action navUser-action--account"
+                   href="javascript:void(0)"
+                   aria-label="{{lang 'common.account'}}"
+                >
+                    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-user"/></svg> <span>{{lang 'common.account'}}</span>
+                </a>
+            {{else}}
+                <a class="navUser-action navUser-action--account"
+                   href="javascript:void(0)"
+                   aria-label="{{lang 'common.login'}}"
+                >
+                    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-user"/></svg> <span>{{lang 'common.login'}}</span>
+                </a>
+            {{/if}}
+        </li>
+        <li class="navUser-item navUser-item--cart">
+            <a class="navUser-action"
+               data-cart-preview
+               data-options="align:right"
+               href="{{urls.cart}}"
+               aria-label="{{lang 'cart.nav_aria_label'}}"
+            >   
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cart"/></svg>
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill cart-quantity"></span>
+            </a>
+        </li>
+    </ul>
+</nav>

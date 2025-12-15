@@ -1,0 +1,58 @@
+{{#if category.subcategories}}
+    <span class="jump">{{lang 'category.jump_to'}}</span>
+    <div class="category-sub-categories" data-slick='{
+        "arrows": false,
+        "dots": true,
+        "centerMode": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "slide": "[data-banner-slide]",
+        "responsive": [
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": 8,
+                    "slidesToScroll": 8
+                }
+            },
+            {
+                "breakpoint": 991,
+                "settings": {
+                    "slidesToShow": 6,
+                    "slidesToScroll": 6
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 5,
+                    "slidesToScroll": 5
+                }
+            },
+            {
+                "breakpoint": 360,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3
+                }
+            }
+        ]
+    }'>
+        {{#each category.subcategories}}
+            <div class="sub-cate-item" data-banner-slide>
+                {{#if image}}
+                    <div class="sub-cate-img"><a href="{{url}}"><img src="{{getImage image '122x122'}}" alt="{{name}}"></a></div>
+                {{else}}
+                    <div class="sub-cate-img"><a href="{{url}}"><img src="{{cdn 'img/SubcategoryDefault.png'}}" alt="{{name}}" /></a></div>
+                {{/if}}
+                <div class="sub-cat-name">
+                    <a href="{{url}}">{{name}}</a>
+                </div>
+            </div>
+        {{/each}}
+        {{#if category.subcategories.length '>' 1}}
+            {{> components/carousel-content-announcement}}
+        {{/if}}
+    </div>
+{{/if}}

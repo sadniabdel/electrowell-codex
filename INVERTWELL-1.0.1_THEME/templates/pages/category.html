@@ -1,0 +1,71 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_label_count}}
+    top_sellers:
+         limit: {{theme_settings.sidebar_products_count}}
+    featured:
+        limit: {{theme_settings.sidebar_products_count}}
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.page_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.page_products_per_page}}
+{{inject "categoryId" category.id}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+<div class="page-listing-header{{#if theme_settings.show_category_banner_top}} has-banner{{/if}}">
+    {{#if theme_settings.show_category_banner_top}}
+        <div class="page-listing-header--banner">
+            {{{region name="category_banner_top"}}}
+            {{{region name="category_banner_top--global"}}}
+        </div>
+    {{/if}}
+    
+    <div class="page-listing-header--content">
+        {{#unless theme_settings.hide_category_page_heading }}
+            <h1 class="page-heading">{{category.name}}</h1>
+        {{/unless}}
+        {{{category.description}}}
+    </div>
+</div>
+{{{region name="category_below_header"}}}
+<!--
+<div class="subcategories">
+    {{> components/halothemes/subcategories}}
+</div>
+-->
+{{> components/category/halo-category-toolbar}}
+
+<div class="page stickyContainer">
+    {{#if theme_settings.show_sidebar}}
+        <aside class="page-sidebar{{#if theme_settings.show_sidebar}} sidebar-show{{else}} sidebar-hide{{/if}}" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{/if}}
+
+    <main class="page-content" id="product-listing-container">
+        {{> components/category/product-listing block_id="category_products_list"}}
+        {{{region name="category_below_content"}}}
+
+    </main>
+</div>
+
+{{{region name="category_below_custom_block"}}}
+{{{region name="category_below_custom_block--global"}}}
+
+{{{region name="category_below_custom_cms_block"}}}
+{{{region name="category_below_custom_cms_block--global"}}}
+
+{{/partial}}
+{{> layout/base}}

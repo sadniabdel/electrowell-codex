@@ -1,0 +1,104 @@
+<div class="productCarousel-slide" data-id="product-{{product.id}}">
+    <div class="product">
+        <article class="card" data-product-id="{{product.id}}">
+            <figure class="card-figure">
+                {{#if theme_settings.show_new_badges}}
+                    {{#each products.new}}
+                        {{#if this.id '==' ../product.id}}
+                            <div class="product-badge new-badge">
+                                <span class="text">{{lang 'halothemes.new'}}</span>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+                {{#if theme_settings.show_sale_badges}}
+                    {{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
+                        <div class="product-badge sale-badge">
+                            {{#if theme_settings.sale_badges_type '==' 'percent'}}
+                                {{#if product.price.non_sale_price_with_tax}}
+                                    <span class="text">-{{round (subtract 100 (multiply (divide product.price.with_tax.value product.price.non_sale_price_with_tax.value) 100)) 0}}%</span>
+                                {{/if}}
+                                {{#if product.price.non_sale_price_without_tax}}
+                                    <span class="text">-{{round (subtract 100 (multiply (divide product.price.without_tax.value product.price.non_sale_price_without_tax.value) 100)) 0}}%</span>
+                                {{/if}}
+                            {{else}}
+                                <span class="text">{{lang 'halothemes.sale'}}</span>
+                            {{/if}}
+                        </div>
+                    {{/or}}
+                {{/if}}
+                {{#if theme_settings.show_soldout_badges}}
+                    {{#if product.out_of_stock_message}}
+                        <div class="product-badge soldout-badge">
+                            <span class="text">{{lang 'halothemes.sold_out'}}</span>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
+                {{#if theme_settings.show_custom_badges}}
+                    {{#each product.custom_fields}}
+                        {{#if name '===' '__customLabel'}}
+                            <div class="custom-badge product-badge">
+                                <span class="text">{{{value}}}</span>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+                <a href="{{product.url}}" class="card-figure__link" aria-label="{{product.name}},{{> components/products/product-aria-label}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+                        <div class="card-img-container">
+                            {{> components/common/responsive-img
+                                image=product.main_image
+                                class="card-image"
+                                fallback_size=theme_settings.productgallery_size
+                                lazyload=theme_settings.lazyload_mode
+                                default_image=theme_settings.default_image_product
+                            }}
+                        </div>
+                    </a>
+            </figure>
+            <div class="card-body">
+                {{#and (if settings.show_product_rating) (if theme_settings.halo_card_rating)}}
+                    <p class="card-rating" data-test-info-type="productRating">
+                        <span class="rating--small">
+                            {{> components/products/ratings rating=product.rating}}
+                        </span>
+                        {{#if product.num_reviews}}
+                            <span class="rating--count">({{product.num_reviews}})</span>
+                        {{/if}}
+                    </p>
+                {{/and}}
+                {{#if theme_settings.halo_card_brand}}
+                    {{#if product.brand.name}}
+                        <p class="card-brand" data-test-info-type="brandName">{{product.brand.name}}</p>
+                    {{/if}}
+                {{/if}}
+
+                <h4 class="card-title">
+                    <a{{#if theme_settings.card_title_type '==' 'clamp'}} class="clamp" style="-webkit-box-orient: vertical; -webkit-line-clamp: {{theme_settings.card_title_line}};"{{/if}} href="{{product.url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{product.title}}</a>
+                </h4>
+
+                <div class="card-price" data-test-info-type="price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}                    
+                        {{#if price_range}}
+                            {{> components/products/price-range}}
+                        {{else}}
+                            {{> components/products/price price=product.price customer=customer}}
+                        {{/if}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+                {{#if theme_settings.halo_color_variant}}
+                    <div class="card_optionImage product-option-{{product.id}}">
+                        <div data-product-option-change3>
+                            {{> components/halothemes/halo-add-option-for-product}}
+                        </div>
+                    </div>
+                {{/if}}    
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    <a href="{{product.url}}" class="button button--small card-figcaption-button"><span>Add</span></a>
+                {{/or}}
+            </div>
+        </article>
+    </div>
+</div>

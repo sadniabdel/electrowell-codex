@@ -1,0 +1,11 @@
+{{#if category.products}}    
+    <div class="productCarousel categoryLoaded">
+        {{#each (limit category.products theme_settings.homepage_products_count)}}
+        <div class="productCarousel-slide">
+            {{> components/products/card theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist}}
+        </div>
+        {{/each}}
+    </div>
+{{else}}    
+    <div class="product_category alert alert-warning text-center categoryLoaded"><p>{{lang 'categories.no_products'}}</p></div>    
+{{/if}}

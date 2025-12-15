@@ -1,0 +1,26 @@
+{{#if theme_settings.homepage_promotion}}
+    <div id="home-promotion" class="{{#if theme_settings.halo_homepage_layout_1}} homepage-layout-1{{else}} homepage-layout-2{{/if}}">
+        <div class="container">
+            <div class="banner-promotion{{#if theme_settings.homepage-promotion-btn-link}} hasLink{{else}} noLink{{/if}}">
+                {{#if theme_settings.homepage-promotion-btn-link}}
+                    <a class="promotion-link" href="{{theme_settings.homepage-promotion-btn-link}}">
+                {{/if}}
+                    {{#if theme_settings.homepage-promotion-img}}
+                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.homepage-promotion-img}}" alt="{{theme_settings.shipping-custom-block1-text}}" title="{{theme_settings.shipping-custom-block1-text}}">
+                    {{/if}}
+                    {{#if theme_settings.homepage-promotion-text}}
+                        <span class="text">{{theme_settings.homepage-promotion-text}}</span>
+                    {{/if}}    
+                    {{#if theme_settings.homepage-promotion-btn-text}}
+                        <span class="btn">{{theme_settings.homepage-promotion-btn-text}}</span>
+                    {{/if}}
+                {{#if theme_settings.homepage-promotion-btn-link}}
+                    </a>
+                {{/if}}
+            </div>
+            {{#if theme_settings.halo_homepage_layout_1}}
+                <a href="javascript:void(0)" class="close-banner-promotion" aria-label="Close Promotion Banner">&times;</a>
+            {{/if}}
+        </div>
+    </div>
+{{/if}}

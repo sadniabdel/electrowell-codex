@@ -1,0 +1,146 @@
+<form class="form" onsubmit="return false" data-url="{{urls.search}}" data-quick-search-form>
+    <fieldset class="form-fieldset">
+        <div class="form-field">
+            <div id="search_category">
+                <select name="category" class="select_category">
+                    <option value="" selected="">All</option>
+                    {{#each categories}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{#if children}}
+                            {{#each children}}
+                                <option value="{{id}}">&ndash;&ndash; {{name}}</option>
+                                {{#if children}}
+                                    {{#each children}}
+                                        <option value="{{id}}">&ndash;&ndash;&ndash;&ndash; {{name}}</option>
+                                        {{#if children}}
+                                            {{#each children}}
+                                                {{#if children}}
+                                                    <option value="{{id}}">&ndash;&nbsp;&ndash;&nbsp;&ndash;&nbsp;&ndash;&nbsp;&ndash; {{name}}</option>
+                                                {{else}}
+                                                    <option value="{{id}}">&ndash;&nbsp;&ndash;&nbsp;&ndash;&nbsp;&ndash;&nbsp;&ndash; {{name}}</option>
+                                                {{/if}}
+                                            {{/each}}
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+                    {{/each}}
+                </select> 
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+            </div>
+            <input class="form-input form-input--quickSearch"
+                   data-search-quick
+                   name="{{name}}"
+                   id="{{name}}"
+                   data-error-message="{{lang 'search.error.empty_field'}}"
+                   placeholder="{{lang 'search.quick_search.input_placeholder'}}"
+                   autocomplete="off"
+            >
+            <button type="submit" aria-label="{{lang 'search.quick_search.button_search'}}">
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-search"></use></svg>
+            </button>
+        </div>
+    </fieldset>
+</form>
+
+<!--
+
+<div class="quickSearch-wrap">
+  <div class="container">
+    <section class="quickSearchResults" data-bind="html: results"></section>
+    <p role="status"
+         aria-live="polite"
+         class="aria-description--hidden"
+         data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
+    ></p>
+    {{#or (if theme_settings.enable_search_product_block) (if theme_settings.enable_search_trending)}}
+      <div class="quickSearch-re">
+        {{#if theme_settings.enable_search_trending}}
+          <div class="header-search-trending header-search-column">
+            {{#if theme_settings.search-trending-title '!==' ""}}
+              <h3 class="search-form-title">{{theme_settings.search-trending-title}}</h3>
+            {{/if}}
+            <ul class="list-item">
+              {{#if theme_settings.search-trending-text-1 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-1}}">
+                    <span>{{theme_settings.search-trending-text-1}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-2 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-2}}">
+                    <span>{{theme_settings.search-trending-text-2}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-3 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-3}}">
+                    <span>{{theme_settings.search-trending-text-3}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-4 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-4}}">
+                    <span>{{theme_settings.search-trending-text-4}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-5 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-5}}">
+                    <span>{{theme_settings.search-trending-text-5}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-6 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-6}}">
+                    <span>{{theme_settings.search-trending-text-6}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-7 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-7}}">
+                    <span>{{theme_settings.search-trending-text-7}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+              {{#if theme_settings.search-trending-text-8 '!==' ""}}
+                <li>
+                  <a href="search.php?search_query={{theme_settings.search-trending-text-8}}">
+                    <span>{{theme_settings.search-trending-text-8}}</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                  </a>
+                </li>
+              {{/if}}
+            </ul>
+          </div>
+        {{/if}}
+        {{#if theme_settings.enable_search_product_block}}
+            {{#if products.top_sellers}}
+              <div class="search_product_block header-search-column">
+                {{#if theme_settings.search_product_block_title '!==' ""}}
+                  <h3 class="search-form-title">{{theme_settings.search_product_block_title}}</h3>
+                {{/if}}
+                {{> components/products/top-2 products=products.top_sellers productsnew=products.new columns=5 dots=true block_id="homeProductBlock2"}}
+              </div>
+            {{/if}}
+        {{/if}}
+      </div>
+    {{/or}}
+  </div>
+</div>
+-->

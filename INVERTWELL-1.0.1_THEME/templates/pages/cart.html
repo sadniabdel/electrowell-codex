@@ -1,0 +1,64 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_label_count}}
+    featured:
+        limit: {{theme_settings.homepage_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_products_count}}
+cart: true
+---
+{{#partial "page"}}
+<div class="page page-cart{{#if theme_settings.halo_CalculateFreeShipping}} has-calculate-shipping{{/if}}">
+    <div class="container-small">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <div class="halo-heading">
+            {{> components/cart/page-title}}
+        </div>
+        <main class="page-content" data-cart>
+            {{#and (if theme_settings.halo_CalculateFreeShipping) (if cart.items.length)}}
+                <div class="halo-free-shipping-message animated-loading"></div>
+            {{/and}}
+
+            {{#and (if theme_settings.enbale_cart_notification) (if cart.items.length)}}
+                {{> components/halothemes/cart/halo-cart-notification}}
+            {{/and}}
+            
+            <div data-cart-status>
+                {{> components/cart/status-messages}}
+            </div>
+
+            {{#if cart.items.length}}
+                <div class="loadingOverlay"></div>
+
+                <div data-cart-content class="cart-content-padding-right">
+                    {{> components/cart/content}}
+                </div>
+
+                <div data-cart-totals class="cart-content-padding-right">
+                    {{> components/cart/totals}}
+                </div>
+
+                {{{region name="cart_below_totals"}}}
+            {{else}}
+                <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
+            {{/if}}
+
+            {{#if products.featured}}
+                <div class="detailProduct-block cartProduct-block">
+                    <div class="page-header text-left">
+                        <h3 class="page-heading heading-small">{{lang 'common.custom_block_title'}}</h3>
+                    </div>
+                    {{> components/products/featured-2 products=products.featured productsnew=products.new columns=5 dots=true block_id="homeProductBlock2"}}
+                </div>
+            {{/if}}
+
+            <div id="detailProduct-banner" class="detailProduct-banner">
+                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.detailCart_banner}}" alt="Bottom Banner">
+            </div>
+
+        </main>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

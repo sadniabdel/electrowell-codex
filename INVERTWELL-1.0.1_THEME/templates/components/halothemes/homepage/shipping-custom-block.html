@@ -1,0 +1,40 @@
+{{#if theme_settings.shipping_custom_block}}
+    <div id="shipping-custom-block">
+        <div class="container">
+            <div class="custom-block-list"> 
+			    {{#if theme_settings.shipping-custom-block1-text}}
+	            	<div class="custom-block-item">
+	            		{{#if theme_settings.shipping-custom-block1-img}}
+		                    <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.shipping-custom-block1-img}}" alt="{{theme_settings.shipping-custom-block1-text}}" title="{{theme_settings.shipping-custom-block1-text}}">
+		                {{else}}
+		                	<svg class="icon" aria-hidden="true"><use xlink:href="#icon-truck"/></svg> 
+		                {{/if}}
+		                <span class="text">{{theme_settings.shipping-custom-block1-text}}</span>
+	            	</div>
+            	{{/if}}
+
+            	{{#if theme_settings.shipping-custom-block2-text}}
+	                <div class="custom-block-item">
+	            		{{#if theme_settings.shipping-custom-block2-img}}
+		                    <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.shipping-custom-block2-img}}" alt="{{theme_settings.shipping-custom-block2-text}}" title="{{theme_settings.shipping-custom-block2-text}}">
+		                {{else}}
+		                	<svg class="icon icon-truck" aria-hidden="true"><use xlink:href="#icon-award"/></svg> 
+		                {{/if}}
+		                <span class="text">{{theme_settings.shipping-custom-block2-text}}</span>
+	            	</div>
+            	{{/if}}
+
+            	{{#if theme_settings.shipping-custom-block3-text}}
+	            	<div class="custom-block-item">
+	            		{{#if theme_settings.shipping-custom-block3-img}}
+		                    <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.shipping-custom-block1-img}}" alt="{{theme_settings.shipping-custom-block3-text}}" title="{{theme_settings.shipping-custom-block3-text}}">
+		                {{else}}
+		                	<svg class="icon" aria-hidden="true"><use xlink:href="#icon-trophy"/></svg> 
+		                {{/if}}
+		                <span class="text">{{theme_settings.shipping-custom-block3-text}}</span>
+	            	</div>
+            	{{/if}}
+            </div>
+        </div>
+    </div>
+{{/if}}

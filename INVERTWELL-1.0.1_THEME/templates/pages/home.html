@@ -1,0 +1,136 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_label_count}}
+    featured:
+        limit: {{theme_settings.homepage_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+    {{#if theme_settings.halo_homepage_layout_2}}
+        {{#or theme_settings.left-categories carousel theme_settings.slideshow-right-banners}}
+            <div class="slideshow-wrapper padding-bottom-30">
+                <div class="container">
+                    {{#if theme_settings.left-categories}}
+                        <div class="left-categories">
+                            {{#each categories}}
+                                {{#if id '==' ../theme_settings.left-categories-id}}
+                                    <h3 class="categories-title"><span>{{name}}</span></h3>
+                                    {{#if children}}
+                                        <ul class="navPages-list">
+                                            {{#each children}}
+                                                <li class="navPages-item">
+                                                    <a class="navPages-action level-2" href="{{url}}" style="-webkit-box-orient: vertical;">
+                                                        {{#if image}}
+                                                            <span class="image-icon"><img src="{{getImage image 'categories_size'}}" alt="{{name}}"></span>
+                                                        {{/if}}
+                                                        <span class="text">{{name}}</span>
+                                                    </a>
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/if}}
+                                {{/if}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    
+                    {{#and carousel carousel.slides.length}}
+                        <div class="slideshow-inner{{#if theme_settings.left-categories}} has-leftCategories{{else}} no-leftCategories{{/if}}{{#if theme_settings.slideshow-right-banners}} has-rightBanners{{else}} no-rightBanner{{/if}}">
+                            {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+                        </div>
+                    {{/and}}
+                    
+                    {{#if theme_settings.slideshow-right-banners}}
+                        <div class="slideshow-right-banner">
+                            <div class="banner-list">
+                                {{#if theme_settings.slideshow-right-banners-1-img}}
+                                    <div class="banner-item">
+                                        
+                                            {{#if theme_settings.slideshow-right-banners-1-url}}
+                                                <a href="{{theme_settings.slideshow-right-banners-1-url}}">
+                                            {{/if}}
+                                                <div class="card-img-container">
+                                                    <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.slideshow-right-banners-1-img}}" alt="{{theme_settings.slideshow-right-banners-1-alt}}">
+                                                </div>
+                                            {{#if theme_settings.slideshow-right-banners-1-url}}
+                                                </a>
+                                            {{/if}}
+                                        
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.slideshow-right-banners-2-img}}
+                                    <div class="banner-item">
+                                        <div class="card-img-container">
+                                            {{#if theme_settings.slideshow-right-banners-2-url}}
+                                                <a href="{{theme_settings.slideshow-right-banners-2-url}}">
+                                            {{/if}}
+                                                <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.slideshow-right-banners-2-img}}" alt="{{theme_settings.slideshow-right-banners-2-alt}}">
+                                            {{#if theme_settings.slideshow-right-banners-2-url}}
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.slideshow-right-banners-3-img}}
+                                    <div class="banner-item">
+                                        <div class="card-img-container">
+                                            {{#if theme_settings.slideshow-right-banners-3-url}}
+                                                <a href="{{theme_settings.slideshow-right-banners-3-url}}">
+                                            {{/if}}
+                                                <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.slideshow-right-banners-3-img}}" alt="{{theme_settings.slideshow-right-banners-3-alt}}">
+                                            {{#if theme_settings.slideshow-right-banners-3-url}}
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.slideshow-right-banners-4-img}}
+                                    <div class="banner-item">
+                                        <div class="card-img-container">
+                                            {{#if theme_settings.slideshow-right-banners-4-url}}
+                                                <a href="{{theme_settings.slideshow-right-banners-4-url}}">
+                                            {{/if}}
+                                                <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.slideshow-right-banners-4-img}}" alt="{{theme_settings.slideshow-right-banners-4-alt}}">
+                                            {{#if theme_settings.slideshow-right-banners-4-url}}
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/or}}
+    {{else}}
+        {{#if carousel}}
+            {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+        {{/if}}
+    {{/if}}
+    {{{region name="home_below_carousel"}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{#each shipping_messages}}
+    {{> components/common/alert/alert-info message}}
+{{/each}}
+
+<div class="main full{{#if theme_settings.halo_homepage_layout_1}} home-layout-1{{else}} home-layout-2{{/if}}">
+    {{#if theme_settings.halo_homepage_layout_1}}    
+        {{> components/halothemes/homepage/homepage-1}}
+    {{/if}}
+    {{#if theme_settings.halo_homepage_layout_2}} 
+        {{> components/halothemes/homepage/homepage-2}}
+    {{/if}}
+</div>
+{{/partial}}
+{{> layout/base}}

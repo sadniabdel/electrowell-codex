@@ -1,0 +1,37 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+---
+{{#partial "page"}}
+    <div class="haloLookBook-header">
+        <div class="breadcrumb-wrapper">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+        <h1 class="page-heading">{{ page.title }}</h1>
+    </div>
+    <div class="page page-normal page--lookbook">
+        <main class="page-content halo-lookbook-content">
+            <div class="lookbook-top">
+                {{{page.content}}}
+                <div class="halo-lookbook-share">
+                    {{>components/common/share}}
+                </div>
+            </div>
+            <div id="LookbookProduct" class="lookbook-product">
+                {{> components/halothemes/lookbook/products-lookbook-block 
+                    list_id=theme_settings.products_lookbook_block_listID 
+                    category_id=theme_settings.products_lookbook_block_cateID 
+                    block_columns=theme_settings.products_lookbook_column_count 
+                    dots="true" 
+                    productsnew=products.new}}
+            </div>
+            {{{region name="page_builder_content"}}}
+        </main>
+    </div>
+{{/partial}}
+{{> layout/base}}

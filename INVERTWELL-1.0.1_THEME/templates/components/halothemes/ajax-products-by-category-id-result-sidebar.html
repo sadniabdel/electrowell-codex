@@ -1,0 +1,11 @@
+{{#if category.products}}    
+    <ul class="sidebarProduct card-variant">
+        {{#each (limit category.products theme_settings.sidebar_products_count)}}
+        <li class="product">
+            {{> components/products/card-sidebar theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist}}
+        </li>
+        {{/each}}
+    </div>
+{{else}}    
+    <div class="product_category alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>    
+{{/if}}

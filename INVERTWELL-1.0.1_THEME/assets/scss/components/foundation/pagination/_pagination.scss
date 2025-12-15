@@ -1,0 +1,151 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-list {
+    @include clearfix;
+
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+    text-align: right;
+    display: inline-block;
+    float: right;
+    margin-bottom: 0;
+    .pagination-item { // 2
+        display: inline-block;
+    }
+}
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-item {
+    border: $pagination-item-border;
+    line-height: 1;
+    + .pagination-item {
+        margin-left: 8px;
+    }
+    .pagination-link {
+        text-decoration: none;
+        transition: $pagination-link-transition;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        font-weight: $body-bold-font-weight;
+        color: $color-textHeading;
+        padding: 0 20px;
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: $pagination-link-color-hover;
+            background: stencilColor('color-bgLight');
+        }
+    }
+
+    &.pagination-item--current { // 1
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        margin: $pagination-link-current-margin;
+        background: stencilColor('color-bgLight');
+        margin: 0;
+    }
+
+    &.pagination-item--previous, // 1
+    &.pagination-item--next { // 1
+        font-size: 0;
+        // scss-lint:disable NestingDepth, SelectorDepth
+        > a {
+            color: $pagination-item-previousNext-color;
+            min-width: 78px;
+            background: stencilColor('color-bgLight');
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -ms-border-radius: 20px;
+            border-radius: 20px;
+
+            .icon > svg {
+                fill: $pagination-item-previousNext-color;
+                width: 100%;
+                height: 100%;
+            }
+
+            &:hover {
+                color: $pagination-item-previousNext-color-hover;
+
+                .icon > svg {
+                    fill: $pagination-item-previousNext-color-hover;
+                }
+            }
+        }
+    }
+}
+
+.pagination-item--previous,
+.pagination-item--next {
+    .icon {
+        height: 40px;
+        width: 50px;
+        
+    }
+}
+
+
+// Simple/small pagination (Next/Previous arrows are the only way to navigate)
+// -----------------------------------------------------------------------------
+
+.pagination-list--small {
+    position: relative;
+
+    .pagination-item {
+        color: $pagination-list--small-color;
+        cursor: inherit;
+        line-height: $pagination-list--small-lineHeight;
+    }
+
+    .pagination-link {
+        padding: $pagination-list--small-link-padding;
+    }
+
+    .pagination-item--previous,
+    .pagination-item--next {
+        position: absolute;
+        top: 0;
+    }
+
+    .pagination-item--previous {
+        left: 0;
+    }
+
+    .pagination-item--next {
+        right: 0;
+    }
+}

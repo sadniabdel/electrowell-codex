@@ -1,0 +1,59 @@
+// =============================================================================
+// FORMS (CSS)
+// =============================================================================
+
+// Select boxes
+// -----------------------------------------------------------------------------
+
+.form-select {
+    appearance: none;
+    background-image: $select-backgroundImage;
+    background-position: $select-backgroundPosition;
+    border-radius: $select-borderRadius;
+    padding: 10px 40px 10px 20px;
+    height: 45px;
+    font-size: $h6-font-size;
+    @include breakpoint("medium") {
+        height: 50px;
+    }
+
+    &:hover {
+        border-color: $select-hover-borderColor;
+    }
+}
+
+
+// Form labels
+// -----------------------------------------------------------------------------
+
+.form-label {
+    color: $color-textHeading;
+    font-weight: $body-medium-font-weight;
+    margin-bottom: 9px;
+    font-size: $h6-font-size;
+    text-transform: capitalize;
+    letter-spacing: 0;
+    small {
+        float: $opposite-direction;
+        margin-top: 1px;
+        text-transform: none;
+        font-weight: $body-font-weight;
+        font-size: $body-fontSize;
+    }
+}
+
+
+// Form labels (inline small text)
+// -----------------------------------------------------------------------------
+
+.form-label--inlineSmall {
+
+    small {
+        color: stencilColor("color-textHeading");
+        float: none;
+        font-size: inherit;
+        font-weight: fontWeight("normal");
+        margin-left: 2pxs;
+        text-transform: none;
+    }
+}

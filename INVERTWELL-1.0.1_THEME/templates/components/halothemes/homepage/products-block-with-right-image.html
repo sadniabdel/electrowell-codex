@@ -1,0 +1,97 @@
+{{#if theme_settings.home_products_block_1_title}}
+    <div id="homeProductRightImage" class="home-product-right-image home-product-block module-wrapper padding-top-40 padding-bottom-60">
+        <div class="container">
+            <div class="page-header text-left">
+                <h2 class="page-heading">{{theme_settings.home_products_block_1_title}}</h2>
+                {{#if theme_settings.home_products_block_1_view_all '!=' ''}}
+                    <a class="view-all" href="{{theme_settings.home_products_block_1_view_all}}">{{lang 'products.view_all'}}</a>
+                {{/if}}
+            </div>
+            {{#if theme_settings.home_products_block_1 '==' 'top'}}
+                {{#if products.top_sellers}}
+                    <div id="topSellerProduct1" class="product-block product-block-1{{#if theme_settings.home_products_block_1_image}} hasRightImage{{/if}} layout_{{block_layout}}">
+                        <div class="productsByBlock">
+                            {{#if theme_settings.home_products_block_1_layout}}
+                                {{> components/products/top products=products.top_sellers productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                            {{else}}
+                                {{> components/products/top-grid products=products.top_sellers productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                            {{/if}}
+                        </div>
+
+                        {{#if theme_settings.home_products_block_1_image '!=' ''}}
+                            <div class="rightImage">
+                                <div class="card-img-container">
+                                    <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" alt="{{theme_settings.home_products_block_1_alt}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.home_products_block_1_image}}">
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>             
+                {{/if}}
+            {{else}}
+                {{#if theme_settings.home_products_block_1 '==' 'featured'}}
+                    {{#if products.featured}}
+                        <div id="feauturedProduct1" class="product-block product-block-1{{#if theme_settings.home_products_block_1_image}} hasRightImage{{/if}} layout_{{block_layout}}">
+                            <div class="productsByBlock">
+                                {{#if theme_settings.home_products_block_1_layout}}
+                                    {{> components/products/featured products=products.featured productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                                {{else}}
+                                    {{> components/products/featured-grid products=products.featured productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                                {{/if}}
+                            </div>
+                            {{#if theme_settings.home_products_block_1_image '!=' ''}}
+                                <div class="rightImage">
+                                    <div class="card-img-container">
+                                        <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" alt="{{theme_settings.home_products_block_1_alt}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.home_products_block_1_image}}">
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                {{else}}
+                    {{#if theme_settings.home_products_block_1 '==' 'new'}}
+                        <div id="newProduct1" class="product-block product-block-1{{#if theme_settings.home_products_block_1_image}} hasRightImage{{/if}} layout_{{block_layout}}">
+                            <div class="productsByBlock">
+                                {{#if theme_settings.home_products_block_1_layout}}
+                                    {{> components/products/new products=products.new productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                                {{else}}
+                                    {{> components/products/new-grid products=products.new productsnew=productsnew columns=block_columns block_id="productRightImage"}}
+                                {{/if}}
+                            </div>
+                            {{#if theme_settings.home_products_block_1_image '!=' ''}}
+                                <div class="rightImage">
+                                    <div class="card-img-container">
+                                        <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" alt="{{theme_settings.home_products_block_1_alt}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.home_products_block_1_image}}">
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{else}}
+                        {{#if theme_settings.home_products_block_1 '==' 'cateID'}}
+                            <div id="categoryProduct1" class="product-block product-block-1{{#if theme_settings.home_products_block_1_image}} hasRightImage{{/if}}" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}">
+                                {{> components/halothemes/ajax-products-by-category-id category_id=theme_settings.home_products_block_1_cateID productsnew=products.new}}
+                                {{#if theme_settings.home_products_block_1_image '!=' ''}}
+                                    <div class="rightImage">
+                                        <div class="card-img-container">
+                                            <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" alt="{{theme_settings.home_products_block_1_alt}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.home_products_block_1_image}}">
+                                        </div>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            <div id="listProduct1" class="product-block product-block-1{{#if theme_settings.home_products_block_1_image}} hasRightImage{{/if}}" data-columns="{{block_columns}}">
+                                {{> components/halothemes/ajax-products-by-list-id block_layout=block_layout list_id=theme_settings.home_products_block_1_listID productsnew=productsnew}}
+                                {{#if theme_settings.home_products_block_1_image '!=' ''}}
+                                    <div class="rightImage">
+                                        <div class="card-img-container">
+                                            <img class="card-image lazyload" src="{{cdn 'img/loading.svg'}}" alt="{{theme_settings.home_products_block_1_alt}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.home_products_block_1_image}}">
+                                        </div>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}

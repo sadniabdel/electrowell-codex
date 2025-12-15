@@ -1,0 +1,18 @@
+{{#if theme_settings.products_flash_deals_title}}
+    <div id="homeProductFlashSale" class="product-block product-block-flash-deals{{#if theme_settings.halo_homepage_layout_1}} padding-top-60{{else}} padding-top-50 padding-bottom-30{{/if}} {{block_layout}} module-wrapper" data-columns="{{block_columns}}" data-dots="{{dots}}">
+        <div class="container">
+            <div class="page-header text-left">
+                <span class="icon"><svg class="icon"><use xlink:href="#icon-fire"></use></svg></span>
+                <h2 class="page-heading{{#unless theme_settings.halo_homepage_layout_1}} heading-small{{/unless}}">{{theme_settings.products_flash_deals_title}}</h2>
+                {{#if theme_settings.products_flash_deals_view_all '!=' ''}}
+                    <a class="view-all" href="{{theme_settings.products_flash_deals_view_all}}">{{lang 'products.view_all'}}</a>
+                {{/if}}
+            </div>
+            {{#if theme_settings.products_flash_deals_type '==' 'cateID'}}
+                {{> components/halothemes/ajax-products-by-category-id category_id=theme_settings.products_flash_deals_id productsnew=productsnew}}
+            {{else}}
+                {{> components/halothemes/ajax-products-by-list-id list_id=theme_settings.products_flash_deals_listID productsnew=productsnew}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}

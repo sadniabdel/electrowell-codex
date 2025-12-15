@@ -1,0 +1,12 @@
+<div class="dropdown--quickSearch dropdown--quickSearchSticky haloSeachCategories" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+    {{> components/common/quick-search name='nav-quick-search'}}
+</div>
+
+{{#if theme_settings.halo_header_layout '==' 'header-layout-1'}}
+    {{> components/halothemes/header/header-layout-1}}
+{{else}}
+    {{> components/halothemes/header/header-layout-2}}
+{{/if}}
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}

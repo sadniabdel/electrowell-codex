@@ -1,0 +1,67 @@
+{{#if category_title '!=' ''}}
+    <div id="homeProductBlock-{{category_id}}" class="home-product-block product-block-cate-id{{#if theme_settings.halo_homepage_layout_1}} padding-top-60{{else}} padding-top-20 padding-bottom-20{{/if}}">
+        <div class="container">
+            <div class="page-header text-left">
+                <h2 class="page-heading{{#unless theme_settings.halo_homepage_layout_1}} heading-small{{/unless}}">{{category_title}}</h2>
+                {{#if category_url '!=' ''}}
+                    <a class="view-all{{#unless theme_settings.halo_homepage_layout_1}} text-left{{/unless}}" href="{{category_url}}">{{lang 'products.view_all'}}</a>
+                {{/if}}
+            </div>
+            <div class="product-block-wrapper{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}">
+                {{#if left_banner}}
+                    <div class="left-banner{{#if left_banner_mb}} showMb{{/if}}">
+                        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{left_banner}}" alt="{{left_banner_alt}}">
+                    </div>
+                {{/if}}
+
+                {{#if block_type '==' 'top'}}
+                    {{#if products.top_sellers}}
+                        <div id="topSellerProduct-{{id}}" class="product-block product-block-{{id}} layout_{{block_layout}}{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}">
+                            {{#if block_layout}} 
+                                {{> components/products/top-2 products=products.top_sellers productsnew=productsnew columns=block_columns block_id=block_id}}
+                            {{else}}
+                                {{> components/products/top-grid products=products.top_sellers productsnew=productsnew columns=block_columns block_id=block_id}}
+                            {{/if}}
+                        </div>             
+                    {{/if}}
+                {{else}}
+                    {{#if block_type '==' 'featured'}}
+                        {{#if products.featured}}
+                            <div id="feauturedProduct-{{id}}" class="product-block product-block-{{id}} layout_{{block_layout}}{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}">
+                                {{#if block_layout}}
+                                    {{> components/products/featured-2 products=products.featured productsnew=productsnew columns=block_columns block_id=block_id}}
+                                {{else}}
+                                    {{> components/products/featured-grid products=products.featured productsnew=productsnew columns=block_columns block_id=block_id}}
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                    {{else}}
+                        {{#if block_type '==' 'new'}}
+                            <div id="newProduct-{{id}}" class="product-block product-block-{{id}} layout_{{block_layout}}{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}">
+                                {{#if block_layout}}
+                                    {{> components/products/new-2 products=products.new productsnew=productsnew columns=block_columns block_id=block_id}}
+                                {{else}}
+                                    {{> components/products/new-grid products=products.new productsnew=productsnew columns=block_columns block_id=block_id}}
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            {{#if block_type '==' 'cateID'}}
+                                <div id="categoryProduct-{{id}}" class="product-block product-block-{{id}}{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                    {{> components/halothemes/ajax-products-by-category-id category_id=category_id id=id productsnew=products.new}}
+                                </div>
+                            {{else}}
+                                <div id="listProduct-{{id}}" class="product-block product-block-{{id}}{{#if left_banner}} hasBannerLeft{{else}} noBannerLeft{{/if}}{{#if right_cate}} hasRightCate{{else}} noRightCate{{/if}}" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                    {{> components/halothemes/ajax-products-by-list-id block_layout=block_layout list_id=list_id id=id productsnew=productsnew}}
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{> components/halothemes/homepage/products-block-right-cate right_cate=right_cate cateID=category_id}}
+            </div>
+            
+            {{> components/halothemes/homepage/products-block-banner-bottom }}
+            
+        </div>
+    </div>
+{{/if}}

@@ -1,0 +1,5 @@
+{{#if settings.data_tag_enabled}}
+    {{> components/products/carousel-2 products=products type="newest" list="New Products" block_id=block_id}}
+{{else}}
+    {{> components/products/carousel-2 products=products type="newest" block_id=block_id}}
+{{/if}}

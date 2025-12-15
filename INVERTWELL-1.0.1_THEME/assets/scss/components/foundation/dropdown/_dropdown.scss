@@ -1,0 +1,113 @@
+// =============================================================================
+// DROPDOWN (CSS)
+// =============================================================================
+
+
+.dropdown {
+    left: -9999px;
+    outline: none;
+    position: absolute;
+}
+
+.dropdown-menu {
+    z-index: $zIndex-lowest;
+    border-radius: 4px;
+    background: stencilColor('navUser-dropdown-backgroundColor');
+    box-shadow: rgba(50,50,50,.2) 0 0 20px 0;
+    -webkit-box-shadow: rgba(50,50,50,.2) 0 0 20px 0;
+    -moz-box-shadow: rgba(50,50,50,.2) 0 0 20px 0;
+    -ms-box-shadow: rgba(50,50,50,.2) 0 0 20px 0;
+    &.is-loading .loadingOverlay {
+        background: none;
+        padding: (spacing("double") + spacing("single")) 0;
+        position: relative;
+    }
+
+    &.is-open {
+        display: block;
+    }
+
+    .button {
+        &:focus {
+            z-index: $zIndex-lowest;
+        }
+    }
+}
+
+.dropdown-menu-item {
+    text-align: left;
+
+    &:first-child {
+
+        // scss-lint:disable NestingDepth
+        > a {
+            padding-top: spacing("half");
+        }
+    }
+
+    &:last-child {
+
+        // scss-lint:disable NestingDepth
+        > a {
+            padding-bottom: spacing("base");
+        }
+    }
+
+    > a {
+        margin: 0;
+        padding: spacing("sixth") (spacing("half") + spacing("quarter"));
+        text-decoration: none;
+    }
+}
+
+.form-wishlist {
+    position: relative;
+}
+
+.dropdown-menu-button {
+    width: 100%;
+
+    .icon {
+        float: right;
+        margin-left: 10px;
+    }
+
+    &:focus {
+        z-index: $zIndex-lower;
+    }
+}
+
+#wishlist-dropdown.is-open {
+    background: #ffffff;
+    left: auto !important;
+    right: -75px !important;
+    max-width: none !important;
+    width: 100% !important;
+    min-width: 250px;
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 1;
+    margin-top: 10px;
+
+    &:focus {
+        outline: none;
+    }
+
+    [data-wishlist] {
+        margin-bottom: 0px;
+        width: 100%;
+    }
+
+    li + li {
+        margin-top: 10px;
+    }
+
+    .button {
+        border-radius: 40px;
+        width: 100%;
+    }
+
+    .button--has-items {
+        font-weight: 700;
+    }
+}

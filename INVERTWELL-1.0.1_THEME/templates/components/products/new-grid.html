@@ -1,0 +1,7 @@
+<ul class="productGrid col-{{ columns }}" id="{{block_id}}" data-product-type="newest" {{#if settings.data_tag_enabled}} data-list-name="New Products" {{/if}}>
+	{{#each (limit products theme_settings.homepage_products_count)}}
+		<li class="product">
+		    {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_compare=../show_compare show_rating=../settings.show_product_rating productsnew=../productsnew show_wishlist=../settings.show_wishlist event="list" position=(add @index 1)}}
+		</li>
+	{{/each}}
+</ul>

@@ -1,0 +1,59 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_label_count}}
+    top_sellers:
+         limit: {{theme_settings.sidebar_products_count}}
+    featured:
+        limit: {{theme_settings.sidebar_products_count}}
+        
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+{{inject "zoomSize" theme_settings.zoom_size}}
+{{inject "productSize" theme_settings.product_size}}
+
+{{#partial "page"}}
+    <div class="container"> 
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+    </div>
+
+    <div itemscope itemtype="http://schema.org/Product">
+        {{> components/products/product-view schema=true  }}
+
+        {{{region name="product_below_content"}}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true)}}
+            <div class="detailReviews-block">
+                <div class="container">
+                    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                </div>
+            </div>
+        {{/all}}
+
+        {{> components/products/tabs}}
+
+        <div id="detailProduct-banner" class="detailProduct-banner">
+            <div class="container">
+                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.detailProduct_banner}}" alt="Bottom Banner">
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,24 @@
+{{#each categories}}
+    {{#if id '==' ../category_id}}
+        <div class="productsByCategoryId" data-category-id="{{id}}" id="sidebar-product-by-cate-{{id}}" data-halothemes-products-by-category-sidebar="{{url}}">
+            {{> components/halothemes/product-loading theme_settings=../../theme_settings}}
+        </div>
+    {{else}}
+        {{#each children}}
+            {{#if id '==' ../../../category_id}}
+                <div class="productsByCategoryId" data-category-id="{{id}}" id="sidebar-product-by-cate-{{id}}" data-halothemes-products-by-category-sidebar="{{url}}">
+                    {{> components/halothemes/product-loading theme_settings=../../../../theme_settings}}
+                </div>
+                
+            {{else}}
+                {{#each children}}
+                    {{#if id '==' ../../../../../category_id}}
+                        <div class="productsByCategoryId" data-category-id="{{id}}" id="sidebar-product-by-cate-{{id}}" data-halothemes-products-by-category-sidebar="{{url}}">
+                            {{> components/halothemes/product-loading theme_settings=../../../../../../theme_settings}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{/each}}

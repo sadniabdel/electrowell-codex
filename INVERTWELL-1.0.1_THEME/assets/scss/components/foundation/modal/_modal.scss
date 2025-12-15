@@ -1,0 +1,154 @@
+// =============================================================================
+// MODAL (CSS)
+//
+// // 1. Fix for content shifted to top in modal window when bottom variant option selected
+// =============================================================================
+
+.modal {
+    margin: 0;
+    max-height: 90%;
+    max-width: 95%;
+    min-height: 240px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    left: 50%;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    z-index: 9997;
+    .form-field {
+        position: relative; // 1
+    }
+    &.modal--editOptions {
+        z-index: 10001;
+    }
+    &.modal--editOptions {
+        width: 1015px;
+    }
+}
+
+.modal-background {
+    background-color: rgba(47,47,47,.6);
+    z-index: 9995;
+    &.modal--editOptions-background {
+        z-index: 9997;
+    }
+    .has-activeModal &, .has-quickViewModal &{
+        z-index: 9997;
+    }
+
+    .halo-cart--editOptions & {
+        z-index: 10000;
+    }
+}
+
+.modal--large {
+    @include breakpoint("large") {
+        width: $modal-width--large;
+    }
+}
+
+.modal-header {
+    padding: 18px 60px 18px 15px;
+    border-bottom: none;
+    background: stencilColor('color-bgLight');
+}
+
+.modal-header-title {
+    font-size: $h6-font-size;
+    line-height: $h6-font-size + 8;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.modal-close {
+    @include square(30px);
+    font-size: 26px;
+    font-weight: stencilFontWeight("close-button-font");
+    font-family: stencilFontFamily("close-button-font"), sans-serif;
+    background: rgba(stencilColor('close-button-bgColor'),0.5);
+    color: stencilColor('close-button-color');
+    line-height: 30px;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+     border-radius: 5px;
+    z-index: 5;
+    top: 15px;
+    right: 15px;
+
+    &:hover {
+        background: stencilColor('close-button-bgColor');
+        color: stencilColor('close-button-color');
+    }
+
+    @include addFocusTooltip;
+}
+
+.modal-body {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 30px 15px;
+    scrollbar-color: #787878 #fafafa;
+    scrollbar-width: thin !important;
+    @include breakpoint("medium") {
+        padding: 35px 50px;
+    }
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+   
+    &::-webkit-scrollbar-track{
+        background: #fafafa; 
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: #787878; 
+    }
+
+    &::-webkit-scrollbar-thumb:hover{
+        background: #787878; 
+    }
+}
+
+.modal--alert {
+    background-color: $alert-modal-bgColor;
+    border-radius: $alert-modal-borderRadius;
+    font-family: $alert-font-body;
+    padding: 40px 20px 20px 20px;
+    text-align: center;
+
+    .modal-content {
+        color: $alert-font-bodyColor;
+        font-size: $alert-font-bodySize;
+    }
+
+    .button-container {
+        margin: $alert-button-wrapperMargin;
+
+        .confirm {
+            background-color: $alert-button-bgColor;
+            border-color: $alert-button-borderColor;
+            color: $alert-button-color;
+        }
+
+        .confirm:focus, .confirm:hover {
+            background-color: $alert-button-bgColorHover;
+            border-color: $alert-button-borderColorHover;
+            color: $alert-button-colorHover;
+        }
+
+        .confirm:active {
+            background-color: $alert-button-bgColorActive;
+            border-color: $alert-button-borderColorActive;
+            color: $alert-button-colorActive;
+        }
+    }
+}
+
+.hide-content {
+    opacity: 0;
+}

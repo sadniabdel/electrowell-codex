@@ -1,0 +1,10 @@
+<div class="productsByListId halo-block halo-block-product" data-list-id="{{list_id}}" id="product-by-list-{{id}}">
+    {{> components/halothemes/product-loading}}
+    {{#if block_layout}}
+        <div class="productCarousel">
+        </div>
+    {{else}}
+        <ul class="productGrid col-{{block_column}}" id="block_{{id}}" data-block="block_{{id}}">
+        </ul>
+    {{/if}}
+</div>

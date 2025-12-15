@@ -1,0 +1,45 @@
+{{#if theme_settings.products_lookbook_block_title}}
+    <div id="lookbookProductBlock" class="home-product-block padding-top-60">
+        <div class="page-header text-center">
+            <h2 class="page-heading">{{theme_settings.products_lookbook_block_title}}</h2>
+            {{#if theme_settings.products_lookbook_block_view_all '!=' ''}}
+                <a class="view-all text-right" href="{{theme_settings.products_lookbook_block_view_all}}">{{lang 'products.view_all'}}</a>
+            {{/if}}
+        </div>
+        {{#if theme_settings.products_lookbook_block '==' 'top'}}
+            {{#if products.top_sellers}}
+                <div id="topSellerProduct" class="product-block layout_carousel">
+                    {{> components/products/top products=products.top_sellers productsnew=productsnew columns=block_columns block_id="productBlock1"}}
+                </div>             
+            {{/if}}
+        {{else}}
+            {{#if theme_settings.products_lookbook_block '==' 'featured'}}
+                {{#if products.featured}}
+                    <div id="feauturedProduct" class="product-block layout_carousel">
+                        <div class="productsByBlock">
+                            {{> components/products/featured products=products.featured productsnew=productsnew columns=block_columns block_id="productBlock1"}}
+                        </div>
+                    </div>
+                {{/if}}
+            {{else}}
+                {{#if theme_settings.products_lookbook_block '==' 'new'}}
+                    <div id="newProduct" class="product-block product-block-1 layout_carousel">
+                        <div class="productsByBlock">
+                            {{> components/products/new products=products.new productsnew=productsnew columns=block_columns block_id="productBlock1"}}
+                        </div>
+                    </div>
+                {{else}}
+                    {{#if theme_settings.products_lookbook_block '==' 'cateID'}}
+                        <div id="categoryProduct" class="product-block" data-block-layout="carousel" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                            {{> components/halothemes/ajax-products-by-category-id-2 category_id=category_id productsnew=products.new}}
+                        </div>
+                    {{else}}
+                        <div id="listProduct" class="product-block" data-block-layout="carousel" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                            {{> components/halothemes/ajax-products-by-list-id list_id=list_id productsnew=productsnew}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    </div>
+{{/if}}

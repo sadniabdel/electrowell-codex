@@ -1,0 +1,46 @@
+// =============================================================================
+// ALERTS
+// =============================================================================
+
+.alertBox {
+    border-radius: $alert-radius;
+    color: stencilColor("alert-color");
+    background-color: stencilColor("alert-backgroundColor");
+}
+
+.alertBox-icon {
+    .icon {
+        @include square(25px);
+    }
+}
+
+.alertBox--info {
+    color: stencilColor("color-info");
+    background: stencilColor('color-infoLight');
+    svg {
+        fill: stencilColor("color-info");
+    }
+    .alertBox-close {
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        svg {
+            fill: stencilColor("color-info");
+        }
+    }
+}
+
+.alertBox--warning {
+    color: stencilColor('color-warning');
+    background: stencilColor('color-warningLight');
+    // border: 1px solid rgba(stencilColor('color-warning'),.3);
+    border-radius: 40px;
+    min-height: 48px;
+}
+
+.swal2-container {
+    z-index: 10002;
+}
+
+.alertBox-message {
+    font-style: italic;
+}

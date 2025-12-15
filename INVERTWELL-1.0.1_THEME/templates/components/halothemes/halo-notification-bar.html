@@ -1,0 +1,31 @@
+<div class="sticky-notification{{#unless theme_settings.halo_sticky_notification_bar_mobile}} hidden-mobile{{/unless}}{{#unless theme_settings.halo_sticky_notification_bar_mobile}} hidden-desktop{{/unless}}" id="sticky-notification">       
+    <span class="mobile-image-icon"> 
+        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-3uw22zu194/images/stencil/original/image-manager/icon-hot.png" alt="Icon Hot">
+    </span>    
+    <div class="text-wrapper" data-text-wrapper="">
+        {{#if theme_settings.halo_intro_text_desktop '!=' ''}}
+        <div class="intro-text intro-text-desktop">{{theme_settings.halo_intro_text_desktop}}</div>
+        {{/if}}
+        {{#if theme_settings.halo_intro_text_mb '!=' ''}}
+        <div class="intro-text intro-text-mobile">{{theme_settings.halo_intro_text_mb}}</div>
+        {{/if}}
+        <a href="{{theme_settings.halo_sticky_notification_bar_link}}" target="_blank" data-main-link="" 
+        {{#if theme_settings.halo_sticky_notification_bar_layout_link '==' 'popup' }} data-popup{{/if}}>
+            {{#if theme_settings.halo_link_text_desktop '!=' ''}}                
+                <span class="link-text link-text-desktop">
+                    <span class="text">{{{theme_settings.halo_link_text_desktop}}}</span>
+                    <svg class="icon icon-link-arrow"><use xlink:href="#icon-arrow-bar"></use></svg>
+                </span> 
+            {{/if}}
+            {{#if theme_settings.halo_link_text_mb '!=' ''}}
+                <span class="link-text link-text-mobile">{{theme_settings.halo_link_text_mb}}</span>
+            {{/if}}
+        </a>
+    </div>
+        <span class="mobile-image-icon"> 
+            <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-3uw22zu194/images/stencil/original/image-manager/icon-hot.png" alt="Icon Hot">
+        </span>  
+    <span class="close-btn" data-close-notification-btn="">
+        <svg class="icon"><use xlink:href="#icon-close-bar"></use></svg>
+    </span>    
+</div>

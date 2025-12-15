@@ -1,0 +1,178 @@
+<ul class="cart-totals cart-totals--single">
+    {{#if cart.coupons}}
+        {{#each cart.coupons}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{lang 'cart.coupons.code_label' code=code}}</strong>
+                    <div>
+                        <a href="{{remove_url}}">{{lang 'cart.coupons.remove'}}</a>
+                    </div>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{discount.formatted}}</span>
+                </div>
+            </li>
+        {{/each}}
+    {{else}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.coupon_code'}}</strong>
+            </div>
+            {{> components/cart/coupon-input}}
+        </li>
+    {{/if}}
+    {{#if settings.gift_certificates_enabled}}
+        {{#each cart.gift_certificates}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
+                    <span>
+                        {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+                    </span>
+                </div>
+                <div class="cart-total-value">
+                    {{used.formatted}}
+                </div>
+            </li>
+        {{/each}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.gift_certificates.gift_certificate'}}</strong>
+            </div>
+            {{> components/cart/gift-certificate-input}}
+        </li>
+    {{/if}}
+</ul>
+<ul class="cart-totals cart-totals--single">
+    {{#if cart.shipping_handling.show_estimator}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.shipping'}}</strong>
+            </div>
+            {{> components/cart/shipping-estimator cart.shipping_handling}}
+        </li>
+    {{/if}} 
+</ul>
+<ul class="cart-totals">
+    <li class="cart-total cart-total--title">
+        <div class="cart-total-label">
+            <strong>{{lang 'cart.order_summary'}}</strong>
+        </div>
+        <div class="cart-total-value">
+            <span>{{lang 'cart.label_item' quantity=cart.quantity}}</span>
+        </div>
+    </li>
+    <li class="cart-total">
+        <div class="cart-total-label">
+            <strong>{{lang 'cart.checkout.subtotal'}}:</strong>
+        </div>
+        <div class="cart-total-value">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                <span>{{cart.sub_total.formatted}}</span>
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+    </li>
+    {{#if cart.gift_wrapping_cost.amount}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                <span>{{cart.gift_wrapping_cost.formatted}}</span>
+            </div>
+        </li>
+    {{/if}}
+    {{#each cart.taxes}}
+        {{#unless included}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{name}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{cost.formatted}}</span>
+                </div>
+            </li>
+        {{/unless}}
+    {{/each}}
+    {{#if cart.discount }}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.discount'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                {{cart.discount.formatted}}
+            </div>
+        </li>
+    {{/if}}
+    <li class="cart-total">
+        <div class="cart-total-label cart-label-grandTotal">
+            <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
+        </div>
+        <div class="cart-total-value cart-total-grandTotal">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                <span>{{cart.grand_total.formatted}}</span>
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+    </li>
+    {{#each cart.taxes}}
+        {{#if included}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{concat name (lang 'cart.included_in_total')}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{cost.formatted}}</span>
+                </div>
+            </li>
+        {{/if}}
+    {{/each}}
+
+    {{#if cart.show_primary_checkout_button}}
+        <li class="cart-actions cart-content-padding-right">
+            <a class="button button--primary button--checkout" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+            {{#if cart.show_multiple_address_shipping}}
+                <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                    {{lang 'cart.preview.checkout_multiple'}}
+                </a>
+            {{/if}}
+        </li>
+    {{else}}
+        <li class="cart-actions cart-content-padding-right">
+            <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+        </li>
+    {{/if}}
+
+    {{#if cart.additional_checkout_buttons}}
+        <li class="cart-additionalCheckoutButtons cart-content-padding-right">
+            {{#each cart.additional_checkout_buttons}}
+                {{{this}}}
+            {{/each}}
+        </li>
+    {{/if}}
+
+    <li class="cartHelp">
+        <p class="cartHelp-secure">
+            <svg class="icon"><use xlink:href="#icon-user-shield"></use></svg>
+            <span>
+                Secure Shopping Guarantee.<br>
+                Your information is secure.
+            </span>
+        </p>
+    </li> 
+
+    {{#if theme_settings.halo_securityImage}}
+        {{> components/halothemes/cart/halo-cart-security-image 
+            security_des=theme_settings.halo_securityImage_des
+            security_image_1=theme_settings.halo_securityImage_1
+            security_image_2=theme_settings.halo_securityImage_2
+            security_image_3=theme_settings.halo_securityImage_3
+            security_image_4=theme_settings.halo_securityImage_4
+            security_image_5=theme_settings.halo_securityImage_5
+            security_image_6=theme_settings.halo_securityImage_6
+        }}
+    {{/if}}
+</ul>

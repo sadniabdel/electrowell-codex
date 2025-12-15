@@ -1,0 +1,109 @@
+<section class="productCarousel"
+    id="{{block_id}}"
+    data-product-type="{{type}}"
+    data-list-name="{{list}}"
+    data-slick='{
+        "dots": true,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "slide": "[data-product-slide]",
+        "responsive": [
+            {
+                "breakpoint": 1600,
+                "settings": {
+                    "slidesToShow": {{ columns }},
+                    "slidesToScroll": {{ columns }},
+                    "dots": {{dots}}
+                }
+            },
+            {
+                "breakpoint": 1280,
+                "settings": {
+                    {{#if theme_settings.homepage_products2_column_count '==' 6}}
+                        "slidesToShow": {{subtract columns 1}},
+                        "slidesToScroll": {{subtract columns 1}},
+                    {{else}}
+                        "slidesToShow": {{columns}},
+                        "slidesToScroll": {{columns}},
+                    {{/if}}
+                    "dots": {{dots}}
+                }
+            },
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    {{#if theme_settings.homepage_products2_column_count '==' 6}}
+                        "slidesToShow": {{subtract columns 2}},
+                        "slidesToScroll": {{subtract columns 2}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '==' 5}}
+                        "slidesToShow": {{subtract columns 1}},
+                        "slidesToScroll": {{subtract columns 1}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '<=' 4}}
+                        "slidesToShow": {{columns}},
+                        "slidesToScroll": {{columns}},
+                    {{/if}}
+                    "dots": {{dots}}
+                }
+            },
+            {
+                "breakpoint": 991,
+                "settings": {
+                    {{#if theme_settings.homepage_products2_column_count '==' 6}}
+                        "slidesToShow": {{subtract columns 2}},
+                        "slidesToScroll": {{subtract columns 2}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '==' 5}}
+                        "slidesToShow": {{subtract columns 1}},
+                        "slidesToScroll": {{subtract columns 1}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '<=' 4}}
+                        "slidesToShow": {{columns}},
+                        "slidesToScroll": {{columns}},
+                    {{/if}}
+                    "dots": true
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    {{#if theme_settings.homepage_products2_column_count '==' 6}}
+                        "slidesToShow": {{subtract columns 3}},
+                        "slidesToScroll": {{subtract columns 3}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '==' 5}}
+                        "slidesToShow": {{subtract columns 2}},
+                        "slidesToScroll": {{subtract columns 2}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '==' 4}}
+                        "slidesToShow": {{subtract columns 1}},
+                        "slidesToScroll": {{subtract columns 1}},
+                    {{/if}}
+
+                    {{#if theme_settings.homepage_products2_column_count '<=' 3}}
+                        "slidesToShow": {{columns}},
+                        "slidesToScroll": {{columns}},
+                    {{/if}}
+                    "dots": true
+                }
+            }
+        ]
+    }'>
+    {{#each (limit products theme_settings.homepage_products_count)}}
+        <div class="productCarousel-slide" data-product-slide>
+            {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_compare=../show_compare show_rating=../settings.show_product_rating productsnew=../productsnew show_wishlist=../settings.show_wishlist event="list" position=(add @index 1)}}
+        </div>
+    {{/each}}
+    {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}}
+</section>

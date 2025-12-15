@@ -1,0 +1,486 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+
+
+body {
+
+    &.halo-open-account,
+    &.halo-open-side-cart,
+    &.halo-open-before-you-leave,
+    &.halo-open-sidebar,
+    &.has-quickViewModal,
+    &.halo-open-search {
+        overflow: hidden;
+    }
+
+    &.homepage-layout-2 {
+        &.page-type-default {
+            background: stencilColor('body-home-bg');
+        }
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.padding-top-20 {
+    padding-top: 20px;
+}
+
+.padding-top-30 {
+    padding-top: 20px;
+
+    @include breakpoint("medium") {
+        padding-top: 30px;
+    }
+}
+
+.padding-top-40 {
+    padding-top: 20px;
+
+    @include breakpoint("small") {
+        padding-top: 30px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 40px;
+    }
+}
+
+.padding-top-50 {
+    padding-top: 25px;
+
+    @include breakpoint("small") {
+        padding-top: 35px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 50px;
+    }
+}
+
+.padding-top-60 {
+    padding-top: 35px;
+
+    @include breakpoint("small") {
+        padding-top: 45px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 60px;
+    }
+}
+
+.padding-top-70 {
+    padding-top: 45px;
+
+    @include breakpoint("small") {
+        padding-top: 55px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 70px;
+    }
+}
+
+.padding-top-80 {
+    padding-top: 45px;
+
+    @include breakpoint("small") {
+        padding-top: 60px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 80px;
+    }
+}
+
+.padding-top-100 {
+    padding-top: 50px;
+
+    @include breakpoint("small") {
+        padding-top: 70px;
+    }
+
+    @include breakpoint("medium") {
+        padding-top: 100px;
+    }
+}
+
+.padding-bottom-10 {
+    padding-bottom: 10px;
+}
+
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 20px;
+
+    @include breakpoint("medium") {
+        padding-bottom: 30px;
+    }
+}
+
+.padding-bottom-40 {
+    padding-bottom: 20px;
+
+    @include breakpoint("small") {
+        padding-bottom: 30px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 40px;
+    }
+}
+
+.padding-bottom-50 {
+    padding-bottom: 20px;
+
+    @include breakpoint("small") {
+        padding-bottom: 35px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 50px;
+    }
+}
+
+.padding-bottom-60 {
+    padding-bottom: 25px;
+
+    @include breakpoint("small") {
+        padding-bottom: 35px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 60px;
+    }
+}
+
+.padding-bottom-70 {
+    padding-bottom: 40px;
+
+    @include breakpoint("small") {
+        padding-bottom: 50px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 70px;
+    }
+}
+
+.padding-bottom-80 {
+    padding-bottom: 50px;
+
+    @include breakpoint("small") {
+        padding-bottom: 60px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 80px;
+    }
+}
+
+.padding-bottom-120 {
+    padding-bottom: 50px;
+
+    @include breakpoint("small") {
+        padding-bottom: 80px;
+    }
+
+    @include breakpoint("medium") {
+        padding-bottom: 120px;
+    }
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-top-30 {
+    margin-top: 20px;
+
+    @include breakpoint("small") {
+        margin-top: 30px;
+    }
+}
+
+.margin-top-40 {
+    margin-top: 20px;
+
+    @include breakpoint("small") {
+        margin-top: 30px;
+    }
+
+    @include breakpoint("medium") {
+        margin-top: 40px;
+    }
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 20px;
+
+    @include breakpoint("small") {
+        margin-bottom: 30px;
+    }
+}
+
+.margin-bottom-40 {
+    margin-bottom: 20px;
+
+    @include breakpoint("small") {
+        margin-bottom: 30px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 40px;
+    }
+}
+
+.page {
+    display: inline-block;
+    width: 100%;
+}
+
+.page-content {
+    &.no-heading {
+        padding-top: 35px;
+
+        @include breakpoint("medium") {
+            padding-top: 55px;
+        }
+    }
+
+    &.padding-bottom {
+        padding-bottom: 50px;
+
+        @include breakpoint("small") {
+            padding-bottom: 80px;
+        }
+
+        @include breakpoint("medium") {
+            padding-bottom: 120px;
+        }
+    }
+}
+
+.page-type-404 {
+    .form {
+        margin-bottom: 0;
+
+        .form-field {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+body:not(.page-type-default) {
+    #main-content {
+        padding-bottom: 50px;
+    }
+}
+
+.stickyContainer {
+    position: relative;
+}
+
+.page-content {
+    padding: 0;
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.page-sidebar {
+    width: 25%;
+    background-color: #fff;
+    font-size: $h6-font-size;
+
+    @media (max-width: 1024px) {
+        width: 347px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        -moz-transform: translateX(-103%);
+        -o-transform: translateX(-103%);
+        -ms-transform: translateX(-103%);
+        -webkit-transform: translateX(-103%);
+        transform: translateX(-103%);
+        -webkit-transition: transform 0.4s ease;
+        -moz-transition: transform 0.4s ease;
+        -ms-transition: transform 0.4s ease;
+        -o-transition: transform 0.4s ease;
+        transition: transform 0.4s ease;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        z-index: 10002;
+        margin: 0;
+        overflow-y: auto;
+        height: 100%;
+
+        nav {
+            padding: 28px 30px 30px 30px;
+        }
+
+        +#product-listing-container {
+            width: 100%;
+        }
+    }
+
+    &.sidebar-hide {
+        width: 330px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        -moz-transform: translateX(-103%);
+        -o-transform: translateX(-103%);
+        -ms-transform: translateX(-103%);
+        -webkit-transform: translateX(-103%);
+        transform: translateX(-103%);
+        -webkit-transition: transform 0.4s ease;
+        -moz-transition: transform 0.4s ease;
+        -ms-transition: transform 0.4s ease;
+        -o-transition: transform 0.4s ease;
+        transition: transform 0.4s ease;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        z-index: 10002;
+        margin: 0;
+        overflow-y: auto;
+        height: 100vh;
+
+        @include breakpoint("medium") {
+            width: 317px;
+        }
+
+        nav {
+            padding: 28px 30px 30px 30px;
+        }
+
+        +#product-listing-container,
+        +.page-content {
+            width: 100%;
+        }
+    }
+
+    &.sidebar-show {
+        margin-bottom: 35px;
+
+        @include breakpoint("medium") {
+            float: left;
+            width: 240px;
+            margin-bottom: 50px;
+            position: -webkit-sticky;
+            /* Safari */
+            position: sticky;
+            top: 20px;
+
+            .close-sidebar {
+                display: none;
+            }
+        }
+
+        +#product-listing-container,
+        +.page-content {
+            width: 100%;
+
+            @include breakpoint("medium") {
+                width: 100%;
+                display: inline-block;
+                float: left;
+                width: calc(100% - 240px);
+                padding-left: 35px;
+            }
+        }
+    }
+
+    .halo-open-sidebar & {
+        left: 0;
+        -moz-transform: none;
+        -o-transform: none;
+        -ms-transform: none;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .close-sidebar {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        -webkit-box-pack: space-between;
+        -moz-box-pack: space-between;
+        -ms-flex-pack: space-between;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        width: 100%;
+        background: #f0f0f0;
+        color: #000000;
+        padding: 12px 30px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        .icon-close {
+            width: 17px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 32px;
+            font-weight: 200;
+        }
+    }
+
+    nav {
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        @include breakpoint("medium") {
+            margin-top: -5px;
+        }
+
+        .close-sidebar {
+            display: none;
+        }
+    }
+}
+
+#product-listing-container {
+    margin-bottom: 35px;
+
+    @include breakpoint("medium") {
+        margin-bottom: 50px;
+    }
+}

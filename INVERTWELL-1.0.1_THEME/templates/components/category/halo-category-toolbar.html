@@ -1,0 +1,32 @@
+<div class="halo-category-toolbar{{#if theme_settings.show_sidebar}} show-sidebar{{/if}}{{#if theme_settings.halo_sticky_header}} has-stickyHeader{{/if}}">    
+    <div class="column-left{{#if theme_settings.show_sidebar}} sidebar-show{{else}} sidebar-hide{{/if}}">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+    <div class="column-right">
+        {{#if theme_settings.show_sidebar}}
+            <div class="sidebar-label{{#if theme_settings.show_sidebar}} show-sidebar{{/if}}">
+                <span class="sidebar_more">{{lang 'common.show_sidebar'}}</span>
+                <span class="icon-filter">
+                    <svg class="icon"><use xlink:href="#icon-filter"></use></svg>
+                </span>
+            </div>
+        {{/if}}
+        {{#if category.products}}
+            <form class="actionBar show-product" method="get" data-sort-by data-show-products>
+                {{> components/category/show-product limit=limit products_per_page=theme_settings.page_products_per_page}}
+            </form>
+            {{> components/products/filter sort=pagination.category.sort}}
+
+            <div class="view-as-btn">
+                <div class="btn-group">
+                    <a href="javascript:void(0);" id="grid-view" title="Grid View" class="btn-view grid-view{{#if theme_settings.product_list_display_mode '===' 'grid'}} current-view{{/if}}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-grid"></use></svg>
+                    </a>
+                    <a href="javascript:void(0);" id="list-view" title="List View" class="btn-view list-view{{#if theme_settings.product_list_display_mode '===' 'list'}} current-view{{/if}}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-list"></use></svg>
+                    </a>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</div>

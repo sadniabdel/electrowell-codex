@@ -1,0 +1,134 @@
+<section class="heroCarousel{{#if theme_settings.halo_homepage_layout_1}} homepage-layout-1{{else}} homepage-layout-2{{/if}}"
+    data-slick='{
+        "arrows": {{arrows}},
+        "dots": {{dots}},
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "adaptiveHeight": true,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "slide": "[data-hero-slide]"
+    }'>
+    {{#each carousel.slides}}
+        <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
+            <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+                <div class="heroCarousel-image-wrapper">
+                    {{#if @first}}
+                        {{#if ../theme_settings.carousel-slide1-img-mobile}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image has-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='disabled'
+                            }}
+                            <img class="lazyload heroCarousel-image-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{../theme_settings.carousel-slide1-img-mobile}}" alt="{{stencil_image.alt}}" />
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image no-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='disabled'
+                            }}
+                        {{/if}}
+                    {{/if}}
+
+                    {{#if @index '==' 1}}
+                        {{#if ../theme_settings.carousel-slide2-img-mobile}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image has-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                            <img class="lazyload heroCarousel-image-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{../theme_settings.carousel-slide2-img-mobile}}" alt="{{stencil_image.alt}}" />
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image no-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                        {{/if}}
+                    {{/if}}
+                    {{#if @index '==' 2}}
+                        {{#if ../theme_settings.carousel-slide3-img-mobile}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image has-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                            <img class="lazyload heroCarousel-image-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{../theme_settings.carousel-slide3-img-mobile}}" alt="{{stencil_image.alt}}" />
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image no-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                        {{/if}}
+                    {{/if}}
+                    {{#if @index '==' 3}}
+                        {{#if ../theme_settings.carousel-slide4-img-mobile}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image has-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                            <img class="lazyload heroCarousel-image-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{../theme_settings.carousel-slide4-img-mobile}}" alt="{{stencil_image.alt}}" />
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image no-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                        {{/if}}
+                    {{/if}}
+                    {{#if @index '==' 4}}
+                        {{#if ../theme_settings.carousel-slide5-img-mobile}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image has-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                            <img class="lazyload heroCarousel-image-mobile" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{../theme_settings.carousel-slide5-img-mobile}}" alt="{{stencil_image.alt}}" />
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=stencil_image
+                                class="heroCarousel-image no-image-mobile"
+                                fallback_size='1280w'
+                                lazyload='lazyload'
+                            }}
+                        {{/if}}
+                    {{/if}}
+                </div>
+                {{#if @first}}
+                    {{> components/carousel-content position=../theme_settings.carousel-slide1-position show_background=true}}
+                {{/if}}
+                {{#if @index '==' 1}}
+                    {{> components/carousel-content position=../theme_settings.carousel-slide2-position show_background=true}}
+                {{/if}}
+                {{#if @index '==' 2}}
+                    {{> components/carousel-content position=../theme_settings.carousel-slide3-position show_background=true}}
+                {{/if}}
+                {{#if @index '==' 3}}
+                    {{> components/carousel-content position=../theme_settings.carousel-slide4-position show_background=true}}
+                {{/if}}
+                {{#if @index '==' 4}}
+                    {{> components/carousel-content position=../theme_settings.carousel-slide5-position show_background=true}}
+                {{/if}}
+            </div>
+        </a>
+    {{/each}}
+
+    {{#if carousel.slides.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+        {{#if play_pause_button}}
+            {{> components/carousel-play-pause-button}}
+        {{/if}}
+    {{/if}}
+</section>

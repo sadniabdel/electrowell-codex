@@ -1,0 +1,131 @@
+// =============================================================================
+// ACCOUNT
+// =============================================================================
+
+
+// Account layouts
+// -----------------------------------------------------------------------------
+
+.account {
+    margin-bottom: spacing("single");
+}
+
+.account--fixed {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.account--fixedSmall {
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account--fixedLarge {
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: grid-calc(9, $total-columns);
+    }
+}
+
+.account-head {
+    margin-bottom: spacing("double");
+    text-align: center;
+
+    .alertBox {
+        padding-left: spacing("double");
+        padding-right: spacing("double");
+        text-align: left;
+    }
+}
+
+.account-body {
+    @include grid-row($behavior: "nest");
+
+    @media(min-width: 1200px) {
+        .form-row--half>.form-field:nth-child(odd) {
+            padding-right: 70px;
+        }
+
+        .form-row--half>.form-field:nth-child(even) {
+            padding-left: 70px;
+        }
+    }
+
+    .form-field {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        color: stencilColor('color-textHeading');
+        font-weight: fontWeight("medium");
+
+        small {
+            color: #787878;
+            font-size: stencilNumber("fontSize-root") - 2;
+            font-style: italic;
+            font-weight: fontWeight("normal");
+            text-transform: capitalize;
+        }
+    }
+
+    .form-input {
+        height: 50px;
+        border-color: #CCCCCC;
+    }
+
+    textarea.form-input {
+        height: auto;
+    }
+
+    .form-actions {
+        text-align: left;
+        max-width: 100%;
+        margin-top: 10px;
+
+        .button {
+            width: 100%;
+            max-width: 100%;
+
+            @media (min-width: 551px) {
+                max-width: 241px;
+            }
+        }
+    }
+}
+
+.account-content {
+    @include grid-column(12);
+}
+
+.account-content--fixed {
+
+    @include breakpoint("medium") {
+        width: grid-calc(8, $total-columns);
+    }
+}
+
+.account-content--fixedSmall {
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account-sidebar {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: grid-calc(4, $total-columns);
+
+        .account-content--fixedSmall+& {
+            float: right;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<nav class="login-dropdown{{#if customer}} customer{{/if}}" id="login-dropdown" role="navigation" aria-label="Login Dropdown">
+    {{#if customer}}
+        <h4 class="side-dropdown-title">{{lang 'common.account'}}</h4>
+        <ul class="navPages-list navPages-list--user">
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}"><span class="text">{{lang 'account.nav.orders'}}</span></a>
+            </li>
+            {{#if settings.returns_enabled}}
+                <li class="navPages-item">
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.account.returns}}"><span class="text">{{lang 'account.nav.returns'}}</span></a>
+                </li>
+            {{/if}}
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.inbox}}"><span class="text">{{lang 'account.mobile_nav.messages'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.addresses}}"><span class="text">{{lang 'account.nav.addresses'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}"><span class="text">{{lang 'account.mobile_nav.wishlists'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}"><span class="text">{{lang 'account.nav.recently_viewed'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.details}}"><span class="text">{{lang 'account.nav.settings'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}"><span class="text">{{lang 'common.logout'}}</span></a>
+            </li>
+        </ul>
+        {{else}}
+            <h4 class="side-dropdown-title">{{lang 'common.customer_login'}}</h4>
+            <p class="login-dropdown-desc">{{lang 'login.new_customer.login_description'}}</p>
+            <div class="popup-login-form">
+                <div class="login-content">
+                    <form class="login-form-popup form" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post">
+                        <div class="form-field">
+                            <label class="form-label" for="{{email_id}}">{{lang 'login.field_email'}} <small>{{lang 'common.required2'}}</small></label>
+                            <input class="form-input" id="{{email_id}}" name="{{email_id}}" type="email" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="{{password_id}}">{{lang 'login.field_password'}} <small>{{lang 'common.required2'}}</small></label>
+                            <input class="form-input" id="{{password_id}}" name="{{password_id}}" type="password" placeholder="">
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="button button--primary button--large" value="{{lang 'common.login' }}">
+                            <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="new-customer">
+                    <p class="login-dropdown-desc">{{lang 'login.new_customer.create_account_description'}}</p>
+                    {{#if settings.account_creation_enabled}}
+                        <a class="button button--large" href="{{urls.auth.create_account}}">{{lang 'login.new_customer.create_account' }}</a>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+</nav>

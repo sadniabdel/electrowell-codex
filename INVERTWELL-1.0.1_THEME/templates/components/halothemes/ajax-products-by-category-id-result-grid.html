@@ -1,0 +1,11 @@
+{{#if category.products}}    
+    <ul class="productGrid col-{{ theme_settings.homepage_products1_column_count }}">
+        {{#each (limit category.products theme_settings.homepage_products_count)}}
+        <li class="product">
+            {{> components/products/card theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist}}
+        </li>
+        {{/each}}
+    </ul>
+{{else}}    
+    <div class="product_category alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>    
+{{/if}}

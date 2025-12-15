@@ -1,0 +1,55 @@
+{{#if theme_settings.home_products_block_2_title}}
+    <div id="homeProductBlock2" class="home-product-block home-product-block module-wrapper padding-top-40{{#if theme_settings.halo_homepage_layout_1}} padding-bottom-30{{else}} padding-bottom-20{{/if}}">
+        <div class="container">
+            <div class="page-header{{#unless theme_settings.halo_homepage_layout_1}} text-left{{/unless}}">
+                <h2 class="page-heading heading-small">{{theme_settings.home_products_block_2_title}}</h2>
+                {{#if theme_settings.home_products_block_2_view_all '!=' ''}}
+                    <a class="view-all{{#unless theme_settings.halo_homepage_layout_1}} text-left{{/unless}}" href="{{theme_settings.home_products_block_2_view_all}}">{{lang 'products.view_all'}}</a>
+                {{/if}}
+            </div>
+            {{#if theme_settings.home_products_block_2 '==' 'top'}}
+                {{#if products.top_sellers}}
+                    <div id="topSellerProduct2" class="product-block product-block-2 layout_{{block_layout}}">
+                        {{#if theme_settings.home_products_block_2_layout}}
+                            {{> components/products/top-2 products=products.top_sellers productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                        {{else}}
+                            {{> components/products/top-grid products=products.top_sellers productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                        {{/if}}    
+                    </div>             
+                {{/if}}
+            {{else}}
+                {{#if theme_settings.home_products_block_2 '==' 'featured'}}
+                    {{#if products.featured}}
+                        <div id="feauturedProduct2" class="product-block product-block-2 layout_{{block_layout}}">
+                            {{#if theme_settings.home_products_block_2_layout}}
+                                {{> components/products/featured-2 products=products.featured productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                            {{else}}
+                                {{> components/products/featured-grid products=products.featured productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                            {{/if}}    
+                        </div>
+                    {{/if}}
+                {{else}}
+                    {{#if theme_settings.home_products_block_2 '==' 'new'}}
+                        <div id="newProduct2" class="product-block product-block-2 layout_{{block_layout}}">
+                            {{#if theme_settings.home_products_block_2_layout}}
+                                {{> components/products/new-2 products=products.new productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                            {{else}}
+                                {{> components/products/new-grid products=products.new productsnew=products.new columns=block_columns block_id="homeProductBlock2"}}
+                            {{/if}}    
+                        </div>
+                    {{else}}
+                        {{#if theme_settings.home_products_block_2 '==' 'cateID'}}
+                            <div id="categoryProduct2" class="product-block product-block-2" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                {{> components/halothemes/ajax-products-by-category-id category_id=theme_settings.home_products_block_2_cateID productsnew=products.new}}
+                            </div>
+                        {{else}}
+                            <div id="listProduct2" class="product-block product-block-2" data-block-layout="{{block_layout}}" data-columns="{{block_columns}}" data-dots="{{dots}}" data-limit="{{block_limit}}">
+                                {{> components/halothemes/ajax-products-by-list-id block_layout=block_layout list_id=list_id id=id productsnew=productsnew}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}

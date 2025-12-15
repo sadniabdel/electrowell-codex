@@ -1,0 +1,232 @@
+{{#if theme_settings.haloMegamenu}}
+    <script>
+        var haloMegaMenu = new window.haloMegaMenu();
+
+        var mega_menu_style1_item = parseInt({{theme_settings.mega_menu_style1_item}}),
+            mega_menu_style2_item = parseInt({{theme_settings.mega_menu_style2_item}}),
+            mega_menu_style3_item = parseInt({{theme_settings.mega_menu_style3_item}}),
+            mega_menu_style4_item = parseInt({{theme_settings.mega_menu_style4_item}});
+
+        var mega_menu_new_label = parseInt({{theme_settings.mega_menu_new_label}}),
+            mega_menu_sale_label = parseInt({{theme_settings.mega_menu_sale_label}}),
+            mega_menu_hot_label = parseInt({{theme_settings.mega_menu_hot_label}});
+
+        function SetItemMegaMenu(){
+            if($(window).width() >= 1200) {
+                $('.navPages-list-megamenu > li').mouseover(function() {
+                    var numberItem = $(this).index() + 1;
+                    if (!$(this).hasClass('has-megamenu')) {
+                        LoadMegaMenu(numberItem);
+                    }
+                });
+            }
+
+            $('.mobileMenu-toggle').on('click',function(event) {
+                $('.navPages-list-megamenu > .navPages-item').each(function() {
+                    var numberItem = $(this).index() + 1;
+                    if (!$(this).hasClass('has-megamenu')) {
+                        LoadMegaMenu(numberItem);
+                    }
+                });
+            });
+        }
+            
+        function LoadMegaMenu(numberItem){
+            if (mega_menu_style1_item == numberItem) {
+                haloMegaMenu.menuItem(mega_menu_style1_item).setMegaMenu({
+                    style: 'style 1',
+                    imageAreaWidth: '100%',
+                    cateAreaWidth: '100%',
+                    productId: '{{theme_settings.mega_menu_style1_item_productID}}',
+                    cateColumns: {{theme_settings.mega_menu_style1_item_col}},
+                    options: {{theme_settings.halo_color_variant}},
+                    products:'<div class="megamenu-info">\
+                                <h3 class="megamenu-title">{{theme_settings.mega_menu_style1_item_product_title}}</h3>\
+                                {{#or theme_settings.mega_menu_style1_item_product_desc_1 theme_settings.mega_menu_style1_item_product_desc_2}}\
+                                    <p class="desc">{{theme_settings.mega_menu_style1_item_product_desc_1}} {{theme_settings.mega_menu_style1_item_product_desc_2}}</p>\
+                                {{/or}}\
+                                {{#if theme_settings.mega_menu_style1_item_product_view_all_text}}\
+                                    <a class="view-all" href="{{theme_settings.mega_menu_style1_item_product_view_all_link}}">{{theme_settings.mega_menu_style1_item_product_view_all_text}}</a>\
+                                {{/if}}\
+                              </div>\
+                            <div class="megamenu-slider"></div>',
+                    images: '{{#if theme_settings.mega_menu_style1_item_img}}\
+                                <a class="image animate-hvr" href="{{theme_settings.mega_menu_style1_item-link}}">\
+                                    <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style1_item_img}}" alt="{{theme_settings.mega_menu_style1_item_img}}" title="{{theme_settings.mega_menu_style1_item_img}}"/>\
+                                </a>\
+                            {{/if}}'
+                });
+            } else if (mega_menu_style2_item == numberItem){
+                haloMegaMenu.menuItem(mega_menu_style2_item).setMegaMenu({
+                    style: 'style 2',
+                    imageAreaWidth: '100%',
+                    cateAreaWidth: '100%',
+                    cateColumns: {{theme_settings.mega_menu_style2_item_col}},
+                    products:'{{#if theme_settings.mega_menu_style2_brands_title}}\
+                                <div class="megamenu-brands">\
+                                    <h3>{{theme_settings.mega_menu_style2_brands_title}}</h3>\
+                                    <div class="megamenu-brands-inner">\
+                                        <ul>\
+                                            <li data-brand-letter="a"><a href="/brands#a"><span>a</span></a></li>\
+                                            <li data-brand-letter="b"><a href="/brands#b"><span>b</span></a></li>\
+                                            <li data-brand-letter="c"><a href="/brands#c"><span>c</span></a></li>\
+                                            <li data-brand-letter="d"><a href="/brands#d"><span>d</span></a></li>\
+                                            <li data-brand-letter="e"><a href="/brands#e"><span>e</span></a></li>\
+                                            <li data-brand-letter="f"><a href="/brands#f"><span>f</span></a></li>\
+                                            <li data-brand-letter="g"><a href="/brands#g"><span>g</span></a></li>\
+                                            <li data-brand-letter="h"><a href="/brands#h"><span>h</span></a></li>\
+                                            <li data-brand-letter="i"><a href="/brands#i"><span>i</span></a></li>\
+                                            <li data-brand-letter="j"><a href="/brands#j"><span>j</span></a></li>\
+                                            <li data-brand-letter="k"><a href="/brands#k"><span>k</span></a></li>\
+                                            <li data-brand-letter="l"><a href="/brands#l"><span>l</span></a></li>\
+                                            <li data-brand-letter="m"><a href="/brands#m"><span>m</span></a></li>\
+                                            <li data-brand-letter="n"><a href="/brands#n"><span>n</span></a></li>\
+                                            <li data-brand-letter="o"><a href="/brands#o"><span>o</span></a></li>\
+                                            <li data-brand-letter="p"><a href="/brands#p"><span>p</span></a></li>\
+                                            <li data-brand-letter="q"><a href="/brands#q"><span>q</span></a></li>\
+                                            <li data-brand-letter="r"><a href="/brands#r"><span>r</span></a></li>\
+                                            <li data-brand-letter="s"><a href="/brands#s"><span>s</span></a></li>\
+                                            <li data-brand-letter="t"><a href="/brands#t"><span>t</span></a></li>\
+                                            <li data-brand-letter="u"><a href="/brands#u"><span>u</span></a></li>\
+                                            <li data-brand-letter="v"><a href="/brands#v"><span>v</span></a></li>\
+                                            <li data-brand-letter="w"><a href="/brands#w"><span>w</span></a></li>\
+                                            <li data-brand-letter="x"><a href="/brands#x"><span>x</span></a></li>\
+                                            <li data-brand-letter="y"><a href="/brands#y"><span>y</span></a></li>\
+                                            <li data-brand-letter="z"><a href="/brands#z"><span>z</span></a></li>\
+                                            <li data-brand-letter="0"><a href="/brands#0"><span>1-9</span></a></li>\
+                                        </ul>\
+                                    </div>\
+                                    <a class="view-all" href="/brands">View All</a>\
+                                </div>\
+                            {{/if}}',
+                    images: '{{#or theme_settings.mega_menu_style2_item1_img theme_settings.mega_menu_style2_item2_img}}\
+                            <div class="item">\
+                                {{#if theme_settings.mega_menu_style2_item1_img}}\
+                                    <div class="item-left">\
+                                        <a class="image animate-hvr" href="{{theme_settings.mega_menu_style2_item1_btn_link}}">\
+                                            <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style2_item1_img}}" alt="{{theme_settings.mega_menu_style2_item1_title}}" title="{{theme_settings.mega_menu_style2_item1_title}}"/>\
+                                        </a>\
+                                    </div>\
+                                {{/if}}\
+                                {{#or theme_settings.mega_menu_style2_item1_title theme_settings.mega_menu_style2_item1_desc}}\
+                                    <div class="item-right"><div class="item-right-inner">\
+                                        {{#if theme_settings.mega_menu_style2_item1_title}}\
+                                            <h3>{{theme_settings.mega_menu_style2_item1_title}}</h3>\
+                                        {{/if}}\
+                                        {{#if theme_settings.mega_menu_style2_item1_desc}}\
+                                            <p>{{theme_settings.mega_menu_style2_item1_desc}}</p>\
+                                        {{/if}}\
+                                        {{#if theme_settings.mega_menu_style2_item1_btn_link}}\
+                                            <a href="{{theme_settings.mega_menu_style2_item1_btn_link}}" class="button button--small">{{theme_settings.mega_menu_style2_item1_btn_text}}</a>\
+                                        {{/if}}\
+                                    </div> </div>\
+                                {{/or}}\
+                            </div>\
+                            <div class="item">\
+                                {{#if theme_settings.mega_menu_style2_item2_img}}\
+                                    <div class="item-left">\
+                                        <a class="image animate-hvr" href="{{theme_settings.mega_menu_style2_item2_btn_link}}">\
+                                            <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style2_item2_img}}" alt="{{theme_settings.mega_menu_style2_item2_title}}" title="{{theme_settings.mega_menu_style2_item2_title}}"/>\
+                                        </a>\
+                                    </div>\
+                                {{/if}}\
+                                {{#or theme_settings.mega_menu_style2_item2_title theme_settings.mega_menu_style2_item2_desc}}\
+                                    <div class="item-right"><div class="item-right-inner">\
+                                        {{#if theme_settings.mega_menu_style2_item2_title}}\
+                                            <h3>{{theme_settings.mega_menu_style2_item2_title}}</h3>\
+                                        {{/if}}\
+                                        {{#if theme_settings.mega_menu_style2_item2_desc}}\
+                                            <p>{{theme_settings.mega_menu_style2_item2_desc}}</p>\
+                                        {{/if}}\
+                                        {{#if theme_settings.mega_menu_style2_item2_btn_link}}\
+                                            <a href="{{theme_settings.mega_menu_style2_item2_btn_link}}" class="button button--small">{{theme_settings.mega_menu_style2_item2_btn_text}}</a>\
+                                        {{/if}}\
+                                    </div> </div>\
+                                {{/or}}\
+                            </div>{{/or}}'
+                });
+            } else if (mega_menu_style3_item == numberItem){
+                haloMegaMenu.menuItem(mega_menu_style3_item).setMegaMenu({
+                    style: 'style 4',
+                     cateColumns: {{theme_settings.mega_menu_style4_item_col}},
+                    imageAreaWidth: '100%',
+                    cateAreaWidth: '100%',
+                    productId: '{{theme_settings.mega_menu_style4_item_productID}}',
+                    options: {{theme_settings.halo_color_variant}},
+                    images: '<div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item1_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item1_image}}" alt="{{theme_settings.mega_menu_style4_item1_image}}" title="{{theme_settings.mega_menu_style4_item1_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item2_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item2_image}}" alt="{{theme_settings.mega_menu_style4_item2_image}}" title="{{theme_settings.mega_menu_style4_item2_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item3_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item3_image}}" alt="{{theme_settings.mega_menu_style4_item3_image}}" title="{{theme_settings.mega_menu_style4_item3_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item4_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item4_image}}" alt="{{theme_settings.mega_menu_style4_item4_image}}" title="{{theme_settings.mega_menu_style4_item4_image}}"/>\
+                            </a></div>'
+                });
+            } else if (mega_menu_style4_item == numberItem){ 
+                haloMegaMenu.menuItem(mega_menu_style4_item).setMegaMenu({
+                    style: 'style 4',
+                    cateColumns: {{theme_settings.mega_menu_style4_item_col}},
+                    imageAreaWidth: '100%',
+                    cateAreaWidth: '100%',
+                    productId: '{{theme_settings.mega_menu_style4_item_productID}}',
+                    options: {{theme_settings.halo_color_variant}},
+                    images: '<div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item1_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item1_image}}" alt="{{theme_settings.mega_menu_style4_item1_image}}" title="{{theme_settings.mega_menu_style4_item1_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item2_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item2_image}}" alt="{{theme_settings.mega_menu_style4_item2_image}}" title="{{theme_settings.mega_menu_style4_item2_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item3_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item3_image}}" alt="{{theme_settings.mega_menu_style4_item3_image}}" title="{{theme_settings.mega_menu_style4_item3_image}}"/>\
+                            </a></div>\
+                            <div class="item"><a class="image animate-hvr" href="{{theme_settings.mega_menu_style4_item4_link}}">\
+                                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.mega_menu_style4_item4_image}}" alt="{{theme_settings.mega_menu_style4_item4_image}}" title="{{theme_settings.mega_menu_style4_item4_image}}"/>\
+                            </a></div>'
+                });
+            } else{
+                return;
+            }
+        }
+
+        function MegaMenuLabel(){
+            {{#if theme_settings.mega_menu_new_label}}
+                haloMegaMenu.menuItem(mega_menu_new_label).setMegaMenu({
+                    label: 'Home',
+                    disabled: true,
+                });
+            {{/if}}
+
+            {{#if theme_settings.mega_menu_hot_label}}
+                haloMegaMenu.menuItem(mega_menu_hot_label).setMegaMenu({
+                    label: 'New Products',
+                    disabled: true,
+                });
+            {{/if}}
+
+            {{#if theme_settings.mega_menu_sale_label}}
+                haloMegaMenu.menuItem(mega_menu_sale_label).setMegaMenu({
+                    label: 'Ask For A Quotation',
+                    disabled: true,
+                });
+            {{/if}}
+        }
+
+        MegaMenuLabel();
+
+        var setItemMegaMenu = SetItemMegaMenu();
+
+        window.onload = setItemMegaMenu;
+    </script>
+    
+    <div class="haloMegamenuBrand u-hidden">
+        <ul class="haloMegamenuBrand__list">
+            {{#each shop_by_brand}}
+                <li data-brand-code="{{dashcase name}}" data-brand-letter="{{limit (toLowerCase (dashcase name)) 1}}">{{name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}

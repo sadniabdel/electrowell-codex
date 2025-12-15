@@ -1,0 +1,29 @@
+{{#with theme_settings}}
+	{{#or footer-seal-logos product-seal-logos cart-seal-logos}}
+		<div class="seal-logos scrollbar-horizontal">
+			{{#if seal-logos-1}}
+				<img src="{{cdn 'img/norton.png'}}" alt="Norton Secured">
+			{{/if}}
+
+			{{#if seal-logos-2}}
+				<img src="{{cdn 'img/etrust.png'}}" alt="TRUSTe Verified">
+			{{/if}}
+
+			{{#if seal-logos-3}}
+				<img src="{{cdn 'img/authorized-net.png'}}" alt="Authorized.net">
+			{{/if}}
+
+			{{#if seal-logos-4}}
+				<img src="{{cdn 'img/accredited-business.png'}}" alt="Accredited Business">
+			{{/if}}
+
+			{{#if seal-logos-5}}
+				<img src="{{cdn 'img/visa-verify.png'}}" alt="Verified by Visa">
+			{{/if}}
+
+			{{#if seal-logos-6}}
+				<img src="{{cdn 'img/master-card-secure.png'}}" alt="Mastercard SecureCode">
+			{{/if}}
+		</div>
+	{{/or}}
+{{/with}}

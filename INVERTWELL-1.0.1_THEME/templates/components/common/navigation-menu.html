@@ -1,0 +1,132 @@
+<nav class="navPages" role="navigation" aria-label="Main Navigation">
+    <ul id="navPages-list-main" class="navPages-list navPages-list-depth-max{{#if theme_settings.haloMegamenu}} navPages-list-megamenu{{else}} navPages-list-depth-max{{/if}}" data-level-list>
+        {{#each categories}}
+            <li class="navPages-item navPages-item-show{{#if children}} has-dropdown background-hover{{else}} navPages-action-end{{/if}}" data-level="2">
+                {{> components/common/navigation-list-alternate}}
+            </li>
+        {{/each}}
+        {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item navPages-item-page navPages-item-show{{#if children}} has-dropdown background-hover{{else}} navPages-action-end{{/if}}" data-level="2">
+                     {{> components/common/navigation-list-alternate}}
+                 </li>
+             {{/each}}
+        {{/unless}}
+        <li class="navPages-item navPages-item-custom u-hiddenVisually has-subMenu background-hover">
+            <a class="navPages-action has-subMenu is-root" href="javascript:void(0)" aria-label="Custom Menu">
+                <span class="text" >...</span>
+            </a>
+            <div class="navPage-subMenu navPage-subMenu-level1" id="navPages-last" aria-hidden="true" tabindex="-1">
+                <ul class="navPage-subMenu-list navPage-subMenu-list-level1">
+                        
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navPages-list navPages-list--user" data-level-list>
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.account.wishlists.all}}" aria-label="Wishlist">
+                <span class="text"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wishlist"/></svg>{{lang 'account.mobile_nav.wishlists'}}</span>
+            </a>
+        </li>
+        <li class="navPages-item">
+            <a class="navPages-action" href="/contact-us/" aria-label="Store Locator">
+                <span class="text"><svg class="icon icon-location" aria-hidden="true"><use xlink:href="#icon-location"/></svg>Store Locator</span>
+            </a>
+        </li>
+        <li class="navPages-item">
+            <a class="navPages-action" href="tel:{{settings.phone_number}}" aria-label="Phone">
+                <span class="text"><svg class="icon icon-telephone" aria-hidden="true"><use xlink:href="#icon-telephone"/></svg>Contact us: {{settings.phone_number}}</span>
+            </a>
+        </li>
+        {{#if currency_selector.currencies.length '>' 1}}
+            <li class="navPages-item currencies" data-level="2">
+                <a class="navPages-action has-subMenu"
+                   href="#"
+                   data-collapsible="navPages-currency"
+                   aria-controls="navPages-currency"
+                   aria-expanded="false"
+                   aria-label="{{lang 'common.currency' code=currency_selector.active_currency_code}}"
+                >
+                    <span class="image-flag">{{{currency_selector.active_currency_flag}}}</span>
+                    <span class="text-flag" style="-webkit-box-orient: vertical;">{{lang 'common.currency' code=currency_selector.active_currency_code}}</span>
+                    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use>
+                        </svg>
+                    </i>
+                </a>
+                <div class="navPage-subMenu level-2" id="navPages-currency" aria-hidden="true" tabindex="-1">
+                    <ul class="navPage-subMenu-list">
+                        <li class="navPage-subMenu-item-child navPage-subMenu-title" data-level="2">
+                            <a class="navPage-subMenu-action navPages-action" href="javascript:void(0)">
+                                <span class="navPages-action-moreIcon">
+                                    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-down" /></svg>
+                                    <span>Back</span>
+                                </span>
+                                <span class="text">{{{currency_selector.active_currency_flag}}} {{lang 'common.currency' code=currency_selector.active_currency_code}}</span>
+                            </a>
+                        </li>
+                        {{#each currency_selector.currencies}}
+                        <li class="navPage-subMenu-item" data-level="3">
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{{switch_url}}}"
+                               aria-label="{{name}}"
+                               data-currency-code="{{{code}}}"
+                               {{#if cart_currency_switch_url.length '>' 0 }}
+                               data-cart-currency-switch-url="{{{cart_currency_switch_url}}}"
+                               {{/if}}
+                               data-warning="{{lang 'common.currency_switch_promotion'}}"
+                            >
+                                <span class="text">
+                                    {{#if is_active}}
+                                        {{{flag}}} {{name}}
+                                    {{else}}
+                                        {{{flag}}} {{name}}
+                                    {{/if}}
+                                </span>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </li>
+        {{/if}}
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navPages-item">
+                <a class="navPages-action"
+                   href="{{urls.gift_certificate.purchase}}"
+                   aria-label="{{lang 'common.gift_cert'}}"
+                >   
+                    <span class="text">
+                        <svg class="icon"><use xlink:href="#icon-gift-card"/></svg>
+                        {{lang 'common.gift_cert'}}
+                    </span>
+                </a>
+            </li>
+        {{/if}}
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navPages-item">
+                <a class="navPages-action navPages-action--storeCredit">
+                    {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                </a>
+            </li>
+        {{/if}}
+        {{#if theme_settings.product_list_display_mode '==' 'list'}}
+            <li class="navPages-item">
+                <a class="navPages-action navPages-action--compare"
+                   href="{{urls.compare}}"
+                   data-compare-nav
+                   aria-label="{{lang 'common.compare'}}"
+                >
+                    {{lang 'common.compare'}}
+                    <span class="countPill countPill--positive countPill--alt"></span>
+                </a>
+            </li>
+        {{/if}}
+
+        <li class="navPages-item">
+            {{> components/common/social-links}}
+        </li>
+    </ul>
+</nav>

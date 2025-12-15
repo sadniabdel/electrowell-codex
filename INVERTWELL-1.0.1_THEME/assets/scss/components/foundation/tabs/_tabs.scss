@@ -1,0 +1,172 @@
+// =============================================================================
+// TABS (CSS)
+// =============================================================================
+//
+// Most of these styles deliberately reset Citadel's defaults for smaller
+// screens since the styles in Stencil for smaller screens are more persistent
+// across breakpoints.
+//
+// -----------------------------------------------------------------------------
+
+.tabs {
+    border-bottom: none;
+
+    @media(max-width: 767px) {
+        display: none;
+    }
+}
+
+.tab {
+    float: none;
+
+    @media(min-width: 768px) {
+        float: left;
+
+        &.is-active {
+            background-color: #ffffff;
+        }
+    }
+}
+
+.tab-title {
+    padding: spacing("half") + spacing("quarter") 0;
+    text-align: center;
+    text-decoration: $tab-title-text-decoration;
+    font-size: 20px;
+    color: stencilColor('color-textSecondary');
+    font-weight: bold;
+
+
+    @media(min-width: 768px) {
+        text-align: left;
+    }
+
+    @media(min-width: 768px) {
+        padding: 15px 0 6px;
+        margin: 0 30px 14px;
+        border-bottom: 5px solid transparent;
+    }
+
+    @media(max-width: 1024px) {
+        font-size: fontSize("smaller");
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .is-active & {
+        border-bottom-color: $tab-title-border-color;
+        color: stencilColor('color-textHeading');
+    }
+}
+
+.tab-content {
+    padding: 40px 0;
+
+    //
+    // State for when tab-content has js generated of calculated content, like carousel
+    //
+    // Purpose: The content being display: none, means any js calculated dimensions
+    // are incorrect as the elements inside the tab-content have no dimensions to grab.
+    // Carousel is a prime example. It needs widths to calculate the layout and slides
+    // -----------------------------------------------------------------------------
+    &.has-jsContent {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
+
+        // scss-lint:disable NestingDepth
+        &.is-active {
+            height: auto;
+            overflow: visible;
+            padding: $tabs-content-padding;
+            visibility: visible;
+        }
+        // scss-lint:enable NestingDepth
+    }
+
+
+    //
+    // Product review displays in tabs
+    //
+    // Purpose: Display product reviews within tabbed content on product pages.
+    // -----------------------------------------------------------------------------
+    .productReview {
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: grid-calc(6, $total-columns);
+        }
+    }
+
+    .productReviews {
+        border-top: 0;
+    }
+
+    .icon-loading {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .tab-titleMobile {
+        display: block;
+        color: #000;
+        font-size: 18px;
+        font-weight: 700;
+        border-bottom: 2px solid #e6e6e6;
+        padding-bottom: 17px;
+        padding-top: 16px;
+        position: relative;
+        text-decoration: none;
+
+        @media(min-width: 768px) {
+            display: none;
+        }
+
+        &:before {
+            top: 50%;
+            right: 4px;
+            z-index: 2;
+            content: "";
+            width: 2px;
+            height: 10px;
+            position: absolute;
+            transition: all .4s ease;
+            transform: translateY(-50%);
+            background-color: #000;
+        }
+
+        &:after {
+            top: 50%;
+            right: 0;
+            z-index: 2;
+            content: "";
+            width: 10px;
+            height: 2px;
+            position: absolute;
+            transform: translateY(-50%);
+            background-color: #000;
+        }
+
+        &.is-active:before {
+            transform: translateY(-50%) rotate(90deg);
+        }
+    }
+
+    @media(max-width: 767px) {
+        display: block;
+        padding: 0;
+
+        .tabContent {
+            display: none;
+            padding: 1.5rem 0;
+        }
+    }
+}
