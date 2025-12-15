@@ -95,12 +95,18 @@ export default class Product extends PageManager {
             validator = this.registerQuotationValidation($reviewForm);
         });
 
-        $reviewForm.on('submit', () => {
+        $reviewForm.on('submit', (event) => {
             if (validator) {
                 validator.performCheck();
-                return validator.areAll('valid');
+
+                if (!validator.areAll('valid')) {
+                    return false;
+                }
             }
 
+            // Intercept form submission to handle quotation via AJAX
+            event.preventDefault();
+            this.handleQuotationSubmit($reviewForm);
             return false;
         });
 
@@ -139,6 +145,87 @@ export default class Product extends PageManager {
         ]);
 
         return quotationValidator;
+    }
+
+    handleQuotationSubmit($form) {
+        const $submitBtn = $form.find('input[type="submit"]');
+        const $responseMsg = $('#quotation-response-message');
+        const originalBtnValue = $submitBtn.val();
+
+        // Disable submit button and show loading state
+        $submitBtn.prop('disabled', true).val('Sending...');
+        $responseMsg.hide();
+
+        // Gather form data
+        const formData = {
+            fullname: $form.find('[name="contact_fullname"]').val(),
+            email: $form.find('[name="contact_email"]').val(),
+            companyname: $form.find('[name="contact_companyname"]').val() || 'N/A',
+            country: $form.find('[name="quote_country"]').val(),
+            quantity: $form.find('[name="quote_quantity"]').val() || '1',
+            message: $form.find('[name="contact_question"]').val(),
+            productName: $('#quote_product_name').val(),
+            productSku: $('#quote_product_sku').val(),
+            productUrl: $('#quote_product_url').val(),
+        };
+
+        // Format the complete message with product details
+        const fullMessage = `
+=== QUOTATION REQUEST ===
+
+Customer Information:
+- Name: ${formData.fullname}
+- Email: ${formData.email}
+- Company: ${formData.companyname}
+- Country: ${formData.country}
+
+Product Information:
+- Product: ${formData.productName}
+- SKU: ${formData.productSku}
+- URL: ${formData.productUrl}
+- Requested Quantity: ${formData.quantity}
+
+Customer Message:
+${formData.message}
+`;
+
+        // Submit via AJAX
+        $.ajax({
+            type: 'POST',
+            url: '/pages.php?action=sendContactForm',
+            data: {
+                contact_fullname: formData.fullname,
+                contact_email: formData.email,
+                contact_companyname: formData.companyname,
+                contact_question: fullMessage,
+                page_id: 6,
+            },
+            success: () => {
+                $responseMsg
+                    .removeClass('alertBox-message--error')
+                    .addClass('alertBox alertBox-message alertBox-message--success')
+                    .html('<p>Thank you! Your quote request has been sent successfully. We will contact you soon.</p>')
+                    .show();
+
+                // Reset form
+                $form[0].reset();
+                $submitBtn.prop('disabled', false).val(originalBtnValue);
+
+                // Auto-close modal after 3 seconds
+                setTimeout(() => {
+                    $('#modal-review-form').foundation('reveal', 'close');
+                }, 3000);
+            },
+            error: () => {
+                $responseMsg
+                    .removeClass('alertBox-message--success')
+                    .addClass('alertBox alertBox-message alertBox-message--error')
+                    .html(`<p>There was an error sending your quote request. Please email us directly at <a href="mailto:info@electrowell.com">info@electrowell.com</a> or call us.</p>`)
+                    .show();
+
+                $submitBtn.prop('disabled', false).val(originalBtnValue);
+            },
+        });
     }
 
     after(next) {

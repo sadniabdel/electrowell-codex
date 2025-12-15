@@ -11,7 +11,7 @@
             <h6 class="product-brand">{{ product.brand.name }}</h6>
             <h5 class="product-title">{{ product.title }}</h5>
         </div>
-        <form class="form writeReview-form" action="{{urls.contact_us_submit}}" method="post">
+        <form class="form writeReview-form quotation-form" action="/pages.php?action=sendContactForm" method="post" data-quotation-form>
             <fieldset class="form-fieldset">
                 <!-- Full Name (Required) -->
                 <div class="form-field">
@@ -57,17 +57,17 @@
                     <textarea class="form-input" id="contact_question" name="contact_question" rows="5" required></textarea>
                 </div>
 
-                {{{forms.contact.recaptcha.markup}}}
+                <div class="form-field" id="quotation-response-message" style="display:none;"></div>
 
                 <div class="form-field">
                     <input type="submit" class="btn btn-primary" value="Submit Quote Request">
                 </div>
 
                 <!-- Hidden Product Information Fields -->
-                <input type="hidden" name="quote_product_name" value="{{ product.title }}">
-                <input type="hidden" name="quote_product_sku" value="{{ product.sku }}">
-                <input type="hidden" name="quote_product_url" value="{{ product.url }}">
-                <input type="hidden" name="page_id" value="{{forms.contact.page_id}}">
+                <input type="hidden" name="quote_product_name" id="quote_product_name" value="{{ product.title }}">
+                <input type="hidden" name="quote_product_sku" id="quote_product_sku" value="{{ product.sku }}">
+                <input type="hidden" name="quote_product_url" id="quote_product_url" value="{{ product.url }}">
+                <input type="hidden" name="page_id" value="6">
             </fieldset>
         </form>
     </div>
