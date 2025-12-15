@@ -1,0 +1,92 @@
+<div id="modal-ask-an-expert" class="modal modal-ask-expert" data-reveal>
+    <div class="modal-header">
+        <h2 class="modal-header-title">Ask Our Expert</h2>
+        <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+            <span aria-hidden="true">&#215;</span>
+        </a>
+    </div>
+    <div class="modal-body" data-product-title="{{product.title}}" data-product-url="{{product.url}}" data-product-sku="{{product.sku}}" data-product-id="{{product.id}}">
+        <div class="expert-form-subtitle">
+            <p>Have questions about this product? Our experts are here to help you make the right choice.</p>
+        </div>
+        <div id="expert-form-results" class="expert-form-results"></div>
+        <form class="form expert-inquiry-form" action="{{urls.contact_us_submit}}" method="post" id="expert-inquiry-form">
+            <fieldset class="form-fieldset">
+                <!-- Name -->
+                <div class="form-field">
+                    <label class="form-label" for="expert_name">Your Name
+                        <small>{{lang 'common.required'}}</small>
+                    </label>
+                    <input class="form-input" type="text" id="expert_name" name="contact_fullname" value="{{customer.name}}" required>
+                </div>
+
+                <!-- Email / Phone Row -->
+                <div class="form-row form-row--half">
+                    <div class="form-field">
+                        <label class="form-label" for="expert_email">Email Address
+                            <small>{{lang 'common.required'}}</small>
+                        </label>
+                        <input class="form-input" type="email" id="expert_email" name="contact_email" value="{{customer.email}}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="expert_phone">Phone Number</label>
+                        <input class="form-input" type="text" id="expert_phone" name="contact_phone" value="{{customer.phone}}">
+                    </div>
+                </div>
+
+                <!-- Country / Company Row -->
+                <div class="form-row form-row--half">
+                    <div class="form-field">
+                        <label class="form-label" for="expert_country">Country</label>
+                        <input class="form-input" type="text" id="expert_country" name="inquiry_country">
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="expert_company">Company Name</label>
+                        <input class="form-input" type="text" id="expert_company" name="contact_companyname">
+                    </div>
+                </div>
+
+                <!-- What do you need -->
+                <div class="form-field form-field-radio">
+                    <label class="form-label">What do you need?</label>
+                    <div class="form-radio-group">
+                        <label class="form-option">
+                            <input class="form-radio" type="radio" name="inquiry_need" value="Pricing Information" checked>
+                            <span class="form-label">Pricing Information</span>
+                        </label>
+                        <label class="form-option">
+                            <input class="form-radio" type="radio" name="inquiry_need" value="Technical Questions">
+                            <span class="form-label">Technical Questions</span>
+                        </label>
+                        <label class="form-option">
+                            <input class="form-radio" type="radio" name="inquiry_need" value="Both">
+                            <span class="form-label">Both</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="form-field">
+                    <label class="form-label" for="expert_message">How can we help you today?
+                        <small>{{lang 'common.required'}}</small>
+                    </label>
+                    <textarea class="form-input" id="expert_message" name="contact_question" rows="5" required placeholder="Please describe what you need help with..."></textarea>
+                </div>
+
+                {{{forms.contact.recaptcha.markup}}}
+
+                <!-- Hidden fields to track product info -->
+                <input type="hidden" name="inquiry_product_name" value="{{ product.title }}">
+                <input type="hidden" name="inquiry_product_id" value="{{ product.id }}">
+                <input type="hidden" name="inquiry_product_sku" value="{{ product.sku }}">
+                <input type="hidden" name="inquiry_type" value="ask_an_expert">
+
+                <div class="form-actions">
+                    <input type="submit" class="btn btn-primary" value="Send Inquiry">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
