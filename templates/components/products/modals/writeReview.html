@@ -13,7 +13,7 @@
         </div>
         <form class="form quotation-inquiry-form" action="{{urls.contact_us_submit}}" method="post">
             <fieldset class="form-fieldset">
-                <!-- Name -->
+                <!-- Full Name -->
                 <div class="form-field">
                     <label class="form-label" for="inquiry_name">Full Name
                         <small>{{lang 'common.required'}}</small>
@@ -21,40 +21,40 @@
                     <input class="form-input" type="text" id="inquiry_name" name="contact_fullname" value="{{customer.name}}" required>
                 </div>
 
-                <!-- Email -->
+                <!-- Email / Company Name Row -->
+                <div class="form-row form-row--half">
+                    <div class="form-field">
+                        <label class="form-label" for="inquiry_email">Email
+                            <small>{{lang 'common.required'}}</small>
+                        </label>
+                        <input class="form-input" type="email" id="inquiry_email" name="contact_email" value="{{customer.email}}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="inquiry_company">Company Name</label>
+                        <input class="form-input" type="text" id="inquiry_company" name="contact_companyname">
+                    </div>
+                </div>
+
+                <!-- Country / Phone Row -->
+                <div class="form-row form-row--half">
+                    <div class="form-field">
+                        <label class="form-label" for="inquiry_country">Country</label>
+                        <input class="form-input" type="text" id="inquiry_country" name="inquiry_country">
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="inquiry_phone">Phone</label>
+                        <input class="form-input" type="text" id="inquiry_phone" name="contact_phone" value="{{customer.phone}}">
+                    </div>
+                </div>
+
+                <!-- Message -->
                 <div class="form-field">
-                    <label class="form-label" for="inquiry_email">Email Address
+                    <label class="form-label" for="inquiry_message">Message
                         <small>{{lang 'common.required'}}</small>
                     </label>
-                    <input class="form-input" type="email" id="inquiry_email" name="contact_email" value="{{customer.email}}" required>
-                </div>
-
-                <!-- Phone -->
-                <div class="form-field">
-                    <label class="form-label" for="inquiry_phone">Phone Number</label>
-                    <input class="form-input" type="text" id="inquiry_phone" name="contact_phone" value="{{customer.phone}}">
-                </div>
-
-                <!-- Company -->
-                <div class="form-field">
-                    <label class="form-label" for="inquiry_company">Company Name</label>
-                    <input class="form-input" type="text" id="inquiry_company" name="contact_companyname">
-                </div>
-
-                <!-- Quantity -->
-                <div class="form-field">
-                    <label class="form-label" for="inquiry_quantity">Quantity Required
-                        <small>{{lang 'common.required'}}</small>
-                    </label>
-                    <input class="form-input" type="number" id="inquiry_quantity" name="inquiry_quantity" min="1" required>
-                </div>
-
-                <!-- Message/Requirements -->
-                <div class="form-field">
-                    <label class="form-label" for="inquiry_message">Message / Requirements
-                        <small>{{lang 'common.required'}}</small>
-                    </label>
-                    <textarea class="form-input" id="inquiry_message" name="contact_question" rows="5" required placeholder="Please provide details about your quotation request..."></textarea>
+                    <textarea class="form-input" id="inquiry_message" name="contact_question" rows="5" required placeholder="Please provide details about your inquiry..."></textarea>
                 </div>
 
                 {{{forms.contact.recaptcha.markup}}}
