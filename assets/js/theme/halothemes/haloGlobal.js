@@ -595,62 +595,67 @@ $(window).resize(function() {
                console.log('[ASK EXPERT] mailTo:', mailTo);
                console.log('[ASK EXPERT] subjectMail:', subjectMail);
 
-               var ask_post_data = {
-                   "api": "i_send_mail",
-                   "subject": "Quote Request - " + customerName + " - (SKU: " + sku + ")",
-                   "from_name": customerName,
-                   "email": mailTo,
-                   "email_from": customerMail,
-                   "message": message
+               // Create email body with all details
+               var emailBody = "Quote Request - " + customerName + " - (SKU: " + sku + ")\n\n";
+               emailBody += "QUOTATION REQUEST\n\n";
+               emailBody += "Customer Information:\n";
+               emailBody += "Name: " + customerName + "\n";
+               emailBody += "Email: " + customerMail + "\n";
+               emailBody += "Phone: " + customerPhone + "\n";
+               emailBody += "Country: " + customerCountry + "\n";
+               emailBody += "Company: " + (customerCompany || 'N/A') + "\n\n";
+               emailBody += "Product Information:\n";
+               emailBody += "Product: " + title + "\n";
+               emailBody += "SKU: " + sku + "\n";
+               emailBody += "URL: " + url + "\n";
+               emailBody += "Request Type: " + (typePackage || 'Not specified') + "\n\n";
+               emailBody += "Customer Message:\n" + customerMessage;
+
+               console.log('[ASK EXPERT] Email body prepared');
+               console.log('[ASK EXPERT] Submitting via BigCommerce Stencil Utils...');
+
+               $("#halo-ask-an-expert-results").html('<div class="alertBox alertBox--info">Sending request...</div>').show();
+
+               // Use BigCommerce's Stencil Utils to submit contact form
+               var formData = {
+                   'contact_email': customerMail,
+                   'contact_fullname': customerName,
+                   'contact_phone': customerPhone,
+                   'contact_companyname': customerCompany || '',
+                   'contact_orderno': sku,
+                   'contact_rma': '',
+                   'contact_question': emailBody
                };
 
-               console.log('[ASK EXPERT] Request data:', ask_post_data);
-               console.log('[ASK EXPERT] Sending AJAX request to themevale.net...');
-
                $.ajax({
-                   url: 'https://themevale.net/tools/sendmail/quotecart/sendmail.php',
+                   url: '/pages.php?action=sendContactForm',
                    type: 'POST',
-                   data: ask_post_data,
-                   dataType: 'json',
-                   timeout: 15000,
-                   beforeSend: function() {
-                       console.log('[ASK EXPERT] AJAX request started');
-                       $("#halo-ask-an-expert-results").html('<div class="alertBox alertBox--info">Sending request...</div>').show();
-                   },
+                   data: formData,
+                   timeout: 10000,
                    success: function(response) {
-                       console.log('[ASK EXPERT] AJAX success! Response:', response);
-                       var output = "";
-                       if (response.type == 'error') {
-                           output = '<div class="alertBox alertBox--error">' + response.text + '</div>';
-                           console.log('[ASK EXPERT] Server returned error:', response.text);
-                       } else {
-                           output = '<div class="alertBox alertBox--success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
-                           $("#halo-ask-an-expert-form  input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
-                           $("#halo-ask-an-expert-form").hide();
-                           console.log('[ASK EXPERT] Email sent successfully!');
-                       }
+                       console.log('[ASK EXPERT] BigCommerce submission success!');
+                       var output = '<div class="alertBox alertBox--success">Thank you! Your quote request has been sent to ' + mailTo + '. We will respond within 24 hours.</div>';
+                       $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
+                       $("#halo-ask-an-expert-form").hide();
                        $("#halo-ask-an-expert-results").hide().html(output).show();
                    },
                    error: function(xhr, status, error) {
-                       console.error('[ASK EXPERT] AJAX error occurred');
+                       console.error('[ASK EXPERT] BigCommerce submission failed, trying alternative method');
                        console.error('[ASK EXPERT] Status:', status);
-                       console.error('[ASK EXPERT] Error:', error);
-                       console.error('[ASK EXPERT] XHR:', xhr);
-                       console.error('[ASK EXPERT] Response Text:', xhr.responseText);
-                       console.error('[ASK EXPERT] Status Code:', xhr.status);
 
-                       var errorMsg = 'Failed to send request';
-                       if (status === 'timeout') {
-                           errorMsg = 'Request timed out after 15 seconds';
-                       } else if (xhr.status === 0) {
-                           errorMsg = 'Network error or CORS blocked the request';
-                       } else if (xhr.status === 404) {
-                           errorMsg = 'Email service not found (404)';
-                       } else if (xhr.status === 500) {
-                           errorMsg = 'Email service error (500)';
-                       }
+                       // Fallback: Create mailto link
+                       var mailtoSubject = encodeURIComponent("Quote Request - " + customerName + " - SKU: " + sku);
+                       var mailtoBody = encodeURIComponent(emailBody);
+                       var mailtoLink = 'mailto:' + mailTo + '?subject=' + mailtoSubject + '&body=' + mailtoBody;
 
-                       var output = '<div class="alertBox alertBox--error">' + errorMsg + '. Please contact us directly at ' + mailTo + '</div>';
+                       console.log('[ASK EXPERT] Opening mailto fallback');
+
+                       var output = '<div class="alertBox alertBox--info">';
+                       output += 'Please click the button below to send your request via email:<br><br>';
+                       output += '<a href="' + mailtoLink + '" class="button button--primary">Send Email to ' + mailTo + '</a>';
+                       output += '<br><br>Or copy this information and email us directly at: <strong>' + mailTo + '</strong>';
+                       output += '</div>';
+
                        $("#halo-ask-an-expert-results").hide().html(output).show();
                    }
                });
