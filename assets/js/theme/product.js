@@ -152,6 +152,10 @@ export default class Product extends PageManager {
         const $responseMsg = $('#quotation-response-message');
         const originalBtnValue = $submitBtn.val();
 
+        // Disable button and show loading state
+        $submitBtn.prop('disabled', true).val('Sending...');
+        $responseMsg.hide();
+
         // Gather form data
         const formData = {
             fullname: $form.find('[name="contact_fullname"]').val(),
@@ -165,8 +169,49 @@ export default class Product extends PageManager {
             productUrl: $('#quote_product_url').val(),
         };
 
-        // Format the complete email body with product details
-        const emailBody = `QUOTATION REQUEST
+        // EmailJS integration
+        // Replace with your EmailJS credentials: https://www.emailjs.com/
+        const serviceID = 'YOUR_EMAILJS_SERVICE_ID';
+        const templateID = 'YOUR_EMAILJS_TEMPLATE_ID';
+        const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+
+        // Prepare template parameters
+        const templateParams = {
+            customer_name: formData.fullname,
+            customer_email: formData.email,
+            customer_company: formData.companyname,
+            customer_country: formData.country,
+            product_name: formData.productName,
+            product_sku: formData.productSku,
+            product_url: formData.productUrl,
+            quantity: formData.quantity,
+            message: formData.message,
+        };
+
+        // Send email using EmailJS
+        emailjs.send(serviceID, templateID, templateParams, publicKey)
+            .then(() => {
+                $responseMsg
+                    .removeClass('alertBox-message--error')
+                    .addClass('alertBox alertBox-message alertBox-message--success')
+                    .html('<p><strong>Success!</strong> Your quote request has been sent. We will contact you soon.</p>')
+                    .show();
+
+                // Reset form
+                $form[0].reset();
+                $submitBtn.prop('disabled', false).val(originalBtnValue);
+
+                // Auto-close modal after 3 seconds
+                setTimeout(() => {
+                    $('#modal-review-form').foundation('reveal', 'close');
+                    $responseMsg.hide();
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('EmailJS Error:', error);
+
+                // Fallback to mailto
+                const emailBody = `QUOTATION REQUEST
 
 Customer Information:
 Name: ${formData.fullname}
@@ -183,28 +228,21 @@ Requested Quantity: ${formData.quantity}
 Customer Message:
 ${formData.message}`;
 
-        const emailSubject = `Quote Request - ${formData.productName} (SKU: ${formData.productSku})`;
-        const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                const emailSubject = `Quote Request - ${formData.productName} (SKU: ${formData.productSku})`;
+                const mailtoLink = `mailto:info@electrowell.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
-        // Open email client with pre-filled information
-        window.location.href = mailtoLink;
+                $responseMsg
+                    .removeClass('alertBox-message--success')
+                    .addClass('alertBox alertBox-message alertBox-message--error')
+                    .html(`
+                        <p><strong>Unable to send automatically.</strong></p>
+                        <p><a href="${mailtoLink}" class="btn btn-primary">Open Email Client</a></p>
+                        <p><small>Or email us at: <a href="mailto:info@electrowell.com">info@electrowell.com</a></small></p>
+                    `)
+                    .show();
 
-        // Show confirmation message
-        $responseMsg
-            .removeClass('alertBox-message--error')
-            .addClass('alertBox alertBox-message alertBox-message--success')
-            .html(`
-                <p><strong>Opening your email client...</strong></p>
-                <p>A new email will open with your quote request pre-filled. Simply review and send it.</p>
-                <p style="margin-top: 10px;">
-                    <small>Didn't open? <a href="${mailtoLink}">Click here</a> or email us at:
-                    <a href="mailto:info@electrowell.com">info@electrowell.com</a></small>
-                </p>
-            `)
-            .show();
-
-        // Reset button
-        $submitBtn.prop('disabled', false).val(originalBtnValue);
+                $submitBtn.prop('disabled', false).val(originalBtnValue);
+            });
     }
 
     after(next) {
