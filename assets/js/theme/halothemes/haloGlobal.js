@@ -539,12 +539,9 @@ $(window).resize(function() {
        var message;
 
        $(document).on('click', '#halo-ask-an-expert-button', event => {
-           console.log('Ask an Expert button clicked');
-           console.log('Context:', context);
-
            var ask_proceed = true,
-               subjectMail = context.themeSettings.halo_ask_an_expert_subject,
-               mailTo = context.themeSettings.halo_ask_an_expert_mailto,
+               subjectMail = context.themeSettings['halo-ask-an-expert-subject'],
+               mailTo = context.themeSettings['halo-ask-an-expert-mailto'],
                customerName = $('#halo-ask-an-expert-form input[name=customer_name]').val(),
                customerMail = $('#halo-ask-an-expert-form input[name=customer_email]').val(),
                customerPhone = $('#halo-ask-an-expert-form input[name=customer_phone]').val(),
@@ -553,14 +550,10 @@ $(window).resize(function() {
                typePackage = $('#halo-ask-an-expert-form input[name=type_package]:checked').val(),
                customerMessage = $('#halo-ask-an-expert-form textarea[name=message]').val();
 
-           console.log('Form data:', { customerName, customerMail, customerPhone, customerCountry, customerMessage });
-
            var img = $('#halo-ask-an-expert [data-product-image]').attr('data-product-image'),
                title =  $('#halo-ask-an-expert [data-product-title]').attr('data-product-title'),
                sku = $('#halo-ask-an-expert [data-product-sku]').attr('data-product-sku'),
                url = $('#halo-ask-an-expert [data-product-url]').attr('data-product-url');
-
-           console.log('Product data:', { title, sku, url });
 
            // Updated email message format per user request
            message = "<div style='border: 1px solid #e6e6e6;padding: 30px;max-width: 600px;margin: 0 auto;'>\
@@ -583,7 +576,6 @@ $(window).resize(function() {
 
            $("#halo-ask-an-expert-form input[required=true], #halo-ask-an-expert-form textarea[required=true]").each(function() {
                if (!$.trim($(this).val())) {
-                   console.log('Validation failed for:', $(this).attr('name'));
                    $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
                    ask_proceed = false;
                } else {
@@ -593,13 +585,10 @@ $(window).resize(function() {
                var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
                if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
-                   console.log('Email validation failed for:', $(this).val());
                    $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
                    ask_proceed = false;
                }
            });
-
-           console.log('Validation result - ask_proceed:', ask_proceed);
 
            if (ask_proceed) {
                var ask_post_data = {
@@ -611,29 +600,20 @@ $(window).resize(function() {
                    "message": message
                };
 
-               console.log('Sending AJAX request with data:', ask_post_data);
-
                $.post('https://themevale.net/tools/sendmail/quotecart/sendmail.php', ask_post_data, function(response) {
-                   console.log('AJAX response received:', response);
                    var output = "";
                    if (response.type == 'error') {
                        output = '<div class="error">' + response.text + '</div>';
-                       console.log('Error response:', response.text);
                    } else {
                        output = '<div class="alertBox alertBox--success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
                        $("#halo-ask-an-expert-form  input[required=true], #halo-ask-an-expert-form textarea[required=true]").val('');
                        $("#halo-ask-an-expert-form").hide();
-                       console.log('Success! Form submitted.');
                    }
                    $("#halo-ask-an-expert-results").hide().html(output).show();
                }, 'json').fail(function(xhr, status, error) {
-                   console.error('AJAX request failed:', status, error);
-                   console.error('Response:', xhr.responseText);
                    var output = '<div class="alertBox alertBox--error">Failed to send request. Please try again or contact us directly at ' + mailTo + '</div>';
                    $("#halo-ask-an-expert-results").hide().html(output).show();
                });
-           } else {
-               console.log('Validation failed - form not submitted');
            }
        });
 
