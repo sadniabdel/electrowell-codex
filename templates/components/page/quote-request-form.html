@@ -1,0 +1,113 @@
+<form data-contact-form class="form form-contact" action="{{urls.contact_us_submit}}" method="post">
+    {{#if forms.contact.error}}
+        {{> components/common/alert-error forms.contact.error}}
+    {{/if}}
+    <input type="hidden" name="page_id" id="page_id" value="{{forms.contact.page_id}}">
+    <input type="hidden" name="product_name" id="product_name" value="">
+    <input type="hidden" name="product_sku" id="product_sku" value="">
+    <input type="hidden" name="product_url" id="product_url" value="">
+
+    <div class="form-row form-row--half">
+        {{#if forms.contact.name}}
+            <div class="form-field">
+                <label class="form-label" for="contact_fullname">
+                    Full Name
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="{{customer.name}}" required>
+            </div>
+        {{/if}}
+
+        <div class="form-field">
+            <label class="form-label" for="contact_email">
+                Email
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <input class="form-input" type="email" id="contact_email" name="contact_email" value="{{customer.email}}" required>
+        </div>
+
+        {{#if forms.contact.phone}}
+            <div class="form-field">
+                <label class="form-label" for="contact_phone">
+                    Phone Number
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input class="form-input" type="tel" id="contact_phone" name="contact_phone" value="{{customer.phone}}" required>
+            </div>
+        {{/if}}
+
+        {{#if forms.contact.company}}
+            <div class="form-field">
+                <label class="form-label" for="contact_companyname">Company Name</label>
+                <input class="form-input" type="text" id="contact_companyname" name="contact_companyname">
+            </div>
+        {{/if}}
+
+        {{#if forms.contact.rma}}
+            <div class="form-field">
+                <label class="form-label" for="contact_rma">
+                    Country
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input class="form-input" type="text" id="contact_rma" name="contact_rma" placeholder="e.g., United States" required>
+            </div>
+        {{/if}}
+
+        <div class="form-field hl-textarea">
+            <label class="form-label" for="contact_question">
+                Message
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <textarea name="contact_question" id="contact_question" rows="6" cols="50" class="form-input" placeholder="Tell us about your requirements..." required></textarea>
+        </div>
+
+        <div id="product-info-display" style="display:none; background: #f7f7f7; padding: 15px; margin: 15px 0; border-left: 3px solid #3C3C3C;">
+            <strong>Product Information:</strong>
+            <div id="product-display-content"></div>
+        </div>
+
+		{{{forms.contact.recaptcha.markup}}}
+    </div>
+
+    <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="Request Quote">
+    </div>
+</form>
+
+<script>
+// Auto-populate product information from URL parameters
+(function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var productName = urlParams.get('product_name');
+    var productSku = urlParams.get('product_sku');
+    var productUrl = urlParams.get('product_url');
+
+    if (productName || productSku) {
+        // Set hidden fields
+        if (productName) document.getElementById('product_name').value = productName;
+        if (productSku) document.getElementById('product_sku').value = productSku;
+        if (productUrl) document.getElementById('product_url').value = productUrl;
+
+        // Display product info
+        var display = '';
+        if (productName) display += '<div><strong>Product:</strong> ' + productName + '</div>';
+        if (productSku) display += '<div><strong>SKU:</strong> ' + productSku + '</div>';
+
+        document.getElementById('product-display-content').innerHTML = display;
+        document.getElementById('product-info-display').style.display = 'block';
+
+        // Prepend product info to message
+        var messageField = document.getElementById('contact_question');
+        var productInfo = 'Product: ' + (productName || 'N/A') + '\n';
+        productInfo += 'SKU: ' + (productSku || 'N/A') + '\n';
+        if (productUrl) productInfo += 'URL: ' + productUrl + '\n';
+        productInfo += '\n--- My Message ---\n';
+
+        messageField.value = productInfo;
+
+        // Set cursor after the product info
+        messageField.focus();
+        messageField.setSelectionRange(messageField.value.length, messageField.value.length);
+    }
+})();
+</script>
